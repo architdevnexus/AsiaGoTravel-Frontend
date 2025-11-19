@@ -1,9 +1,15 @@
+import { AllPackageComponent } from '@/components/allpackages'
 import React from 'react'
 
- const CorporateTrips = () => {
+ const CorporateTrips = ({ params }) => {
+    const { slug } = params;
   return (
-    <div>page</div>
+    <div>
+         <AllPackageComponent slug={slug} />
+    </div>
   )
 }
 
 export default CorporateTrips
+
+

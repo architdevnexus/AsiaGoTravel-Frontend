@@ -7,7 +7,7 @@ import { IoLocationOutline } from "react-icons/io5";
 export const HolidayCard = ({
   grid = "grid-cols-1 md:grid-cols-3",
   packages = [],
-  slug
+  slug,
 }) => {
   return (
     <div>
@@ -35,32 +35,35 @@ export const HolidayCard = ({
 
               {/* Content */}
               <div className="px-5">
-                <p className="text-gray-500 text-sm">6 Days and 7 Nights</p>
+                <p className="text-gray-500 text-sm">
+                  {pkg?.tripDuration?.days} Days & {pkg?.tripDuration?.nights}{" "}
+                  Nights
+                </p>
 
                 <h3 className="text-lg font-semibold text-[#2D3748] mt-1 leading-snug">
                   {pkg?.title}
                 </h3>
 
                 <ul className="mt-4 text-sm text-gray-600 space-y-1">
-                  <li className="flex items-center gap-2">
-                    <FaCheck className="text-[#6e9853] font-light" />
-                    Guided tour as per Itinerary
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <FaCheck className="text-[#6e9853]" />
-                    4-star accommodations and daily breakfast
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <FaCheck className="text-[#6e9853]" />
-                    Indian and local cuisine options
-                  </li>
+                  {pkg?.features?.map((item, idx) => (
+                    <li key={idx} className="flex items-center gap-2">
+                      <FaCheck className="text-[#6e9853]" />
+                      {item}
+                    </li>
+                  ))}
                 </ul>
 
                 <div className="flex gap-2 mt-6 text-gray-700 text-3xl pb-10">
-                  <span>🏨</span>
-                  <span>🚗</span>
-                  <span>🏍️</span>
-                  <span>🎭</span>
+                  {pkg?.icons?.map((icon, idx) => (
+                    <Image
+                      key={idx}
+                      src={icon}
+                      width={32}
+                      height={32}
+                      alt={`icon-${idx}`}
+                      className="w-8 h-8"
+                    />
+                  ))}
                 </div>
               </div>
 
@@ -68,11 +71,9 @@ export const HolidayCard = ({
               <div className="bg-[#1B4965] text-white flex justify-between items-center px-5 py-3 rounded-b-2xl">
                 <div className="text-sm">
                   <p className="opacity-70">Starting From</p>
-                  <p className="font-semibold">
-                    ₹{pkg?.discountPrice || pkg?.price || "N/A"}
-                  </p>
+                  <p className="font-semibold">₹{pkg?.price || "N/A"}</p>
                 </div>
-                <Link href={`/all-packages/${ pkg?._id}`}>
+                <Link href={`/all-packages/${pkg?._id}`}>
                   <span className="flex cursor-pointer items-center gap-8 bg-[#3FA9F5] px-4 py-1.5 rounded-full hover:bg-[#357ca8] transition">
                     Explore
                     <div className="w-8 rounded-full bg-white p-2 text-black">

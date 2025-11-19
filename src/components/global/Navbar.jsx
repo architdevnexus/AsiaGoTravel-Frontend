@@ -10,54 +10,71 @@ export const Navbar = () => {
 
   const menuItems = [
     {
-      name: "Upcoming Group Trips",
+      name: "Honeymoon Trips",
       href: "/upcoming-grouptrips",
-      options: [
-        { name: "November", href: "/upcoming/himalayan-trek" },
-        { name: "December", href: "/trips/upcoming/beach-getaway" },
-        { name: "January", href: "/trips/upcoming/beach-getaway" },
-        { name: "February", href: "/trips/upcoming/beach-getaway" },
-        { name: "March", href: "/trips/upcoming/beach-getaway" },
-        { name: "April", href: "/trips/upcoming/beach-getaway" },
-      ],
+      // options: [
+      //   { name: "November", href: "/upcoming/himalayan-trek" },
+      //   { name: "December", href: "/trips/upcoming/beach-getaway" },
+      //   { name: "January", href: "/trips/upcoming/beach-getaway" },
+      //   { name: "February", href: "/trips/upcoming/beach-getaway" },
+      //   { name: "March", href: "/trips/upcoming/beach-getaway" },
+      //   { name: "April", href: "/trips/upcoming/beach-getaway" },
+      // ],
     },
     {
-      name: "Domestic Trips",
+      name: "Family Holidays",
       href: "/domestic-grouptrips",
-      options: [
-        { name: "Himachal", href: "/trips/domestic/rajasthan" },
-        { name: "Kashmir", href: "/trips/domestic/kerala" },
-        { name: "Kerala", href: "/trips/domestic/kerala" },
-        { name: "Rajasthan", href: "/trips/domestic/kerala" },
-        { name: "Uttarakhand", href: "/trips/domestic/kerala" },
-        { name: "Haryana", href: "/trips/domestic/kerala" },
-        { name: "Kerala ", href: "/trips/domestic/kerala" },
-      ],
+      // options: [
+      //   { name: "Himachal", href: "/trips/domestic/rajasthan" },
+      //   { name: "Kashmir", href: "/trips/domestic/kerala" },
+      //   { name: "Kerala", href: "/trips/domestic/kerala" },
+      //   { name: "Rajasthan", href: "/trips/domestic/kerala" },
+      //   { name: "Uttarakhand", href: "/trips/domestic/kerala" },
+      //   { name: "Haryana", href: "/trips/domestic/kerala" },
+      //   { name: "Kerala ", href: "/trips/domestic/kerala" },
+      // ],
     },
     {
-      name: "Weekend Trips",
+      name: "Family Group Tours",
       href: "/weekend-grouptrips",
-      options: [
-        { name: "Rishikesh Adventure", href: "/trips/weekend/rishikesh" },
-        { name: "Manali Escape", href: "/trips/weekend/manali" },
-      ],
+      // options: [
+      //   { name: "Rishikesh Adventure", href: "/trips/weekend/rishikesh" },
+      //   { name: "Manali Escape", href: "/trips/weekend/manali" },
+      // ],
     },
     {
-      name: "Backpacking Trips",
+      name: "Bachelor Tours",
       href: "/backpacking-grouptrips",
-      options: [
-        { name: "Europe Backpacking", href: "/trips/backpacking/europe" },
-        { name: "South Asia Circuit", href: "/trips/backpacking/asia" },
-      ],
+      // options: [
+      //   { name: "Europe Backpacking", href: "/trips/backpacking/europe" },
+      //   { name: "South Asia Circuit", href: "/trips/backpacking/asia" },
+      // ],
     },
     {
-      name: "Corporate Trips",
+      name: "Luxury Tours",
       href: "/corporate-trips",
-      options: [
-        { name: "Team Retreat", href: "/trips/corporate/team-retreat" },
-        { name: "Leadership Camp", href: "/trips/corporate/leadership-camp" },
-      ],
+      // options: [
+      //   { name: "Team Retreat", href: "/trips/corporate/team-retreat" },
+      //   { name: "Leadership Camp", href: "/trips/corporate/leadership-camp" },
+      // ],
     },
+      {
+      name: "Premium Holiday Packages",
+      href: "/corporate-trips",
+      // options: [
+      //   { name: "Team Retreat", href: "/trips/corporate/team-retreat" },
+      //   { name: "Leadership Camp", href: "/trips/corporate/leadership-camp" },
+      // ],
+    },
+          {
+      name: "Personalized Tours",
+      href: "/corporate-trips",
+      // options: [
+      //   { name: "Team Retreat", href: "/trips/corporate/team-retreat" },
+      //   { name: "Leadership Camp", href: "/trips/corporate/leadership-camp" },
+      // ],
+    },
+    
   ];
 
   const mainLinks = [
@@ -101,7 +118,7 @@ export const Navbar = () => {
 
           <button className="flex items-center bg-[#F5F7FA] border border-gray-300 text-[#0E3A55] px-4 py-2 mx-3 rounded-xl ">
             <FaPhoneAlt className="mr-2" />
-            +91 9711034055
+          +91-9119119641
           </button>
         </div>
 
@@ -125,7 +142,7 @@ export const Navbar = () => {
           >
             <Link href={item.href} className="flex items-center space-x-1">
               <span>{item.name}</span>
-              <FaChevronDown className="text-xs" />
+              {/* <FaChevronDown className="text-xs" /> */}
             </Link>
 
             {activeDropdown === index && item.options && (
@@ -181,7 +198,7 @@ export const Navbar = () => {
 
             <button className="flex items-center bg-[#F5F7FA] border border-gray-300 text-[#0E3A55] px-4 py-2 rounded-xl w-fit">
               <FaPhoneAlt className="mr-2" />
-              +91 9711034055
+           +91-9119119641
             </button>
           </div>
         </div>

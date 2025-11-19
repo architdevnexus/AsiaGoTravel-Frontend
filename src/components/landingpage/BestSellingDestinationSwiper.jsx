@@ -4,68 +4,73 @@ import Image from "next/image";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
-import "swiper/css/navigation";
-import { Pagination, Navigation } from "swiper/modules";
-import { IoIosArrowForward } from "react-icons/io";
+import { Pagination } from "swiper/modules";
+import { IoLocationOutline } from "react-icons/io5";
 
 export const SwiperDestination = () => {
   const swiperRef = useRef(null);
 
-  const images = [
-    "/img/aboutimg1.jpg",
-    "/img/aboutimg2.jpg",
-    "/img/aboutimg3.jpg",
-    "/img/aboutimg1.jpg",
-    "/img/aboutimg2.jpg",
-    "/img/aboutimg3.jpg",
-    "/img/aboutimg1.jpg",
-    "/img/aboutimg2.jpg",
-    "/img/aboutimg3.jpg",
+  const destinations = [
+    { src: "/img/aboutimg1.jpg", name: "Kashmir" },
+    { src: "/img/aboutimg2.jpg", name: "Bangalore" },
+    { src: "/img/aboutimg3.jpg", name: "Goa" },
+    { src: "/img/aboutimg1.jpg", name: "Manali" },
+    { src: "/img/aboutimg2.jpg", name: "Jaipur" },
+    { src: "/img/aboutimg3.jpg", name: "Leh Ladakh" },
   ];
 
   return (
     <div className="relative w-full">
-      {/* Swiper */}
       <Swiper
         onSwiper={(swiper) => (swiperRef.current = swiper)}
-        slidesPerView={5.5}
-        spaceBetween={25}
+        slidesPerView={5.5} // ✅ Desktop same
         pagination={{ clickable: true }}
-        modules={[Pagination, Navigation]}
+        modules={[Pagination]}
         className="mySwiper pb-10"
+        breakpoints={{
+          0: { slidesPerView: 1.2, spaceBetween: 14 },     // ✅ Mobile look like screenshot
+          480: { slidesPerView: 2.2, spaceBetween: 14 },   // Small devices
+          768: { slidesPerView: 3.2, spaceBetween: 18 },   // Tablets
+          1024: { slidesPerView: 5.5, spaceBetween: 20 },  // ✅ Desktop unchanged
+        }}
       >
-        {images.map((src, index) => (
+        {destinations.map((item, index) => (
           <SwiperSlide key={index}>
-            <div className="w-full h-60 rounded-lg overflow-hidden">
+            <div className="relative w-full h-65 rounded-xl overflow-hidden shadow-md">
               <Image
-                src={src}
-                alt={`Destination ${index + 1}`}
+                src={item.src}
+                alt={item.name}
                 width={400}
-                height={420}
+                height={450}
                 className="object-cover w-full h-full"
               />
+
+              {/* TITLE LABEL */}
+              <div className="absolute top-2 left-2  text-white text-xs sm:text-sm font-medium px-3 py-1 rounded-full flex items-center gap-1">
+                <IoLocationOutline size={14} />
+                {item.name}
+              </div>
             </div>
           </SwiperSlide>
         ))}
       </Swiper>
-
-      {/* Right blur overlay */}
-      <div className="absolute right-0 top-0 h-60 w-28 bg-gradient-to-l from-black to-transparent pointer-events-none z-10"></div>
-
-      {/* Right Arrow Button */}
-      <button
-        onClick={() => swiperRef.current?.slideNext()}
-        className="absolute right-1 top-[130px] -translate-y-1/2 z-20 transition "
-      >
-        <IoIosArrowForward  className="text-white" size={32} />
-      </button>
 
       {/* Pagination styling */}
       <style jsx global>{`
         .mySwiper .swiper-pagination {
           position: relative !important;
           bottom: 0 !important;
-          margin-top: 20px !important;
+          margin-top: 12px !important;
+        }
+        .swiper-pagination-bullet {
+          background: #d2d2d2;
+          width: 8px;
+          height: 8px;
+        }
+        .swiper-pagination-bullet-active {
+          background: #1b4965 !important;
+          width: 20px;
+          border-radius: 4px;
         }
       `}</style>
     </div>

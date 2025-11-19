@@ -5,9 +5,8 @@ import { getPackageById } from "@/components/services/getPackageById";
 import OverviewSection from "@/components/allpackages/OverviewPackage";
 import { PackageProductPage } from "@/components/allpackages/PackageProductPage";
 import { useParams } from "next/navigation";
-import { BestDestinationComponent } from "@/components/landingpage/BestSelling";
 
-const PackageSlugPage = ({ params }) => {
+const WeekendTripSlugPage = ({ params }) => {
 
   const { id } = useParams();
 
@@ -39,9 +38,8 @@ const PackageSlugPage = ({ params }) => {
 
       {/* ✅ Overview Section */}
       <OverviewSection overviewData={packageData} />
-      <BestDestinationComponent />
     </div>
   );
 };
 
-export default PackageSlugPage;
+export default WeekendTripSlugPage;

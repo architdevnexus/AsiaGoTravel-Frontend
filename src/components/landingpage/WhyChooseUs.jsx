@@ -4,44 +4,108 @@ import { FaHandHoldingDroplet } from "react-icons/fa6";
 
 export const WhyChooseUs = () => {
   const cards = [
-    { src: "/img/aboutimg1.jpg", text: "Luxury Stay" },
-    { src: "/img/aboutimg2.jpg", text: "Adventure Trips" },
-    { src: "/img/aboutimg3.jpg", text: "Cultural Tours" },
-    { src: "/img/aboutimg1.jpg", text: "Family Packages" },
-    { src: "/img/aboutimg2.jpg", text: "Beach Getaways" },
-    { src: "/img/aboutimg2.jpg", text: "Romantic Escapes" },
+    { src: "/img/aboutimg1.jpg", text: "Personalized Travel Experiences", description: "We curate premium domestic and international holiday packages tailored to your comfort and preferences." },
+    { src: "/img/aboutimg2.jpg", text: "End-to-End Travel Solutions", description: "From planning and bookings to transfers and guided tours, we handle every detail seamlessly." },
+    { src: "/img/aboutimg3.jpg", text: "Commitment to Quality Service" , description: "Our focus on comfort, transparency, and attention to detail ensures a smooth travel experience."},
+    { src: "/img/aboutimg1.jpg", text: "Trusted Global Network" , description: "We work with a proven network of reliable partners to provide top-tier travel services worldwide." },
+    { src: "/img/aboutimg2.jpg", text: "24/7 Customer Support" , description: "Our team is always available to assist you at any stage of your journey." },
+    { src: "/img/aboutimg2.jpg", text: "Journeys Crafted for Memories" , description: "Every trip with Asiago Travels is designed to be effortless, enjoyable, and truly unforgettable." },
   ];
 
   return (
-    <div className="px-16">
+    <div className="px-4 sm:px-10 lg:px-16">
       {/* Title Image */}
       <Image
         src="/img/whychooseus.svg"
         width={70}
         height={100}
         alt="Why Choose Us"
-        className="w-[50%] h-auto mb-6 relative -bottom-25"
+        className="w-[85%] sm:w-[60%] lg:w-[50%] h-auto mb-4 sm:mb-6 relative -bottom-6 sm:-bottom-20"
       />
 
       {/* Cards Grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 mt-24 relative z-10">
+      <div className="
+        grid 
+        grid-cols-1 
+        sm:grid-cols-2 
+        lg:grid-cols-3 
+        gap-5 
+        sm:gap-8 
+        lg:gap-10 
+        mt-10 
+        sm:mt-20 
+        lg:mt-24
+        relative z-10
+      ">
         {cards.map((card, index) => (
-          <div key={index} className="relative">
+          <div
+            key={index}
+            className="relative flex justify-center sm:block "
+          >
             {/* Left Blue Rounded Bar */}
-            <div className="bg-[#1B4965] rounded-l-full absolute h-28 w-4.5 -left-4 top-1/3 -translate-y-1/2"></div>
+            <div className="
+              bg-[#1B4965] 
+              rounded-l-full 
+              absolute 
+              h-20 
+              w-3 
+              left-1 
+              top-1/2 
+              -translate-y-1/2  
+              sm:h-28 
+              sm:w-4.5 
+              sm:-left-4
+            ">
+            </div>
 
             {/* Card Content */}
-            <div className="bg-[#E6F4FF] rounded-xl shadow-md px-8 py-6 relative z-10 hover:shadow-lg transition-all duration-200">
-              <div className="bg-white rounded-full w-16 h-16 flex items-center justify-center text-[#1B4965] mb-3">
-                <FaHandHoldingDroplet size={30} />
+        <div
+  className="
+    bg-[#E6F4FF]
+    rounded-xl
+    shadow-md
+    px-4
+    py-5
+    sm:px-8
+    sm:py-6
+    w-full
+    max-w-[380px]
+    sm:max-w-full
+    hover:shadow-lg
+    transition-all
+    duration-200
+    h-full
+    flex
+    flex-col
+    min-h-[200px]  
+   
+  "
+>
+
+              {/* Icon Circle */}
+              <div className="
+                bg-white 
+                rounded-full 
+                w-14 
+                h-14 
+                sm:w-16 
+                sm:h-16 
+                flex 
+                items-center 
+                justify-center 
+                text-[#1B4965] 
+                mb-3
+              ">
+                <FaHandHoldingDroplet size={26} />
               </div>
-              <h3 className="text-lg font-semibold mb-2 leading-5">
+
+              {/* Text */}
+              <h3 className="text-base sm:text-lg font-semibold mb-2 leading-5">
                 {card.text}
               </h3>
-              <p className="text-sm text-[#858585] leading-5">
-                Enjoy unbeatable deals and transparent pricing. We partner
-                directly with hotels, airlines, and local guides to offer you
-                exclusive discounts.
+
+              <p className="text-xs sm:text-sm text-[#858585] leading-5  line-clamp-3">
+           {card.description}
               </p>
             </div>
           </div>

@@ -1,9 +1,14 @@
+import { AllPackageComponent } from '@/components/allpackages'
 import React from 'react'
 
- const DomesticGroupTrips = () => {
+ const DomesticGroupTrips = ({ params }) => {
+    const { slug } = params;
   return (
-    <div>page</div>
+    <div>
+         <AllPackageComponent slug={slug} />
+    </div>
   )
 }
 
 export default DomesticGroupTrips
+

@@ -24,16 +24,18 @@ export const AllPackageComponent = ({slug}) => {
       <HeroAllPackage />
 
       <div className="flex bg-white rounded-2xl border m-10 relative bottom-24 border-[#B4B4B4]">
-        <div>
-          <FiltersSidebar />
-        </div>
+   <div className="hidden md:block">
+  <FiltersSidebar />
+</div>
 
-        <div className="p-10">
+    <div className="p-10 max-sm:p-0">
+
           {/* Pass API data */}
           <HolidayCard
             grid="grid-cols-1 md:grid-cols-2 gap-9"
             packages={packages}
             slug={slug}
+          
           />
         </div>
       </div>

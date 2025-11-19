@@ -1,9 +1,11 @@
+import { AllPackageComponent } from '@/components/allpackages'
 import React from 'react'
 
- const BackpackingGroup = () => {
+ const BackpackingGroup = ({ params }) => {
+    const { slug } = params;
   return (
     <div>
-        Hello
+         <AllPackageComponent slug={slug} />
     </div>
   )
 }

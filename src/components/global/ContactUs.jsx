@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import { FaEnvelope, FaPhoneAlt, FaMapMarkerAlt } from "react-icons/fa";
+import { FaEnvelope, FaPhoneAlt, FaMapMarkerAlt, FaClock } from "react-icons/fa";
 
 export const ContactSection = () => {
   const [formData, setFormData] = useState({
@@ -62,41 +62,46 @@ export const ContactSection = () => {
   };
 
   return (
-    <section className="bg-[#f8fafc] py-16 px-6 md:px-12 lg:px-20 overflow-hidden">
-      <div className="max-w-5xl mx-auto bg-white rounded-xl shadow-sm p-8 md:p-12 relative flex flex-col md:flex-row justify-between gap-8">
-        
-        {/* Contact Form */}
+    <section className="bg-[#f8fafc] py-8 px-6 md:px-12 lg:px-20 overflow-hidden">
+      <div
+        className="
+          max-w-5xl mx-auto bg-white rounded-xl shadow-sm p-4 md:p-10 relative 
+          flex flex-col md:flex-row justify-between gap-8
+        "
+      >
+        {/* ✅ Contact Form (same) */}
         <div className="w-full md:w-2/3">
-          <h2 className="text-2xl md:text-3xl font-semibold text-[#1B4965] mb-2">
+          <h2 className="text-2xl md:text-3xl font-semibold text-[#1B4965] mb-1.5">
             Contact Us
           </h2>
-          <p className="text-gray-600 mb-6 text-sm md:text-base">
+
+          <p className="text-gray-600 mb-4 text-sm md:text-base">
             Please don’t hesitate to reach out to us whenever you need assistance.
             We will make sure to respond to you promptly.
           </p>
 
-          <form onSubmit={handleSubmit} className="space-y-4">
+          <form onSubmit={handleSubmit} className="space-y-2">
             <div>
-              <label className="block text-sm text-gray-700 mb-1">Name</label>
+              <label className="block text-sm text-gray-700 mb-0.5">Name</label>
               <input
                 type="text"
                 required
                 name="fullName"
                 value={formData.fullName}
                 onChange={handleChange}
-                className="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-1 focus:ring-[#1B4965]"
+                className="w-full border border-gray-300 rounded-md px-3 py-1.5 focus:outline-none focus:ring-1 focus:ring-[#1B4965]"
               />
             </div>
 
             <div>
-              <label className="block text-sm text-gray-700 mb-1">Mobile</label>
+              <label className="block text-sm text-gray-700 mb-0.5">Mobile</label>
               <input
                 type="number"
                 required
                 name="mobileNumber"
                 value={formData.mobileNumber}
                 onChange={handleChange}
-                className="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-1 focus:ring-[#1B4965]"
+                className="w-full border border-gray-300 rounded-md px-3 py-1.5 focus:outline-none focus:ring-1 focus:ring-[#1B4965]"
               />
             </div>
 
@@ -108,12 +113,12 @@ export const ContactSection = () => {
                 name="email"
                 value={formData.email}
                 onChange={handleChange}
-                className="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-1 focus:ring-[#1B4965]"
+                className="w-full border border-gray-300 rounded-md px-3 py-1.5 focus:outline-none focus:ring-1 focus:ring-[#1B4965]"
               />
             </div>
 
-            <div className="flex gap-4">
-              <div className="w-1/2">
+            <div className="flex gap-4 max-sm:flex-col">
+              <div className="w-full md:w-1/2">
                 <label className="block text-sm text-gray-700 mb-1">
                   Travellers
                 </label>
@@ -123,11 +128,11 @@ export const ContactSection = () => {
                   name="numberOfTravellers"
                   value={formData.numberOfTravellers}
                   onChange={handleChange}
-                  className="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-1 focus:ring-[#1B4965]"
+                  className="w-full border border-gray-300 rounded-md px-3 py-1.5 focus:outline-none focus:ring-1 focus:ring-[#1B4965]"
                 />
               </div>
 
-              <div className="w-1/2">
+              <div className="w-full md:w-1/2">
                 <label className="block text-sm text-gray-700 mb-1">
                   Month of Travel
                 </label>
@@ -137,7 +142,7 @@ export const ContactSection = () => {
                   name="monthOfTravel"
                   value={formData.monthOfTravel}
                   onChange={handleChange}
-                  className="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-1 focus:ring-[#1B4965]"
+                  className="w-full border border-gray-300 rounded-md px-3 py-1.5 focus:outline-none focus:ring-1 focus:ring-[#1B4965]"
                 />
               </div>
             </div>
@@ -145,7 +150,7 @@ export const ContactSection = () => {
             <div>
               <label className="block text-sm text-gray-700 mb-1">Message</label>
               <textarea
-                rows={4}
+                rows={3}
                 name="message"
                 required
                 value={formData.message}
@@ -164,29 +169,43 @@ export const ContactSection = () => {
           </form>
         </div>
 
-        {/* Info Box */}
-        <div className="bg-[#1B4965] z-10 text-white justify-center rounded-l-xl md:absolute h-1/2 -right-30 md:top-1/2 md:-translate-y-1/2 w-1/3 pl-10 flex flex-col gap-5 shadow-md">
+        {/* ✅ Info Box — WEB same, MOBILE repositioned */}
+        <div
+          className="
+            bg-[#1B4965] z-10 text-white justify-center rounded-l-xl w-1/3 pl-10 flex flex-col gap-5 shadow-md
+            md:absolute md:h-1/2 md:-right-30 md:top-1/2 md:-translate-y-1/2
+            max-sm:static max-sm:w-full max-sm:rounded-xl max-sm:p-6
+          "
+        >
           <h3 className="text-2xl font-semibold mb-2">Info</h3>
 
           <div className="flex items-center gap-3">
             <FaEnvelope className="text-white text-2xl" />
-            <p className="text-sm wrap-break-word">help@aisagotravel.in</p>
+            <p className="text-sm wrap-break-word">asiagotravels@gmail.com</p>
           </div>
 
           <div className="flex items-center gap-3">
             <FaPhoneAlt className="text-white text-2xl" />
-            <p className="text-sm">+91 9711034055</p>
+            <p className="text-sm">+91-9119119641</p>
           </div>
 
           <div className="flex items-center gap-3">
             <FaMapMarkerAlt className="text-white text-2xl" />
             <p className="text-sm">
-              26/B, Tower B-2, Spaze Itech Park
+         Jawahar Nagar, Jaipur 302004, Rajasthan India.
+            </p>
+          </div>
+          
+          <div className="flex items-center gap-3">
+            <FaClock className="text-white text-2xl" />
+            <p className="text-sm">
+      10.00 AM to 07.00 PM
             </p>
           </div>
         </div>
 
-        <div className="bg-[#3FA9F5] w-70 h-full absolute -right-40 top-0 rounded-l-xl" />
+        {/* ✅ Hide this blue shape on mobile */}
+        <div className="bg-[#3FA9F5] w-70 h-full absolute -right-40 top-0 rounded-l-xl max-sm:hidden" />
       </div>
     </section>
   );
