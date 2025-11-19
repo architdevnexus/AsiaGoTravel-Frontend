@@ -11,7 +11,7 @@ export const Navbar = () => {
   const menuItems = [
     {
       name: "Honeymoon Trips",
-      href: "/upcoming-grouptrips",
+      href: "/honeymoon-trips",
       // options: [
       //   { name: "November", href: "/upcoming/himalayan-trek" },
       //   { name: "December", href: "/trips/upcoming/beach-getaway" },
@@ -23,7 +23,7 @@ export const Navbar = () => {
     },
     {
       name: "Family Holidays",
-      href: "/domestic-grouptrips",
+      href: "/family-holiday",
       // options: [
       //   { name: "Himachal", href: "/trips/domestic/rajasthan" },
       //   { name: "Kashmir", href: "/trips/domestic/kerala" },
@@ -36,7 +36,7 @@ export const Navbar = () => {
     },
     {
       name: "Family Group Tours",
-      href: "/weekend-grouptrips",
+      href: "/family-group-tours",
       // options: [
       //   { name: "Rishikesh Adventure", href: "/trips/weekend/rishikesh" },
       //   { name: "Manali Escape", href: "/trips/weekend/manali" },
@@ -44,7 +44,7 @@ export const Navbar = () => {
     },
     {
       name: "Bachelor Tours",
-      href: "/backpacking-grouptrips",
+      href: "/bachelor-tours",
       // options: [
       //   { name: "Europe Backpacking", href: "/trips/backpacking/europe" },
       //   { name: "South Asia Circuit", href: "/trips/backpacking/asia" },
@@ -52,7 +52,7 @@ export const Navbar = () => {
     },
     {
       name: "Luxury Tours",
-      href: "/corporate-trips",
+      href: "/luxury-tours",
       // options: [
       //   { name: "Team Retreat", href: "/trips/corporate/team-retreat" },
       //   { name: "Leadership Camp", href: "/trips/corporate/leadership-camp" },
@@ -60,7 +60,7 @@ export const Navbar = () => {
     },
       {
       name: "Premium Holiday Packages",
-      href: "/corporate-trips",
+      href: "/premium-holiday-packages",
       // options: [
       //   { name: "Team Retreat", href: "/trips/corporate/team-retreat" },
       //   { name: "Leadership Camp", href: "/trips/corporate/leadership-camp" },
@@ -68,7 +68,7 @@ export const Navbar = () => {
     },
           {
       name: "Personalized Tours",
-      href: "/corporate-trips",
+      href: "/personalized-tours",
       // options: [
       //   { name: "Team Retreat", href: "/trips/corporate/team-retreat" },
       //   { name: "Leadership Camp", href: "/trips/corporate/leadership-camp" },
