@@ -23,7 +23,7 @@ export const Navbar = () => {
     },
     {
       name: "Family Holidays",
-      href: "/family-holiday",
+      href: "/family-holidays",
       // options: [
       //   { name: "Himachal", href: "/trips/domestic/rajasthan" },
       //   { name: "Kashmir", href: "/trips/domestic/kerala" },

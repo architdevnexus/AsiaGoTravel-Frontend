@@ -22,10 +22,7 @@ export const BlogsCard = ({
               <div className="relative">
                 <Image
                   src={
-                    pkg?.featureImage?.[0] &&
-                    pkg.featureImage[0].startsWith("http")
-                      ? pkg.featureImage[0]
-                      : "/fallback.jpg"
+                    pkg?.featureImage
                   }
                   alt={pkg?.location || "Blog Image"}
                   width={400}

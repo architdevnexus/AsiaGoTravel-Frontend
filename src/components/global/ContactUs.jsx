@@ -21,45 +21,45 @@ export const ContactSection = () => {
     });
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setLoading(true);
+const handleSubmit = async (e) => {
+  e.preventDefault();
+  setLoading(true);
 
-    try {
-      const res = await fetch("http://194.238.18.1:3005/api/submitQuery", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          ...formData,
-          mobileNumber: Number(formData.mobileNumber),
-          numberOfTravellers: Number(formData.numberOfTravellers),
-        }),
+  try {
+    const res = await fetch("http://194.238.18.1:3005/api/contact-us", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        name: formData.fullName,
+        email: formData.email,
+        message: formData.message
+      }),
+    });
+
+    const data = await res.json();
+
+    if (res.ok) {
+      alert("Form Submitted Successfully!");
+      setFormData({
+        fullName: "",
+        mobileNumber: "",
+        email: "",
+        numberOfTravellers: "",
+        monthOfTravel: "",
+        message: "",
       });
-
-      const data = await res.json();
-
-      if (res.ok) {
-        alert("Query Submitted Successfully!");
-        setFormData({
-          fullName: "",
-          mobileNumber: "",
-          email: "",
-          numberOfTravellers: "",
-          monthOfTravel: "",
-          message: "",
-        });
-      } else {
-        alert(data?.message || "Something went wrong");
-      }
-    } catch (error) {
-      console.error(error);
-      alert("Error submitting form");
-    } finally {
-      setLoading(false);
+    } else {
+      alert(data?.message || "Something went wrong");
     }
-  };
+  } catch (error) {
+    console.error(error);
+    alert("Error submitting form");
+  } finally {
+    setLoading(false);
+  }
+};
 
   return (
     <section className="bg-[#f8fafc] py-8 px-6 md:px-12 lg:px-20 overflow-hidden">

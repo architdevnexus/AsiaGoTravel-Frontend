@@ -14,28 +14,28 @@ export const HeroSection = () => {
       title: "GOA",
       price: "₹2,72,500",
       duration: "6N/5D",
-      image: "/img/aboutimg3.jpg",
+      image: "/img/goa.jpg",
     },
     {
       id: 2,
       title: "KASHMIR",
       price: "₹1,85,000",
       duration: "5N/4D",
-      image: "/img/aboutimg1.jpg",
+      image: "/img/kashmirimg.png",
     },
     {
       id: 3,
       title: "MANALI",
       price: "₹1,20,000",
       duration: "4N/3D",
-      image: "/img/aboutimg2.jpg",
+      image: "/img/manali.jpg",
     },
     {
       id: 4,
       title: "RAJASTHAN",
       price: "₹3,10,000",
       duration: "7N/6D",
-      image: "/img/aboutimg4.png",
+      image: "/img/rajasthan.png",
     },
   ];
 
@@ -54,15 +54,16 @@ export const HeroSection = () => {
     setCurrentIndex((prev) => (prev - 1 + slides.length) % slides.length);
 
   return (
-    <div className="relative w-full h-[480px] sm:h-[480px] h-[350px] overflow-hidden">
-      {/* Background Image */}
-      <Image
-        src={slides[currentIndex].image}
-        alt={slides[currentIndex].title}
-        fill
-        priority
-        className="object-cover transition-all duration-700 ease-in-out"
-      />
+  <div className="relative w-full h-[400px] sm:h-[500px]  overflow-hidden">
+  <Image
+    src={slides[currentIndex].image}
+    alt={slides[currentIndex].title}
+    fill
+    priority
+    className="object-cover transition-all duration-700 ease-in-out"
+  />
+
+
 
       {/* Overlay */}
       <div className="absolute inset-0 bg-black/40 flex justify-between items-center 
@@ -98,21 +99,25 @@ export const HeroSection = () => {
         </div>
 
         {/* Right Section (Thumbnails) */}
-        <div className="hidden sm:flex gap-3">
-          {slides.map((slide, index) => (
-            <Image
-              key={slide.id}
-              src={slide.image}
-              alt={slide.title}
-              width={100}
-              height={300}
-              onClick={() => setCurrentIndex(index)}
-              className={`rounded-lg w-45 h-60 cursor-pointer transition-all duration-500 ${
-                index === currentIndex ? "scale-105" : "opacity-70 hover:opacity-100"
-              }`}
-            />
-          ))}
-        </div>
+   <div className="hidden sm:flex gap-4">
+  {slides.map((slide, index) => (
+    <div
+      key={slide.id}
+      onClick={() => setCurrentIndex(index)}
+      className={`relative w-40 h-60 rounded-lg overflow-hidden cursor-pointer transition-all duration-500 ${
+        index === currentIndex ? "scale-109 " : "opacity-70 hover:opacity-100"
+      }`}
+    >
+      <Image
+        src={slide.image}
+        alt={slide.title}
+        fill
+        className="object-cover"
+      />
+    </div>
+  ))}
+</div>
+
       </div>
 
       {/* Navigation Buttons */}

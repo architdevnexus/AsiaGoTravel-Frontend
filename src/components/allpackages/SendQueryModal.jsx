@@ -3,7 +3,7 @@
 import Image from "next/image";
 import React, { useState } from "react";
 
-export const SendQueryModal = ({title }) => {
+export const SendQueryModal = ({ title }) => {
   const [formData, setFormData] = useState({
     fullName: "",
     mobileNumber: "",
@@ -12,6 +12,8 @@ export const SendQueryModal = ({title }) => {
     monthOfTravel: "",
     message: "",
   });
+
+  const [loading, setLoading] = useState(false); // ✅ Loader State
 
   const handleChange = (e) => {
     setFormData({
@@ -22,6 +24,7 @@ export const SendQueryModal = ({title }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true); // ✅ Start Loader
 
     try {
       const res = await fetch("http://194.238.18.1:3005/api/submitQuery", {
@@ -36,7 +39,7 @@ export const SendQueryModal = ({title }) => {
           numberOfTravellers: Number(formData.numberOfTravellers),
           monthOfTravel: formData.monthOfTravel,
           message: formData.message,
-              packageTitle: title,
+          packageTitle: title,
         }),
       });
 
@@ -58,12 +61,13 @@ export const SendQueryModal = ({title }) => {
     } catch (error) {
       console.log(error);
       alert("Network error! Try again.");
+    } finally {
+      setLoading(false); // ✅ Stop Loader
     }
   };
 
   return (
     <div className="flex flex-col justify-center items-center">
-      {/* Modal Content */}
       <Image
         src="/img/contactformimg.png"
         alt="contactform"
@@ -135,9 +139,14 @@ export const SendQueryModal = ({title }) => {
 
         <button
           type="submit"
-          className="px-6 flex items-center justify-center bg-[#3FA9F5] text-white py-2 rounded-md hover:bg-[#3291d8] transition"
+          disabled={loading}
+          className="px-6 flex items-center justify-center bg-[#3FA9F5] text-white py-2 rounded-md hover:bg-[#3291d8] transition disabled:bg-gray-400"
         >
-          Submit
+          {loading ? (
+            <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+          ) : (
+            "Submit"
+          )}
         </button>
       </form>
     </div>

@@ -1,6 +1,7 @@
 import React from "react";
 import { Button } from "../global/Button";
 import Image from "next/image";
+import { FaArrowRightLong } from "react-icons/fa6";
 
 export const AboutUsComponent = () => {
   return (
@@ -13,11 +14,12 @@ export const AboutUsComponent = () => {
       "
     >
       {/* ✅ IMAGES */}
-      <div className="flex gap-6 items-center 
+      <div
+        className="flex gap-6 items-center 
           lg:flex-row 
           flex-col 
-          w-full lg:w-auto">
-
+          w-full lg:w-auto"
+      >
         {/* ✅ MOBILE — top full-width image */}
         <div className="lg:hidden w-full">
           <Image
@@ -81,11 +83,27 @@ export const AboutUsComponent = () => {
         <h1 className="text-[#1B4965] font-bold text-3xl">About Us</h1>
 
         <p className="text-lg leading-2xl">
-          We are a premium travel company deals in Domestic and International holiday packages. We curate tour itinerary along with the experiences, so that our guest not only enjoy their tour but they create memories while enjoying that particular experience.
-With Asiago Travels, every guest will get personalized services, our destination experts provide full insights to the guests about the destination, so that they can get so much familiarize with the location and other activities so, they will not hesitate for enjoying the activity but also get an experience on the tour, and create a memories.
+          We are a premium travel company deals in Domestic and International
+          holiday packages. We curate tour itinerary along with the experiences,
+          so that our guest not only enjoy their tour but they create memories
+          while enjoying that particular experience. With Asiago Travels, every
+          guest will get personalized services, our destination experts provide
+          full insights to the guests about the destination, so that they can
+          get so much familiarize with the location and other activities so,
+          they will not hesitate for enjoying the activity but also get an
+          experience on the tour, and create a memories.
         </p>
 
-        <Button />
+        <div className="py-3 px-4 rounded-full shadow-md shadow-current bg-[#1B4965] w-50 ">
+          <div className="flex justify-between items-center ">
+            <a href="/aboutus" className="text-white text-[18px] font-normal">
+              Explore More
+            </a>
+            <a href="/aboutus" className="rounded-full bg-white p-2 w-10 ">
+              <FaArrowRightLong className="w-6" />
+            </a>
+          </div>
+        </div>
       </div>
     </section>
   );
