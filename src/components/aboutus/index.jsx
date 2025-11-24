@@ -3,6 +3,7 @@ import { WhatWeOfferComponent } from '../landingpage/WhatweOffer'
 import { WhoWeAre } from './WhoWeAre'
 import { TeamSection } from './SwiperMeetOurTeam'
 import { HeroBannerAbout } from './HeroBannerAbout'
+import ValuesMissionVision from './ValuesMissionVision'
 
 
 export const AboutUsComponent = () => {
@@ -12,6 +13,7 @@ export const AboutUsComponent = () => {
         <WhoWeAre />
       
         <TeamSection />
+        <ValuesMissionVision />
           <WhatWeOfferComponent />
     </div>
   )

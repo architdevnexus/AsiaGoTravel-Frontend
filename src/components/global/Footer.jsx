@@ -31,31 +31,50 @@ export const Footer = () => {
         <div className="text-left">
           <h3 className="font-semibold text-lg mb-4">Contact Details</h3>
           <p className="text-sm text-gray-600 mb-6">
-            If you have any questions or need help feel free to contact our team!
+            If you have any questions or need help feel free to contact our
+            team!
           </p>
 
           <div className="flex items-center gap-2 text-gray-700 text-sm mb-4">
-            <FaPhoneAlt className="text-gray-500" /> +91 83688 86542
+            <FaPhoneAlt className="text-gray-500" /> +91-9119119641
           </div>
 
           <div className="flex items-center gap-2 text-gray-700 text-sm mb-4">
-            <FaEnvelope className="text-gray-500" /> help@examoneducation.com
+            <FaEnvelope className="text-gray-500" /> asiagotravels@gmail.com
           </div>
 
           <div className="flex items-center gap-2 text-gray-700 text-sm">
-            <FaMapMarkerAlt className="text-gray-500" /> Gurgaon, Haryana, India
+            <FaMapMarkerAlt className="text-gray-500" /> Jawahar Nagar, Jaipur
+            302004, Rajasthan India.
           </div>
         </div>
 
-        {/* Links */}
         <div className="space-y-8 px-0 md:px-20 text-left">
           <h3 className="font-semibold text-lg mb-3">Links</h3>
+
           <ul className="space-y-2 text-sm text-gray-700">
-            <li>Home</li>
-            <li>About</li>
-            <li>Packages</li>
-            <li>Blogs</li>
-            <li>Contact</li>
+            {[
+              { name: "Home", href: "/" },
+              { name: "About Us", href: "/aboutus" },
+              { name: "Packages", href: "/all-packages" },
+              { name: "Blogs", href: "/all-blogs" },
+              { name: "Contact", href: "/contactus" },
+            ].map((link, index) => (
+              <li key={index}>
+                <a
+                  href={link.href}
+                  className="
+            hover:text-blue-600 
+            transition 
+            duration-200 
+            cursor-pointer
+            inline-block
+          "
+                >
+                  {link.name}
+                </a>
+              </li>
+            ))}
           </ul>
         </div>
 
@@ -70,9 +89,21 @@ export const Footer = () => {
           </div>
 
           <ul className="text-sm text-gray-700 space-y-4 mt-6">
-            <li><a href="#" className="hover:text-blue-600">Privacy Policy</a></li>
-            <li><a href="#" className="hover:text-blue-600">Terms & Conditions</a></li>
-            <li><a href="#" className="hover:text-blue-600">Cancellation Policy</a></li>
+            <li>
+              <a href="#" className="hover:text-blue-600">
+                Privacy Policy
+              </a>
+            </li>
+            <li>
+              <a href="#" className="hover:text-blue-600">
+                Terms & Conditions
+              </a>
+            </li>
+            <li>
+              <a href="#" className="hover:text-blue-600">
+                Cancellation Policy
+              </a>
+            </li>
           </ul>
         </div>
 

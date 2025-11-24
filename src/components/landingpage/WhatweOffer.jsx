@@ -25,7 +25,7 @@ export const WhatWeOfferComponent = () => {
         height={100}
         alt="What We Offer"
         className="
-          w-[50%] h-auto mb-6 absolute top-4 right-16
+          w-[50%] h-auto mb-6 absolute top-0.5 right-16
           max-sm:static max-sm:mx-auto max-sm:mb-4 max-sm:w-[70%]
         "
       />

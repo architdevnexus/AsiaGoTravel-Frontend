@@ -48,31 +48,26 @@ export const HeroSection = () => {
     return () => clearInterval(interval);
   }, [currentIndex]);
 
-  const nextSlide = () =>
-    setCurrentIndex((prev) => (prev + 1) % slides.length);
+  const nextSlide = () => setCurrentIndex((prev) => (prev + 1) % slides.length);
   const prevSlide = () =>
     setCurrentIndex((prev) => (prev - 1 + slides.length) % slides.length);
 
   return (
-  <div className="relative w-full h-[400px] sm:h-[500px]  overflow-hidden">
-  <Image
-    src={slides[currentIndex].image}
-    alt={slides[currentIndex].title}
-    fill
-    priority
-    className="object-cover transition-all duration-700 ease-in-out"
-  />
+    <div className="relative w-full h-[400px] sm:h-[500px] overflow-hidden">
+      <Image
+        src={slides[currentIndex].image}
+        alt={slides[currentIndex].title}
+        fill
+        priority
+        className="object-cover transition-all duration-700 ease-in-out"
+      />
 
-
-
-      {/* Overlay */}
-      <div className="absolute inset-0 bg-black/40 flex justify-between items-center 
-          px-5 sm:px-10 text-white
-          flex-col sm:flex-row gap-4 sm:gap-0 pt-10 sm:pt-0">
-
+      {/* Overlay Content */}
+      <div className="absolute inset-0 bg-black/40 flex justify-between items-center px-5 sm:px-10 text-white flex-col sm:flex-row gap-4 sm:gap-0 pt-10 sm:pt-0">
         {/* Left Section */}
         <div className="text-center sm:text-left">
           <div className="w-12 sm:w-14 h-1 bg-white rounded-xl mb-4 sm:mb-8 mx-auto sm:mx-0"></div>
+
           <h1 className="text-4xl sm:text-6xl font-bold mb-4 drop-shadow-lg">
             {slides[currentIndex].title}
           </h1>
@@ -98,42 +93,43 @@ export const HeroSection = () => {
           </button>
         </div>
 
-        {/* Right Section (Thumbnails) */}
-   <div className="hidden sm:flex gap-4">
-  {slides.map((slide, index) => (
-    <div
-      key={slide.id}
-      onClick={() => setCurrentIndex(index)}
-      className={`relative w-40 h-60 rounded-lg overflow-hidden cursor-pointer transition-all duration-500 ${
-        index === currentIndex ? "scale-109 " : "opacity-70 hover:opacity-100"
-      }`}
-    >
-      <Image
-        src={slide.image}
-        alt={slide.title}
-        fill
-        className="object-cover"
-      />
-    </div>
-  ))}
-</div>
-
+        {/* Thumbnails (Desktop Only) */}
+        <div className="hidden sm:flex gap-4">
+          {slides.map((slide, index) => (
+            <div
+              key={slide.id}
+              onClick={() => setCurrentIndex(index)}
+              className={`relative w-40 h-60 rounded-lg overflow-hidden cursor-pointer transition-all duration-500 ${
+                index === currentIndex
+                  ? "scale-110"
+                  : "opacity-70 hover:opacity-100"
+              }`}
+            >
+              <Image
+                src={slide.image}
+                alt={slide.title}
+                fill
+                className="object-cover"
+              />
+            </div>
+          ))}
+        </div>
       </div>
 
-      {/* Navigation Buttons */}
-      <div>
+      {/* Navigation Buttons - Bottom Center */}
+      <div className="absolute bottom-14 left-1/2 transform -translate-x-1/2 flex items-center gap-4 z-20">
         <button
           onClick={prevSlide}
-          className="absolute bottom-6 sm:bottom-16 right-8 sm:right-188 border-2 border-white text-white p-2 rounded-full transition"
+          className="border border-white text-white p-2 rounded-full bg-black/40 hover:bg-black/60 transition"
         >
-          <MdKeyboardArrowLeft size={20} />
+          <MdKeyboardArrowLeft size={22} />
         </button>
 
         <button
           onClick={nextSlide}
-          className="absolute bottom-6 sm:bottom-16 left-8 sm:left-132 border-2 border-white text-white p-2 rounded-full transition"
+          className="border border-white text-white p-2 rounded-full bg-black/40 hover:bg-black/60 transition"
         >
-          <MdKeyboardArrowRight size={20} />
+          <MdKeyboardArrowRight size={22} />
         </button>
       </div>
     </div>
