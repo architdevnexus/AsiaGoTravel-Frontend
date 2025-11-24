@@ -4,12 +4,42 @@ import { FaHandHoldingDroplet } from "react-icons/fa6";
 
 export const WhyChooseUs = () => {
   const cards = [
-    { src: "/img/aboutimg1.jpg", text: "Personalized Travel Experiences", description: "We curate premium domestic and international holiday packages tailored to your comfort and preferences." },
-    { src: "/img/aboutimg2.jpg", text: "End-to-End Travel Solutions", description: "From planning and bookings to transfers and guided tours, we handle every detail seamlessly." },
-    { src: "/img/aboutimg3.jpg", text: "Commitment to Quality Service" , description: "Our focus on comfort, transparency, and attention to detail ensures a smooth travel experience."},
-    { src: "/img/aboutimg1.jpg", text: "Trusted Global Network" , description: "We work with a proven network of reliable partners to provide top-tier travel services worldwide." },
-    { src: "/img/aboutimg2.jpg", text: "24/7 Customer Support" , description: "Our team is always available to assist you at any stage of your journey." },
-    { src: "/img/aboutimg2.jpg", text: "Journeys Crafted for Memories" , description: "Every trip with Asiago Travels is designed to be effortless, enjoyable, and truly unforgettable." },
+    {
+      src: "/img/choose1.svg",
+      text: "Personalized Travel Experiences",
+      description:
+        "We curate premium domestic and international holiday packages tailored to your comfort and preferences.",
+    },
+    {
+      src: "/img/choose2.svg",
+      text: "End-to-End Travel Solutions",
+      description:
+        "From planning and bookings to transfers and guided tours, we handle every detail seamlessly.",
+    },
+    {
+      src: "/img/choose3.svg",
+      text: "Commitment to Quality Service",
+      description:
+        "Our focus on comfort, transparency, and attention to detail ensures a smooth travel experience.",
+    },
+    {
+      src: "/img/choose4.svg",
+      text: "Trusted Global Network",
+      description:
+        "We work with a proven network of reliable partners to provide top-tier travel services worldwide.",
+    },
+    {
+      src: "/img/choose5.svg",
+      text: "24/7 Customer Support",
+      description:
+        "Our team is always available to assist you at any stage of your journey.",
+    },
+    {
+      src: "/img/choose2.svg",
+      text: "Journeys Crafted for Memories",
+      description:
+        "Every trip with Asiago Travels is designed to be effortless, enjoyable, and truly unforgettable.",
+    },
   ];
 
   return (
@@ -24,7 +54,8 @@ export const WhyChooseUs = () => {
       />
 
       {/* Cards Grid */}
-      <div className="
+      <div
+        className="
         grid 
         grid-cols-1 
         sm:grid-cols-2 
@@ -36,14 +67,13 @@ export const WhyChooseUs = () => {
         sm:mt-20 
         lg:mt-24
         relative z-10
-      ">
+      "
+      >
         {cards.map((card, index) => (
-          <div
-            key={index}
-            className="relative flex justify-center sm:block "
-          >
+          <div key={index} className="relative flex justify-center sm:block ">
             {/* Left Blue Rounded Bar */}
-            <div className="
+            <div
+              className="
               bg-[#1B4965] 
               rounded-l-full 
               absolute 
@@ -55,12 +85,12 @@ export const WhyChooseUs = () => {
               sm:h-28 
               sm:w-4.5 
               sm:-left-4
-            ">
-            </div>
+            "
+            ></div>
 
             {/* Card Content */}
-        <div
-  className="
+            <div
+              className="
     bg-[#E6F4FF]
     rounded-xl
     shadow-md
@@ -80,10 +110,10 @@ export const WhyChooseUs = () => {
     min-h-[200px]  
    
   "
->
-
+            >
               {/* Icon Circle */}
-              <div className="
+              <div
+                className="
                 bg-white 
                 rounded-full 
                 w-14 
@@ -95,17 +125,24 @@ export const WhyChooseUs = () => {
                 justify-center 
                 text-[#1B4965] 
                 mb-3
-              ">
-                <FaHandHoldingDroplet size={26} />
+              "
+              >
+                <Image
+                  src={card.src}
+                  alt={card.text}
+                  width={40}
+                  height={40}
+                  className="object-contain w-8 h-8 sm:w-10 sm:h-10 p-1.5"
+                />
               </div>
 
               {/* Text */}
-              <h3 className="text-base sm:text-lg font-semibold mb-2 leading-5">
+              <h3 className="text-base sm:text-lg font-semibold my-3 leading-5">
                 {card.text}
               </h3>
 
               <p className="text-xs sm:text-sm text-[#858585] leading-5  line-clamp-3">
-           {card.description}
+                {card.description}
               </p>
             </div>
           </div>
