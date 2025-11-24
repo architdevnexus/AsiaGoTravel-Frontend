@@ -1,7 +1,7 @@
 import React from 'react'
 import { LandingPageComponent } from '@/components/landingpage'
 
-export const Landingpage = () => {
+ const Landingpage = () => {
   return (
     <div>
 
@@ -9,4 +9,6 @@ export const Landingpage = () => {
     
     </div>
   )
-}
+} 
+
+export default Landingpage;
