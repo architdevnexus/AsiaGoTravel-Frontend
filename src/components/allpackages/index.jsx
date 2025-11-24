@@ -16,7 +16,7 @@ export const AllPackageComponent = ({slug}) => {
 
   const fetchPackages = async () => {
     const res = await getAllPackages();
-    setPackages(res?.data || []);   // adjust based on API structure
+    setPackages(res?.data || []); 
   };
 
   return (

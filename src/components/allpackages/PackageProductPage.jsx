@@ -2,11 +2,11 @@ import Image from "next/image";
 import React from "react";
 import { FaChevronRight } from "react-icons/fa6";
 
-export const PackageProductPage = ({ images }) => {
+export const PackageProductPage = ({ images , title }) => {
   return (
     <div className="bg-gray-50 p-5 rounded-lg">
       <h2 className="text-xl font-semibold mb-3">
-        Enchanting Kerala – 6 Days / 5 Nights
+         {title}
       </h2>
 
       <div className="flex gap-3 overflow-x-auto">
