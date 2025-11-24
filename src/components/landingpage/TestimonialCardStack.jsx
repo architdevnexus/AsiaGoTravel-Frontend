@@ -11,7 +11,7 @@ export const TestimonialCardStack = () => {
   // ⭐ Fetch Testimonials from API
   const fetchTestimonials = async () => {
     try {
-      const res = await fetch("http://194.238.18.1:3005/api/allTestimonials");
+      const res = await fetch("https://www.backend.ghardekhoapna.com/api/allTestimonials");
 
       if (!res.ok) {
         console.error("Failed to fetch testimonials");

@@ -27,7 +27,7 @@ export const SendQueryModal = ({ title }) => {
     setLoading(true); // ✅ Start Loader
 
     try {
-      const res = await fetch("http://194.238.18.1:3005/api/submitQuery", {
+      const res = await fetch("https://www.backend.ghardekhoapna.com/api/submitQuery", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

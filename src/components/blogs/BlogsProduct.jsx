@@ -14,7 +14,7 @@ export const BlogContent = () => {
     const fetchBlogById = async () => {
       try {
         const res = await fetch(
-          `http://194.238.18.1:3005/api/AllBlog/${id}`,
+          `https://www.backend.ghardekhoapna.com/api/AllBlog/${id}`,
           { cache: "no-store" }
         );
         const data = await res.json();

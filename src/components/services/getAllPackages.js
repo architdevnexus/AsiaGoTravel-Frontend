@@ -1,7 +1,7 @@
 // services/getAllPackages.js
 export const getAllPackages = async () => {
   try {
-    const res = await fetch("http://194.238.18.1:3005/api/allPackage", {
+    const res = await fetch("https://www.backend.ghardekhoapna.com/api/allPackage", {
       method: "GET",
     });
 
