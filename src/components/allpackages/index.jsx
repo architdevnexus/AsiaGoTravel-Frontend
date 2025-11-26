@@ -20,8 +20,8 @@ export const AllPackageComponent = ({ slug }) => {
 
   // STATE
   const [packages, setPackages] = useState([]);
-  const [filteredPackages, setFilteredPackages] = useState(null);
-  const [loading, setLoading] = useState(true);   // 👈 ADDED
+  const [filteredPackages, setFilteredPackages] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   // Fetch all packages once
   useEffect(() => {
@@ -30,32 +30,44 @@ export const AllPackageComponent = ({ slug }) => {
 
   const fetchPackages = async () => {
     try {
-      setLoading(true);                             // 👈 START LOADING
+      setLoading(true);
       const res = await getAllPackages();
       const data = res?.data || [];
       setPackages(data);
 
+      console.log(data[0]?.Packages, "packagedata");
+
       applySearchFilters(data);
     } finally {
-      setLoading(false);                            // 👈 STOP LOADING
+      setLoading(false);
     }
   };
 
-  // Filter logic
+  // Filter logic including nested Packages
   const applySearchFilters = (allPackages) => {
-    let result = allPackages;
+    let result = allPackages.map((pkg) => {
+      if (pkg?.Packages?.length) {
+        // Filter nested Packages
+        const filteredNested = pkg.Packages.filter((p) => {
+          const matchesTitle = filters
+            ? p.title.toLowerCase().includes(filters.toLowerCase())
+            : true;
+          return matchesTitle;
+        });
+        return { ...pkg, Packages: filteredNested };
+      }
+      return pkg;
+    });
 
+    // Filter top-level packages by destination
     if (destination) {
       result = result.filter((pkg) =>
         pkg?.location?.toLowerCase().includes(destination.toLowerCase())
       );
     }
 
-    if (filters) {
-      result = result.filter((pkg) =>
-        pkg?.title?.toLowerCase().includes(filters.toLowerCase())
-      );
-    }
+    // Remove any packages with no nested Packages
+    result = result.filter((pkg) => pkg.Packages?.length > 0);
 
     setFilteredPackages(result);
   };
@@ -63,7 +75,7 @@ export const AllPackageComponent = ({ slug }) => {
   // Re-run filters when query changes
   useEffect(() => {
     if (packages.length > 0) {
-      setLoading(true);             // 👈 Show loader when filtering
+      setLoading(true);
       applySearchFilters(packages);
       setLoading(false);
     }
@@ -71,25 +83,22 @@ export const AllPackageComponent = ({ slug }) => {
 
   return (
     <div>
-      <HeroAllPackage />
-
       <div className="flex bg-white rounded-2xl border m-10 relative bottom-24 border-[#B4B4B4]">
         {/* FILTER SIDEBAR */}
         <div className="hidden md:block">
-          <FiltersSidebar onFilterResults={(data) => setFilteredPackages(data)} />
+          <FiltersSidebar
+            onFilterResults={(data) => setFilteredPackages(data)}
+          />
         </div>
 
         {/* RIGHT SIDE */}
         <div className="w-full">
-
           {/* TITLE */}
           <div className="px-10 mt-5">
             {filteredPackages && filteredPackages.length > 0 ? (
               <h2 className="text-xl font-semibold">
                 Showing results for:{" "}
-                <span className="text-blue-600">
-                  {destination || filters || ""}
-                </span>
+                <span className="text-blue-600">{destination || filters}</span>
               </h2>
             ) : (
               <h2 className="text-xl font-semibold text-red-500">
@@ -102,9 +111,13 @@ export const AllPackageComponent = ({ slug }) => {
           <div className="p-10 max-sm:p-0">
             <HolidayCard
               grid="grid-cols-1 md:grid-cols-2 gap-9"
-              packages={filteredPackages || packages}
+              packages={
+                filteredPackages.length
+                  ? filteredPackages.flatMap((pkg) => pkg.Packages || [])
+                  : packages.flatMap((pkg) => pkg.Packages || [])
+              }
               slug={slug}
-              loading={loading}      // 👈 PASSED LOADING STATE
+              loading={loading}
             />
           </div>
         </div>

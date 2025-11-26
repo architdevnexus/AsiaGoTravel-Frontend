@@ -8,9 +8,8 @@ import { IoLocationOutline } from "react-icons/io5";
 export const HolidayCard = ({
   grid = "grid-cols-1 md:grid-cols-3",
   packages = [],
-  loading = false,   // ← added this (optional)
+  loading = false, // ← added this (optional)
 }) => {
-
   // ⭐ Loader Component
   const LoaderSpinner = () => (
     <div className="flex justify-center items-center py-20 col-span-full">
@@ -21,90 +20,94 @@ export const HolidayCard = ({
   return (
     <div>
       <div className={`grid gap-8 ${grid}`}>
-
         {/* ⭐ Show Loader First */}
         {loading && <LoaderSpinner />}
 
         {/* ⭐ Show Cards */}
-        {!loading && packages?.length > 0 ? (
-          packages?.map((pkg, index) => (
-            <div
-              key={pkg?._id || index}
-              className="bg-white rounded-2xl shadow-md overflow-hidden hover:shadow-lg transition-all"
-            >
-              {/* Image */}
-              <div className="relative">
-                <Image
-                  src={pkg?.images?.[0]}
-                  alt={pkg?.location}
-                  width={400}
-                  height={250}
-                  className="w-full h-56 object-cover p-3 rounded-4xl"
-                />
-                <div className="absolute top-5 left-4 text-white text-lg px-3 py-1 rounded-full flex items-center gap-1">
-                  <IoLocationOutline className="text-[20px] font-bold" />
-                  {pkg?.location}
-                </div>
-              </div>
-
-              {/* Content */}
-              <div className="px-5">
-                <p className="text-gray-500 text-sm">
-                  {pkg?.tripDuration?.days} Days &{" "}
-                  {pkg?.tripDuration?.nights} Nights
-                </p>
-
-                <h3 className="text-lg font-semibold text-[#2D3748] mt-1 leading-snug">
-                  {pkg?.title}
-                </h3>
-
-                <ul className="mt-4 text-sm text-gray-600 space-y-1">
-                  {pkg?.features?.map((item, idx) => (
-                    <li key={idx} className="flex items-center gap-2">
-                      <FaCheck className="text-[#6e9853]" />
-                      {item}
-                    </li>
-                  ))}
-                </ul>
-
-                <div className="flex gap-2 mt-6 text-gray-700 text-3xl pb-10">
-                  {pkg?.icons?.map((icon, idx) => (
+        {!loading && packages?.length > 0
+          ? packages?.map((pkg, index) => (
+              <div
+                key={pkg?._id || index}
+                className="bg-white rounded-2xl shadow-md overflow-hidden hover:shadow-lg transition-all"
+              >
+                {/* Image */}
+                <div className="relative">
+                  {pkg?.images?.[0] ? (
                     <Image
-                      key={idx}
-                      src={icon}
-                      width={32}
-                      height={32}
-                      alt={`icon-${idx}`}
-                      className="w-8 h-8"
+                      src={pkg.images[0]}
+                      alt={pkg?.location || "No alt tag found in package"}
+                      width={400}
+                      height={250}
+                      className="w-full h-56 object-cover p-3 rounded-4xl"
                     />
-                  ))}
-                </div>
-              </div>
-
-              {/* Footer */}
-              <div className="bg-[#1B4965] text-white flex justify-between items-center px-5 py-3 rounded-b-2xl">
-                <div className="text-sm">
-                  <p className="opacity-70">Starting From</p>
-                  <p className="font-semibold">₹{pkg?.price || "N/A"}</p>
-                </div>
-                <Link href={`/all-packages/${pkg?._id}`}>
-                  <span className="flex cursor-pointer items-center gap-8 bg-[#3FA9F5] px-4 py-1.5 rounded-full hover:bg-[#357ca8] transition">
-                    Explore
-                    <div className="w-8 rounded-full bg-white p-2 text-black">
-                      <FaArrowRightLong />
+                  ) : (
+                    <div className="w-full h-56 bg-gray-200 p-3 rounded-4xl flex items-center justify-center">
+                      <span className="text-gray-500">No Image</span>
                     </div>
-                  </span>
-                </Link>
+                  )}
+
+                  <div className="absolute top-5 left-4 text-white text-lg px-3 py-1 rounded-full flex items-center gap-1">
+                    <IoLocationOutline className="text-[20px] font-bold" />
+                    {pkg?.location}
+                  </div>
+                </div>
+
+                {/* Content */}
+                <div className="px-5">
+                  <p className="text-gray-500 text-sm">
+                    {pkg?.tripDuration?.days} Days & {pkg?.tripDuration?.nights}{" "}
+                    Nights
+                  </p>
+
+                  <h3 className="text-lg font-semibold text-[#2D3748] mt-1 leading-snug">
+                    {pkg?.title}
+                  </h3>
+
+                  <ul className="mt-4 text-sm text-gray-600 space-y-1">
+                    {pkg?.features?.map((item, idx) => (
+                      <li key={idx} className="flex items-center gap-2">
+                        <FaCheck className="text-[#6e9853]" />
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+
+                  <div className="flex gap-2 mt-6 text-gray-700 text-3xl pb-10">
+                    {pkg?.icons?.map((icon, idx) => (
+                      <Image
+                        key={idx}
+                        src={icon}
+                        width={32}
+                        height={32}
+                        alt={`icon-${idx}`}
+                        className="w-8 h-8"
+                      />
+                    ))}
+                  </div>
+                </div>
+
+                {/* Footer */}
+                <div className="bg-[#1B4965] text-white flex justify-between items-center px-5 py-3 rounded-b-2xl">
+                  <div className="text-sm">
+                    <p className="opacity-70">Starting From</p>
+                    <p className="font-semibold">₹{pkg?.price || "N/A"}</p>
+                  </div>
+                  <Link href={`/all-packages/${pkg?._id}`}>
+                    <span className="flex cursor-pointer items-center gap-8 bg-[#3FA9F5] px-4 py-1.5 rounded-full hover:bg-[#357ca8] transition">
+                      Explore
+                      <div className="w-8 rounded-full bg-white p-2 text-black">
+                        <FaArrowRightLong />
+                      </div>
+                    </span>
+                  </Link>
+                </div>
               </div>
-            </div>
-          ))
-        ) : (
-          !loading && (
-            <p className="text-center col-span-full text-gray-500">
-              No packages found.
-            </p>
-          )
-        )}
+            ))
+          : !loading && (
+              <p className="text-center col-span-full text-gray-500">
+                No packages found.
+              </p>
+            )}
       </div>
     </div>
   );
