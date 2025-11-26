@@ -4,14 +4,23 @@ import { motion, useMotionValue, useTransform } from "framer-motion";
 import { CgProfile } from "react-icons/cg";
 
 export const TestimonialCardStack = () => {
-  const [stack, setStack] = useState([]);  
+  const [stack, setStack] = useState([]);
   const containerRef = useRef(null);
   const THROW_DISTANCE = 120;
+
+  // ⭐ Loader Component
+  const LoaderSpinner = () => (
+    <div className="flex justify-center items-center h-40">
+      <div className="w-12 h-12 border-4 border-[#1B4965] border-t-transparent rounded-full animate-spin"></div>
+    </div>
+  );
 
   // ⭐ Fetch Testimonials from API
   const fetchTestimonials = async () => {
     try {
-      const res = await fetch("https://www.backend.ghardekhoapna.com/api/allTestimonials");
+      const res = await fetch(
+        "https://www.backend.ghardekhoapna.com/api/allTestimonials"
+      );
 
       if (!res.ok) {
         console.error("Failed to fetch testimonials");
@@ -19,21 +28,21 @@ export const TestimonialCardStack = () => {
       }
 
       const data = await res.json();
-      console.log("Fetched:", data);
-
-      setStack(data?.data || []); // API returns inside data.data
+      setStack(data?.data || []);
     } catch (error) {
       console.error("Error fetching testimonials:", error);
     }
   };
 
-  // Load testimonials when component mounts
+  // Load testimonials on mount
   useEffect(() => {
     fetchTestimonials();
   }, []);
 
   function handleThrow(index, x, velocityX, controls) {
-    const shouldThrow = Math.abs(x) > THROW_DISTANCE || Math.abs(velocityX) > 1000;
+    const shouldThrow =
+      Math.abs(x) > THROW_DISTANCE || Math.abs(velocityX) > 1000;
+
     if (!shouldThrow) {
       controls.start({
         x: 0,
@@ -47,27 +56,29 @@ export const TestimonialCardStack = () => {
     const direction = x > 0 ? 1 : -1;
     const offX = direction * (window.innerWidth + 400);
 
-    controls.start({
-      x: offX,
-      rotate: direction * 40,
-      transition: { duration: 0.4 },
-    }).then(() => {
-      setStack((prev) => {
-        const next = [...prev];
-        const removed = next.splice(index, 1)[0];
-        next.push(removed);
-        return next;
+    controls
+      .start({
+        x: offX,
+        rotate: direction * 40,
+        transition: { duration: 0.4 },
+      })
+      .then(() => {
+        setStack((prev) => {
+          const next = [...prev];
+          const removed = next.splice(index, 1)[0];
+          next.push(removed);
+          return next;
+        });
       });
-    });
   }
 
   return (
-    <div ref={containerRef} className="w-full min-h-[50vh] flex items-center justify-center p-8">
-
-      {/* Loader */}
-      {stack.length === 0 && (
-        <p className="text-gray-500">Loading testimonials...</p>
-      )}
+    <div
+      ref={containerRef}
+      className="w-full min-h-[50vh] flex items-center justify-center p-8"
+    >
+      {/* ⭐ Loader */}
+      {stack.length === 0 && <LoaderSpinner />}
 
       <div className="relative w-[320px] h-[320px]">
         {stack.map((item, i) => {
@@ -93,7 +104,6 @@ const StackCard = ({ testimonial, index, zIndex, onThrow }) => {
   const rotate = useTransform(x, [-400, 400], [-15, 15]);
 
   const offsetX = index * -14;
-  const offsetY = index * 42;
 
   return (
     <motion.div
@@ -103,6 +113,7 @@ const StackCard = ({ testimonial, index, zIndex, onThrow }) => {
       dragElastic={0.4}
       onDragEnd={(event, info) => {
         const velocityX = info.velocity.x;
+
         const finalX =
           info.point.x -
           (event.target?.getBoundingClientRect?.()?.left ?? 0) -
@@ -138,10 +149,10 @@ const StackCard = ({ testimonial, index, zIndex, onThrow }) => {
             <CgProfile size={30} className="mb-4" />
           )}
 
-         <p className="text-sm text-gray-600 italic leading-relaxed mb-6 line-clamp-4">
-  “<br />{testimonial.message}”
-</p>
-
+          <p className="text-sm text-gray-600 italic leading-relaxed mb-6 line-clamp-4">
+            “<br />
+            {testimonial.message}”
+          </p>
 
           <div className="pt-3 border-t">
             <h3 className="text-lg font-semibold">{testimonial.name}</h3>

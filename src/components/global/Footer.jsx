@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import { FaPhoneAlt, FaEnvelope, FaMapMarkerAlt } from "react-icons/fa";
 import { FaInstagram, FaYoutube, FaLinkedin, FaTelegram } from "react-icons/fa";
 
@@ -35,13 +36,23 @@ export const Footer = () => {
             team!
           </p>
 
-          <div className="flex items-center gap-2 text-gray-700 text-sm mb-4">
-            <FaPhoneAlt className="text-gray-500" /> +91-9119119641
-          </div>
+          <Link
+            href="tel:+919119119641"
+            className="flex items-center gap-2 text-gray-700 text-sm mb-4 cursor-pointer 
+             transition transform  hover:text-[#0E3A55]"
+          >
+            <FaPhoneAlt className="text-gray-500 transition hover:text-[#0E3A55]" />
+            +91-9119119641
+          </Link>
 
-          <div className="flex items-center gap-2 text-gray-700 text-sm mb-4">
-            <FaEnvelope className="text-gray-500" /> asiagotravels@gmail.com
-          </div>
+          <Link
+            href="mailto:asiagotravels@gmail.com"
+            className="flex items-center gap-2 text-gray-700 text-sm mb-4 cursor-pointer 
+             transition transform hover:scale-105 hover:text-[#0E3A55]"
+          >
+            <FaEnvelope className="text-gray-500 transition hover:text-[#0E3A55]" />
+            asiagotravels@gmail.com
+          </Link>
 
           <div className="flex items-center gap-2 text-gray-700 text-sm">
             <FaMapMarkerAlt className="text-gray-500" /> Jawahar Nagar, Jaipur

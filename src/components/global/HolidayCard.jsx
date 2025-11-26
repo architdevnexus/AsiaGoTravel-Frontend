@@ -1,3 +1,4 @@
+"use client";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
@@ -7,12 +8,25 @@ import { IoLocationOutline } from "react-icons/io5";
 export const HolidayCard = ({
   grid = "grid-cols-1 md:grid-cols-3",
   packages = [],
-  slug,
+  loading = false,   // ← added this (optional)
 }) => {
+
+  // ⭐ Loader Component
+  const LoaderSpinner = () => (
+    <div className="flex justify-center items-center py-20 col-span-full">
+      <div className="w-12 h-12 border-4 border-[#1B4965] border-t-transparent rounded-full animate-spin"></div>
+    </div>
+  );
+
   return (
     <div>
       <div className={`grid gap-8 ${grid}`}>
-        {packages?.length > 0 ? (
+
+        {/* ⭐ Show Loader First */}
+        {loading && <LoaderSpinner />}
+
+        {/* ⭐ Show Cards */}
+        {!loading && packages?.length > 0 ? (
           packages?.map((pkg, index) => (
             <div
               key={pkg?._id || index}
@@ -28,7 +42,7 @@ export const HolidayCard = ({
                   className="w-full h-56 object-cover p-3 rounded-4xl"
                 />
                 <div className="absolute top-5 left-4 text-white text-lg px-3 py-1 rounded-full flex items-center gap-1">
-                  <IoLocationOutline className="text-[20px] font-bold" />{" "}
+                  <IoLocationOutline className="text-[20px] font-bold" />
                   {pkg?.location}
                 </div>
               </div>
@@ -36,8 +50,8 @@ export const HolidayCard = ({
               {/* Content */}
               <div className="px-5">
                 <p className="text-gray-500 text-sm">
-                  {pkg?.tripDuration?.days} Days & {pkg?.tripDuration?.nights}{" "}
-                  Nights
+                  {pkg?.tripDuration?.days} Days &{" "}
+                  {pkg?.tripDuration?.nights} Nights
                 </p>
 
                 <h3 className="text-lg font-semibold text-[#2D3748] mt-1 leading-snug">
@@ -85,9 +99,11 @@ export const HolidayCard = ({
             </div>
           ))
         ) : (
-          <p className="text-center col-span-full text-gray-500">
-            No packages found.
-          </p>
+          !loading && (
+            <p className="text-center col-span-full text-gray-500">
+              No packages found.
+            </p>
+          )
         )}
       </div>
     </div>

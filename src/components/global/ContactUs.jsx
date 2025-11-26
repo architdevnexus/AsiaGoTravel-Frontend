@@ -1,6 +1,14 @@
 "use client";
+import Link from "next/link";
 import { useState } from "react";
-import { FaEnvelope, FaPhoneAlt, FaMapMarkerAlt, FaClock } from "react-icons/fa";
+import {
+  FaEnvelope,
+  FaPhoneAlt,
+  FaMapMarkerAlt,
+  FaClock,
+} from "react-icons/fa";
+import MonthPickerInput from "react-month-picker-input";
+import "react-month-picker-input/dist/react-month-picker-input.css";
 
 export const ContactSection = () => {
   const [formData, setFormData] = useState({
@@ -21,45 +29,48 @@ export const ContactSection = () => {
     });
   };
 
-const handleSubmit = async (e) => {
-  e.preventDefault();
-  setLoading(true);
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setLoading(true);
 
-  try {
-    const res = await fetch("https://www.backend.ghardekhoapna.com/api/contact-us", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        name: formData.fullName,
-        email: formData.email,
-        message: formData.message
-      }),
-    });
+    try {
+      const res = await fetch(
+        "https://www.backend.ghardekhoapna.com/api/contact-us",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            name: formData.fullName,
+            email: formData.email,
+            message: formData.message,
+          }),
+        }
+      );
 
-    const data = await res.json();
+      const data = await res.json();
 
-    if (res.ok) {
-      alert("Form Submitted Successfully!");
-      setFormData({
-        fullName: "",
-        mobileNumber: "",
-        email: "",
-        numberOfTravellers: "",
-        monthOfTravel: "",
-        message: "",
-      });
-    } else {
-      alert(data?.message || "Something went wrong");
+      if (res.ok) {
+        alert("Form Submitted Successfully!");
+        setFormData({
+          fullName: "",
+          mobileNumber: "",
+          email: "",
+          numberOfTravellers: "",
+          monthOfTravel: "",
+          message: "",
+        });
+      } else {
+        alert(data?.message || "Something went wrong");
+      }
+    } catch (error) {
+      console.error(error);
+      alert("Error submitting form");
+    } finally {
+      setLoading(false);
     }
-  } catch (error) {
-    console.error(error);
-    alert("Error submitting form");
-  } finally {
-    setLoading(false);
-  }
-};
+  };
 
   return (
     <section className="bg-[#f8fafc] py-8 px-6 md:px-12 lg:px-20 overflow-hidden">
@@ -76,8 +87,8 @@ const handleSubmit = async (e) => {
           </h2>
 
           <p className="text-gray-600 mb-4 text-sm md:text-base">
-            Please don’t hesitate to reach out to us whenever you need assistance.
-            We will make sure to respond to you promptly.
+            Please don’t hesitate to reach out to us whenever you need
+            assistance. We will make sure to respond to you promptly.
           </p>
 
           <form onSubmit={handleSubmit} className="space-y-2">
@@ -94,7 +105,9 @@ const handleSubmit = async (e) => {
             </div>
 
             <div>
-              <label className="block text-sm text-gray-700 mb-0.5">Mobile</label>
+              <label className="block text-sm text-gray-700 mb-0.5">
+                Mobile
+              </label>
               <input
                 type="number"
                 required
@@ -136,19 +149,25 @@ const handleSubmit = async (e) => {
                 <label className="block text-sm text-gray-700 mb-1">
                   Month of Travel
                 </label>
-                <input
-                  type="text"
-                  required
-                  name="monthOfTravel"
-                  value={formData.monthOfTravel}
-                  onChange={handleChange}
-                  className="w-full border border-gray-300 rounded-md px-3 py-1.5 focus:outline-none focus:ring-1 focus:ring-[#1B4965]"
-                />
+                <div className="w-full border border-gray-300 rounded-md px-3 py-1.5 focus:outline-none focus:ring-1 focus:ring-[#1B4965]">
+                  <MonthPickerInput
+                    year={new Date().getFullYear()}
+                    month={new Date().getMonth() + 1}
+                    onChange={(maskedValue, selectedYear, selectedMonth) => {
+                      setFormData({
+                        ...formData,
+                        monthOfTravel: `${selectedMonth}-${selectedYear}`,
+                      });
+                    }}
+                  />
+                </div>
               </div>
             </div>
 
             <div>
-              <label className="block text-sm text-gray-700 mb-1">Message</label>
+              <label className="block text-sm text-gray-700 mb-1">
+                Message
+              </label>
               <textarea
                 rows={3}
                 name="message"
@@ -178,29 +197,32 @@ const handleSubmit = async (e) => {
           "
         >
           <h3 className="text-2xl font-semibold mb-2">Info</h3>
+          <Link
+            href="mailto:asiagotravels@gmail.com"
+            className="flex items-center gap-3 cursor-pointer transition transform hover:opacity-80"
+          >
+            <FaEnvelope className="text-white text-2xl transition" />
+            <p className="text-sm break-words">asiagotravels@gmail.com</p>
+          </Link>
 
-          <div className="flex items-center gap-3">
-            <FaEnvelope className="text-white text-2xl" />
-            <p className="text-sm wrap-break-word">asiagotravels@gmail.com</p>
-          </div>
-
-          <div className="flex items-center gap-3">
+          <Link
+            href="tel:+919119119641"
+            className="flex items-center gap-3 cursor-pointer transition transform hover:opacity-80"
+          >
             <FaPhoneAlt className="text-white text-2xl" />
             <p className="text-sm">+91-9119119641</p>
-          </div>
+          </Link>
 
           <div className="flex items-center gap-3">
             <FaMapMarkerAlt className="text-white text-2xl" />
             <p className="text-sm">
-         Jawahar Nagar, Jaipur 302004, Rajasthan India.
+              Jawahar Nagar, Jaipur 302004, Rajasthan India.
             </p>
           </div>
-          
+
           <div className="flex items-center gap-3">
             <FaClock className="text-white text-2xl" />
-            <p className="text-sm">
-      10.00 AM to 07.00 PM
-            </p>
+            <p className="text-sm">10.00 AM to 07.00 PM</p>
           </div>
         </div>
 

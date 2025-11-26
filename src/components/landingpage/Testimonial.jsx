@@ -1,8 +1,25 @@
+"use client";
 import Image from "next/image";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { TestimonialCardStack } from "./TestimonialCardStack";
 
+const LoaderSpinner = () => {
+  return (
+    <div className="flex justify-center items-center h-40">
+      <div className="w-12 h-12 border-4 border-[#1B4965] border-t-transparent rounded-full animate-spin"></div>
+    </div>
+  );
+};
+
 export const Testimonial = () => {
+  const [loading, setLoading] = useState(true);
+
+  // Simulate loading (replace with actual fetch if needed)
+  useEffect(() => {
+    const timer = setTimeout(() => setLoading(false), 1500);
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
     <div className="relative flex justify-center items-center pt-20 pb-10 
                     flex-col md:flex-row">
@@ -45,9 +62,9 @@ export const Testimonial = () => {
         <div className="bg-[#CCDEEB] h-2 rounded-tr-4xl my-6 w-1/2 mx-auto"></div>
       </div>
 
-      {/* ---------------- TESTIMONIAL CARDS ---------------- */}
+      {/* ---------------- TESTIMONIAL CARDS OR LOADER ---------------- */}
       <div className="md:absolute md:right-52 w-full md:w-auto flex justify-center mt-6">
-        <TestimonialCardStack />
+        {loading ? <LoaderSpinner /> : <TestimonialCardStack />}
       </div>
 
       {/* ---------------- RIGHT SIDE BG (WEB) ---------------- */}
@@ -59,16 +76,6 @@ export const Testimonial = () => {
           alt="bg"
         />
       </div>
-
-      {/* ---------------- MOBILE/TABLET BG ---------------- */}
-      {/* <div className="md:hidden mt-8 flex justify-center">
-        <Image
-          src="/img/Testimonialbg.svg"
-          width={300}
-          height={80}
-          alt="bg"
-        />
-      </div> */}
     </div>
   );
 };

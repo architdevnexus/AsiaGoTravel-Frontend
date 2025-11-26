@@ -58,7 +58,7 @@ export const Navbar = () => {
       //   { name: "Leadership Camp", href: "/trips/corporate/leadership-camp" },
       // ],
     },
-      {
+    {
       name: "Premium Holiday Packages",
       href: "/premium-holiday-packages",
       // options: [
@@ -66,7 +66,7 @@ export const Navbar = () => {
       //   { name: "Leadership Camp", href: "/trips/corporate/leadership-camp" },
       // ],
     },
-          {
+    {
       name: "Personalized Tours",
       href: "/personalized-tours",
       // options: [
@@ -74,7 +74,6 @@ export const Navbar = () => {
       //   { name: "Leadership Camp", href: "/trips/corporate/leadership-camp" },
       // ],
     },
-    
   ];
 
   const mainLinks = [
@@ -89,7 +88,6 @@ export const Navbar = () => {
     <nav className="w-full bg-white text-white font-sans relative">
       {/* Top Navbar */}
       <div className="flex items-center justify-between bg-[#0E3A55] h-18 pr-4 font-medium">
-
         {/* ✅ LEFT (unchanged) */}
         <div
           className="w-[560px] h-18 bg-white"
@@ -116,10 +114,13 @@ export const Navbar = () => {
             </Link>
           ))}
 
-          <button className="flex items-center bg-[#F5F7FA] border border-gray-300 text-[#0E3A55] px-4 py-2 mx-3 rounded-xl ">
+          <Link
+            href="tel:+919119119641"
+            className="flex items-center bg-[#F5F7FA] border border-gray-300 text-[#0E3A55] px-4 py-2 mx-3 rounded-xl "
+          >
             <FaPhoneAlt className="mr-2" />
-          +91-9119119641
-          </button>
+            +91-9119119641
+          </Link>
         </div>
 
         {/* ✅ MOBILE HAMBURGER */}
@@ -195,11 +196,13 @@ export const Navbar = () => {
                 {link.name}
               </Link>
             ))}
-
-            <button className="flex items-center bg-[#F5F7FA] border border-gray-300 text-[#0E3A55] px-4 py-2 rounded-xl w-fit">
+            <Link
+              href="tel:+919119119641"
+              className="flex items-center bg-[#F5F7FA] border border-gray-300 text-[#0E3A55] px-4 py-2 mx-3 rounded-xl "
+            >
               <FaPhoneAlt className="mr-2" />
-           +91-9119119641
-            </button>
+              +91-9119119641
+            </Link>
           </div>
         </div>
       )}

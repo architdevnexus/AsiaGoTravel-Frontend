@@ -120,11 +120,11 @@ const FiltersSidebar = ({ onFilterResults }) => {
             ]}
             railStyle={{ backgroundColor: "#e5e7eb", height: 8 }}
           />
+<div className="flex justify-between text-sm font-medium mt-4">
+  <span>₹{minBudget.toLocaleString("en-IN")}</span>
+  <span>₹{maxBudget.toLocaleString("en-IN")}</span>
+</div>
 
-          <div className="flex justify-between text-sm font-medium mt-4">
-            <span>₹{minBudget.toLocaleString()}</span>
-            <span>₹{maxBudget.toLocaleString()}</span>
-          </div>
         </div>
 
         <div className="border border-[#B4B4B4] w-full"></div>
@@ -160,6 +160,7 @@ const FiltersSidebar = ({ onFilterResults }) => {
         <div>
           <h3 className="font-semibold text-base mb-4">Type:</h3>
           {[
+            "All",
             "Honeymoon Trips",
             "Family Trips",
             "Bachelor Tours",
@@ -206,7 +207,7 @@ const FiltersSidebar = ({ onFilterResults }) => {
         {/* Destinations */}
         <div>
           <h3 className="font-semibold text-base mb-4">Famous Destinations:</h3>
-          {["Char Dham", "Manali", "Kerala", "Bangalore", "Ladakh"].map(
+          {["All" , "Char Dham", "Manali", "Kerala", "Bangalore", "Ladakh"].map(
             (dest) => (
               <label
                 key={dest}
