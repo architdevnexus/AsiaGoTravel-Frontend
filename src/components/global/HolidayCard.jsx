@@ -30,26 +30,20 @@ export const HolidayCard = ({
                 key={pkg?._id || index}
                 className="bg-white rounded-2xl shadow-md overflow-hidden hover:shadow-lg transition-all"
               >
-                {/* Image */}
                 <div className="relative">
-                  {pkg?.images?.[0] ? (
+                  {pkg?.overviewCategory?.[0]?.images?.[0] ? (
                     <Image
-                      src={pkg.images[0]}
-                      alt={pkg?.location || "No alt tag found in package"}
+                      src={pkg.overviewCategory[0].images[0]}
+                      alt={pkg?.location || "Package image"}
                       width={400}
                       height={250}
                       className="w-full h-56 object-cover p-3 rounded-4xl"
                     />
                   ) : (
-                    <div className="w-full h-56 bg-gray-200 p-3 rounded-4xl flex items-center justify-center">
-                      <span className="text-gray-500">No Image</span>
+                    <div className="w-full h-56 bg-gray-200 rounded-4xl flex items-center justify-center">
+                      <span>No Image Found</span>
                     </div>
                   )}
-
-                  <div className="absolute top-5 left-4 text-white text-lg px-3 py-1 rounded-full flex items-center gap-1">
-                    <IoLocationOutline className="text-[20px] font-bold" />
-                    {pkg?.location}
-                  </div>
                 </div>
 
                 {/* Content */}
@@ -76,10 +70,10 @@ export const HolidayCard = ({
                     {pkg?.icons?.map((icon, idx) => (
                       <Image
                         key={idx}
-                        src={icon}
+                        src={icon.icon}
                         width={32}
                         height={32}
-                        alt={`icon-${idx}`}
+                        alt={name}
                         className="w-8 h-8"
                       />
                     ))}
@@ -90,7 +84,9 @@ export const HolidayCard = ({
                 <div className="bg-[#1B4965] text-white flex justify-between items-center px-5 py-3 rounded-b-2xl">
                   <div className="text-sm">
                     <p className="opacity-70">Starting From</p>
-                    <p className="font-semibold">₹{pkg?.price || "N/A"}</p>
+                    <p className="font-semibold">
+                      ₹{pkg?.priceDetails[0]?.originalPrice || "N/A"}
+                    </p>
                   </div>
                   <Link href={`/all-packages/${pkg?._id}`}>
                     <span className="flex cursor-pointer items-center gap-8 bg-[#3FA9F5] px-4 py-1.5 rounded-full hover:bg-[#357ca8] transition">

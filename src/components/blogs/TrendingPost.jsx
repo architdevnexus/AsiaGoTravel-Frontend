@@ -5,12 +5,12 @@ export default function TrendingPosts({ blogs = [] }) {
   console.log("Blogs received in BlogsCard:", blogs);
 
   return (
-    <div className="max-w-sm rounded-2xl border border-[#c1d6e7] bg-white p-5 mt-10 shadow-sm">
+    <div className="max-w-sm rounded-2xl border border-[#c1d6e7] bg-white p-5 mt-10 shadow-sm overflow-y-scroll max-h-150">
       {/* Title */}
       <div className="flex items-center gap-3 mb-5">
         <div className="w-2 h-6 rounded-full bg-[#1a73e8]"></div>
         <h2 className="text-xl font-semibold text-[#0d2b45]">
-          Trending Posts
+          Trending Blogs
         </h2>
       </div>
 

@@ -6,6 +6,8 @@ export const getPackageById = async (id) => {
     });
 
     const data = await res.json();
+    console.log(data, "aspjfeiu");
+    
     return data?.data || {};
   } catch (err) {
     console.log("❌ Error fetching package:", err);

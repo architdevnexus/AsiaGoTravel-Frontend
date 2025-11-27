@@ -1,34 +1,50 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { useParams } from "next/navigation";
-import { getBlogseById } from "@/components/services/getBlogsById";
-import { BlogContent, BlogsProductPage } from "@/components/blogs/BlogsProduct";
+import { useParams, useRouter } from "next/navigation";
+import { getAllBlogs } from "@/components/services/getAllBlogs";
+import { BlogContent } from "@/components/blogs/BlogsProduct";
+import TrendingPosts from "@/components/blogs/TrendingPost";
 
 const BlogSlugPage = () => {
-
+  const router = useRouter();
   const { id } = useParams();
 
-  console.log("Page Param ID:", id);
+  const [blogs, setBlogs] = useState([]);
 
-  // const [blogsData, setBlogData] = useState(null);
+  useEffect(() => {
+    fetchBlogs();
+  }, []);
 
-  // useEffect(() => {
-  //   if (!id) return;
-  //   fetchPackageById();
-  // }, [id]);
-
-  // const fetchPackageById = async () => {
-  //   const data = await getBlogseById(id);
-  //   console.log(data, "Package by ID");
-  //   setBlogData(data);
-  // };
-
-  // if (!blogsData) return <p className="text-center py-10">Loading...</p>;
+  const fetchBlogs = async () => {
+    const res = await getAllBlogs();
+    setBlogs(res?.blogs || []);
+  };
 
   return (
-    <div className="p-5">
-   <BlogContent   />
+    <div className="p-8">
+      {/* ====== BACK BUTTON ====== */}
+      <div className="flex items-center gap-1 mb-6 bg-[#0E3A55] text-white items-center w-30">
+        <button
+          onClick={() => router.back()}
+          className="px-4 py-2   rounded-lg"
+        >
+          ←
+        </button>
+        Back
+      </div>
+
+      <div className="flex gap-15">
+        {/* Main Content */}
+        <div className="border border-[#c1d6e7] p-6 rounded-xl w-full">
+          <BlogContent />
+        </div>
+
+        {/* Sticky Trending Sidebar */}
+        <div className="w-full lg:w-[520px] sticky top-0 h-fit">
+          <TrendingPosts blogs={blogs} />
+        </div>
+      </div>
     </div>
   );
 };
