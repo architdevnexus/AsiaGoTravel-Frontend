@@ -5,21 +5,27 @@ import { BestDestinationComponent } from "../landingpage/BestSelling";
 import { HolidayCard } from "../global/HolidayCard";
 import FiltersSidebar from "../global/FilterSidebar";
 import { getAllPackages } from "../services/getAllPackages";
-import { useSearchParams } from "next/navigation";
 
 export const AllPackageComponent = ({ slug, subCategory }) => {
-  const searchParams = useSearchParams();
+  // Query Params (client-only, safe)
+  const [destination, setDestination] = useState("");
+  const [filters, setFilters] = useState("");
 
-  // Query Params
-  const destination = searchParams.get("destination") || "";
-  const filters = searchParams.get("search") || "";
+  // Read query params safely
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const query = new URLSearchParams(window.location.search);
+      setDestination(query.get("destination") || "");
+      setFilters(query.get("search") || "");
+    }
+  }, []);
 
   // STATE
   const [packages, setPackages] = useState([]);
   const [filteredPackages, setFilteredPackages] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  // 🆕 TAB STATE (Domestic / International)
+  // TAB STATE (Domestic / International)
   const [activeTab, setActiveTab] = useState("domestic");
 
   useEffect(() => {
@@ -37,10 +43,11 @@ export const AllPackageComponent = ({ slug, subCategory }) => {
       setLoading(false);
     }
   };
+
   const applySearchFilters = (allPackages, tab = activeTab) => {
     let result = allPackages;
 
-    // 🆕 FILTER BY TAB (based on your API response)
+    // TAB FILTER
     result = result.filter((pkg) => {
       if (tab === "domestic") return pkg.tripCategory === "DomesticTrips";
       if (tab === "international")
@@ -72,7 +79,7 @@ export const AllPackageComponent = ({ slug, subCategory }) => {
       );
     }
 
-    // KEEP ONLY PACKAGES WITH VALID NESTED PACKAGES
+    // REMOVE EMPTY
     result = result.filter((pkg) => pkg.Packages?.length > 0);
 
     setFilteredPackages(result);
@@ -97,7 +104,7 @@ export const AllPackageComponent = ({ slug, subCategory }) => {
 
         {/* RIGHT SIDE */}
         <div className="w-full">
-          {/* 🆕 TABS */}
+          {/* TABS */}
           <div className="px-10 mt-8 flex gap-4 border-b pb-4">
             <button
               onClick={() => setActiveTab("domestic")}
