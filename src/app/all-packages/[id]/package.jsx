@@ -5,11 +5,10 @@ import { getPackageById } from "@/components/services/getPackageById";
 import OverviewSection from "@/components/allpackages/OverviewPackage";
 import { PackageProductPage } from "@/components/allpackages/PackageProductPage";
 import { useParams } from "next/navigation";
+import { BestDestinationComponent } from "@/components/landingpage/BestSelling";
 
-const BackPackingSlugPage = ({ params }) => {
+const PackageDetailPage = () => {
   const { id } = useParams();
-
-  console.log("Page Param ID:", id);
 
   const [packageData, setPackageData] = useState(null);
 
@@ -20,7 +19,9 @@ const BackPackingSlugPage = ({ params }) => {
 
   const fetchPackageById = async () => {
     const data = await getPackageById(id);
-    console.log(data, "Package by ID");
+
+    console.log("afgnh" , data?.overviewCategory.exclusions)
+
     setPackageData(data);
   };
 
@@ -28,16 +29,15 @@ const BackPackingSlugPage = ({ params }) => {
 
   return (
     <div className="p-5">
-      {/* ✅ Image Slider */}
       <PackageProductPage
-        images={packageData?.images}
+        images={packageData?.overviewCategory?.[0]?.images}
         title={packageData?.title}
       />
 
-      {/* ✅ Overview Section */}
       <OverviewSection overviewData={packageData} />
+      <BestDestinationComponent />
     </div>
   );
 };
 
-export default BackPackingSlugPage;
+export default PackageDetailPage;

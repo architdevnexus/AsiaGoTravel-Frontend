@@ -1,43 +1,12 @@
-"use client";
+import React from 'react'
+import PackageDetailPage from './package'
 
-import { useEffect, useState } from "react";
-import { getPackageById } from "@/components/services/getPackageById";
-import OverviewSection from "@/components/allpackages/OverviewPackage";
-import { PackageProductPage } from "@/components/allpackages/PackageProductPage";
-import { useParams } from "next/navigation";
-import { BestDestinationComponent } from "@/components/landingpage/BestSelling";
-
-const PackageSlugPage = () => {
-  const { id } = useParams();
-
-  const [packageData, setPackageData] = useState(null);
-
-  useEffect(() => {
-    if (!id) return;
-    fetchPackageById();
-  }, [id]);
-
-  const fetchPackageById = async () => {
-    const data = await getPackageById(id);
-
-    console.log("afgnh" , data?.overviewCategory.exclusions)
-
-    setPackageData(data);
-  };
-
-  if (!packageData) return <p className="text-center py-10">Loading...</p>;
-
+ const PackageSlugPage = () => {
   return (
-    <div className="p-5">
-      <PackageProductPage
-        images={packageData?.overviewCategory?.[0]?.images}
-        title={packageData?.title}
-      />
-
-      <OverviewSection overviewData={packageData} />
-      <BestDestinationComponent />
+    <div>
+      <PackageDetailPage />
     </div>
-  );
-};
+  )
+}
 
-export default PackageSlugPage;
+export default PackageSlugPage
