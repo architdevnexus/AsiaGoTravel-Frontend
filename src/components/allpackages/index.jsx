@@ -85,6 +85,11 @@ export const AllPackageComponent = ({ slug, subCategory }) => {
     setFilteredPackages(result);
   };
 
+  const handleFilteredResults = (apiResults) => {
+  setFilteredPackages(apiResults);
+};
+
+
   // Re-run filters when query changes
   useEffect(() => {
     if (packages.length > 0) {
@@ -99,7 +104,8 @@ export const AllPackageComponent = ({ slug, subCategory }) => {
       <div className="flex bg-white rounded-2xl border m-10 relative bottom-24 border-[#B4B4B4]">
         {/* FILTER SIDEBAR */}
         <div className="hidden md:block">
-          <FiltersSidebar />
+      <FiltersSidebar onFilterResults={handleFilteredResults} />
+
         </div>
 
         {/* RIGHT SIDE */}

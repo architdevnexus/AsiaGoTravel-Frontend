@@ -8,7 +8,7 @@ const FiltersSidebar = ({ onFilterResults }) => {
   const [search, setSearch] = useState("");
 
   // Dual Range Budget
-  const [budgetRange, setBudgetRange] = useState([1000, 200000]);
+  const [budgetRange, setBudgetRange] = useState([0, 200000]);
   const minBudget = budgetRange[0];
   const maxBudget = budgetRange[1];
 
@@ -23,37 +23,54 @@ const FiltersSidebar = ({ onFilterResults }) => {
     else setter([...list, value]);
   };
 
-  // API Call
-  const fetchFilteredResults = async () => {
-    try {
-      const params = new URLSearchParams();
+// API Call
+const fetchFilteredResults = async () => {
+  try {
+    const params = new URLSearchParams();
 
-      if (search) params.append("search", search);
+    // ---------- FIXED PARAMS FROM YOUR CURL ----------
+    params.append("tripCategory", "InternationalTrips");
+    params.append("subTripCategory", "honeymoonTrip");
 
-      params.append("minBudget", minBudget);
-      params.append("maxBudget", maxBudget);
+    // ---------- DYNAMIC FILTERS ----------
+    if (search) params.append("search", search);
 
-      if (duration) params.append("duration", duration);
-      if (selectedTypes.length > 0)
-        params.append("type", selectedTypes.join(","));
-      if (rating) params.append("rating", rating);
-      if (selectedDestinations.length > 0)
-        params.append(
-          "famousDestinations",
-          selectedDestinations.join(",")
-        );
+    params.append("minBudget", minBudget);
+    params.append("maxBudget", maxBudget);
 
-      const res = await fetch(
-        `https://www.backend.ghardekhoapna.com/api/travel/filter?${params.toString()}`,
-        { method: "GET", credentials: "include" }
-      );
+    // duration = nights (as per your UI)
+    // API requires minNights & maxNights → we calculate here
+    const minNights = duration > 0 ? duration : 1; 
+    const maxNights = duration > 0 ? duration + 1 : 10;
 
-      const data = await res.json();
-      onFilterResults(data?.data || []);
-    } catch (error) {
-      console.log("Filter API Error:", error);
-    }
-  };
+    params.append("minNights", minNights);
+    params.append("maxNights", maxNights);
+
+    if (rating) params.append("rating", rating);
+
+    if (selectedTypes.length > 0)
+      params.append("type", selectedTypes.join(","));
+
+    if (selectedDestinations.length > 0)
+      params.append("famousDestinations", selectedDestinations.join(","));
+
+    // ---------- FINAL API URL ----------
+    const apiURL = `https://backend.ghardekhoapna.com/api/travel/filter?${params.toString()}`;
+
+    const res = await fetch(apiURL, {
+      method: "GET",
+      credentials: "include", // refreshToken cookie auto sent
+    });
+
+    const data = await res.json();
+    console.log("FILTER DATA →", data?.data);
+
+    onFilterResults(data?.data || []);
+  } catch (error) {
+    console.log("Filter API Error:", error);
+  }
+};
+
 
   // Auto-run filters
   useEffect(() => {
