@@ -7,7 +7,7 @@ import FiltersSidebar from "../global/FilterSidebar";
 import { getAllPackages } from "../services/getAllPackages";
 import { useSearchParams } from "next/navigation";
 
-export const AllPackageComponent = ({ slug , subCategory  }) => {
+export const AllPackageComponent = ({ slug, subCategory }) => {
   const searchParams = useSearchParams();
 
   // Query Params
@@ -61,9 +61,7 @@ export const AllPackageComponent = ({ slug , subCategory  }) => {
         return { ...pkg, Packages: filteredNested };
       }
       return pkg;
-      
     });
-    
 
     // DESTINATION FILTER
     if (destination) {

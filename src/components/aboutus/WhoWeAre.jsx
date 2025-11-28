@@ -1,5 +1,7 @@
+"use client";
 import Image from "next/image";
 import React from "react";
+import { motion } from "framer-motion";
 
 export const WhoWeAre = () => {
   return (
@@ -10,15 +12,25 @@ export const WhoWeAre = () => {
 
       <div className="flex justify-center items-center">
 
-        {/* ✅ WEB stays same — MOBILE stacks */}
         <div
           className="
             flex items-center gap-10 absolute
             max-sm:static max-sm:flex-col max-sm:gap-6 max-sm:z-10
           "
         >
+
           {/* Card 1 */}
-          <div
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            animate={{ y: [0, -8, 0] }}
+            transition={{
+              duration: 3,
+              repeat: Infinity,
+              repeatType: "mirror",
+              ease: "easeInOut",
+              opacity: { duration: 0.7 }
+            }}
             className="
               bg-[#1B4965] rounded-xl text-white flex-col justify-center items-center text-center p-4 w-60 h-75 shadow-[0_0_15px_4px_rgb(172,183,191)]
               max-sm:w-72 max-sm:h-auto
@@ -28,12 +40,23 @@ export const WhoWeAre = () => {
               Our <br /> & <br /> Mission
             </span>
             <p className="text-[#EAEAEA] text-[12px] leading-6 pt-10">
-             To design seamless, personalized, and premium travel experiences that inspire, connect, and create lasting memories.
+              To design seamless, personalized, and premium travel experiences
+              that inspire, connect, and create lasting memories.
             </p>
-          </div>
+          </motion.div>
 
           {/* Card 2 */}
-          <div
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            animate={{ y: [0, -8, 0] }}
+            transition={{
+              duration: 3.2,
+              repeat: Infinity,
+              repeatType: "mirror",
+              ease: "easeInOut",
+              opacity: { duration: 0.7, delay: 0.2 }
+            }}
             className="
               bg-[#0D1B2A] rounded-xl text-white flex-col justify-center items-center text-center p-7 w-70 h-80 shadow-[0_0_15px_4px_rgb(172,183,191)]
               max-sm:w-72 max-sm:h-auto
@@ -43,12 +66,24 @@ export const WhoWeAre = () => {
               Core <br /> & <br /> Values
             </span>
             <p className="text-[#EAEAEA] text-[12px] leading-6 pt-10">
-              To deliver seamless, end to end travel experience build on Professionalism, transparency, and meticulous attention to every details while curating the tour package. 
+              To deliver seamless, end-to-end travel experience built on
+              professionalism, transparency, and meticulous attention to detail
+              while curating tour packages.
             </p>
-          </div>
+          </motion.div>
 
           {/* Card 3 */}
-          <div
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            animate={{ y: [0, -8, 0] }}
+            transition={{
+              duration: 3.4,
+              repeat: Infinity,
+              repeatType: "mirror",
+              ease: "easeInOut",
+              opacity: { duration: 0.7, delay: 0.4 }
+            }}
             className="
               bg-[#1B4965] rounded-xl text-white flex-col justify-center items-center text-center p-4 w-60 h-75 shadow-[0_0_15px_4px_rgb(172,183,191)]
               max-sm:w-72 max-sm:h-auto
@@ -58,12 +93,13 @@ export const WhoWeAre = () => {
               Our <br /> & <br /> Vision
             </span>
             <p className="text-[#EAEAEA] text-[12px] leading-6 pt-10">
-To become India’s most trusted premium travel brand, known for crafting exceptional and personalized travel experiences across the globe.
+              To become India’s most trusted premium travel brand, known for
+              crafting exceptional and personalized travel experiences worldwide.
             </p>
-          </div>
+          </motion.div>
+
         </div>
 
-        {/* ✅ background image (unchanged) */}
         <Image
           src="/img/background.jpg"
           width={200}

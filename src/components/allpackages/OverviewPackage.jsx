@@ -4,18 +4,27 @@ import { FaWhatsapp, FaCheckCircle, FaTimesCircle } from "react-icons/fa";
 import { SendQueryModal } from "./SendQueryModal";
 
 const OverviewSection = ({ overviewData }) => {
+  console.log(overviewData, "overview");
+
   const [activeTab, setActiveTab] = useState("Summary");
   const [isOpen, setIsOpen] = useState(false);
 
+  // ✅ FIXED DESTRUCTURING
   const {
     title,
-    description,
-    itinerary = [],
-    inclusions = [],
-    exclusions = [],
-    summary = [],
+    overview,
     priceDetails = {},
+    overviewCategory = [],
   } = overviewData || {};
+
+  // ✅ PULL DATA FROM overviewCategory[0]
+  const inclusions = overviewCategory?.[0]?.inclusions || [];
+  const itinerary = overviewCategory?.[0]?.itinerary || [];
+  const summary = overviewCategory?.[0]?.summary || [];
+  
+
+  const exclusions = overviewCategory?.[0]?.exclusions || [];
+  const images = overviewCategory?.[0]?.images || [];
 
   const tabs = ["Itinerary", "Inclusions", "Exclusions", "Summary"];
 
@@ -27,8 +36,9 @@ const OverviewSection = ({ overviewData }) => {
           <h2 className="text-2xl font-bold text-[#1B4965] mb-2">
             {title || "OVERVIEW"}
           </h2>
+
           <p className="text-gray-700 leading-relaxed mb-5">
-            {description ||
+            {overview ||
               "Experience the beauty of this destination with our curated travel package."}
           </p>
 
@@ -58,9 +68,11 @@ const OverviewSection = ({ overviewData }) => {
                     <h4 className="text-lg font-bold text-gray-800 mb-2">
                       Day {index + 1}
                     </h4>
+
                     <p className="text-gray-600 font-medium mb-3">
                       {day.title}
                     </p>
+
                     {day.details && (
                       <ul className="space-y-2 text-gray-700">
                         {day.details.map((point, i) => (
@@ -70,6 +82,7 @@ const OverviewSection = ({ overviewData }) => {
                         ))}
                       </ul>
                     )}
+
                     <div className="border-t border-gray-200 my-6"></div>
                   </div>
                 ))
@@ -129,15 +142,15 @@ const OverviewSection = ({ overviewData }) => {
         <div className="bg-white shadow-md rounded-lg p-5 h-fit border border-gray-100">
           <div className="mb-5">
             <h3 className="text-gray-800 font-semibold">Starting From</h3>
+
             <p className="text-3xl font-bold text-gray-900 mt-2">
-              ₹ {priceDetails?.amount || "0"}{" "}
+              ₹ {priceDetails[0]?.discountedPrice || "0"}
               <span className="text-base font-normal text-gray-500 block">
-                {priceDetails?.perPersonText ||
+                {
                   "Per Person on Triple Sharing Occupancy"}
               </span>
             </p>
 
-            {/* Open Modal Button */}
             <button
               onClick={() => setIsOpen(true)}
               className="mt-4 w-full bg-[#3FA9F5] text-white py-2 rounded-md transition hover:bg-[#3291d8]"
@@ -148,6 +161,7 @@ const OverviewSection = ({ overviewData }) => {
 
           <div className="border-t pt-4">
             <h4 className="font-semibold text-gray-800 mb-3">Price Summary</h4>
+
             <div className="flex items-center gap-2 mb-3">
               {priceDetails?.options?.map((option, i) => (
                 <button
@@ -164,7 +178,7 @@ const OverviewSection = ({ overviewData }) => {
             </div>
 
             <p className="text-lg font-bold text-gray-900 mb-2">
-              ₹ {priceDetails?.amount || "0"}{" "}
+              ₹ {priceDetails[0]?.discountedPrice || "0"}{" "}
               <span className="text-sm text-gray-500 font-normal">
                 Per Person
               </span>
@@ -176,11 +190,11 @@ const OverviewSection = ({ overviewData }) => {
           </div>
         </div>
       </div>
-    {/* ✅ Modal */}
+
+      {/* MODAL */}
       {isOpen && (
         <div className="fixed inset-0 flex items-center justify-center bg-[#000000]/30 backdrop-blur-xs z-50">
           <div className="bg-white w-full max-w-xl max-h-135 rounded-lg px-6 pb-6 shadow-lg relative">
-            {/* Close Button */}
             <button
               onClick={() => setIsOpen(false)}
               className="absolute top-2 right-3 text-gray-500 hover:text-gray-700 text-xl"
@@ -188,7 +202,7 @@ const OverviewSection = ({ overviewData }) => {
               &times;
             </button>
 
-            <SendQueryModal  title={overviewData?.title} />
+            <SendQueryModal title={overviewData?.title} />
           </div>
         </div>
       )}
