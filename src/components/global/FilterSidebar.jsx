@@ -17,60 +17,78 @@ const FiltersSidebar = ({ onFilterResults }) => {
   const [rating, setRating] = useState(null);
   const [selectedDestinations, setSelectedDestinations] = useState([]);
 
+  // UI → API Mapping (IMPORTANT FIX)
+  const typeMapping = {
+    "Honeymoon Trips": "honeymoonTrip",
+    "Family Trips": "familyGroupTrip",
+    "Bachelor Tours": "bachelorTours",
+    "Luxury Tours": "luxuryTours",
+    "Premium Holiday Package": "premiumHolidayPackage",
+    "Personalized Tours": "personalizdTours",
+  };
+
   // Helper
   const toggleItem = (value, list, setter) => {
     if (list.includes(value)) setter(list.filter((x) => x !== value));
     else setter([...list, value]);
   };
 
-// API Call
-const fetchFilteredResults = async () => {
-  try {
-    const params = new URLSearchParams();
+  // ⭐ API Call
+  const fetchFilteredResults = async () => {
+    try {
+      const params = new URLSearchParams();
 
-    // ---------- FIXED PARAMS FROM YOUR CURL ----------
-    params.append("tripCategory", "InternationalTrips");
-    params.append("subTripCategory", "honeymoonTrip");
+      // Fixed params
+      params.append("tripCategory", "InternationalTrips");
 
-    // ---------- DYNAMIC FILTERS ----------
-    if (search) params.append("search", search);
+      // Search
+      if (search) params.append("search", search);
 
-    params.append("minBudget", minBudget);
-    params.append("maxBudget", maxBudget);
+      // Budget
+      params.append("minBudget", minBudget);
+      params.append("maxBudget", maxBudget);
 
-    // duration = nights (as per your UI)
-    // API requires minNights & maxNights → we calculate here
-    const minNights = duration > 0 ? duration : 1; 
-    const maxNights = duration > 0 ? duration + 1 : 10;
+      // Duration converted → nights
+      const minNights = duration > 0 ? duration : 1;
+      const maxNights = duration > 0 ? duration + 1 : 10;
 
-    params.append("minNights", minNights);
-    params.append("maxNights", maxNights);
+      params.append("minNights", minNights);
+      params.append("maxNights", maxNights);
 
-    if (rating) params.append("rating", rating);
+      // Rating
+      if (rating) params.append("rating", rating);
 
-    if (selectedTypes.length > 0)
-      params.append("type", selectedTypes.join(","));
+      // ⭐ Type conversion (UI → API)
+      if (selectedTypes.length > 0) {
+        const mappedTypes = selectedTypes
+          .filter((x) => x !== "All")
+          .map((x) => typeMapping[x]); // convert UI labels → backend keys
 
-    if (selectedDestinations.length > 0)
-      params.append("famousDestinations", selectedDestinations.join(","));
+        params.append("type", mappedTypes.join(","));
+      }
 
-    // ---------- FINAL API URL ----------
-    const apiURL = `https://backend.ghardekhoapna.com/api/travel/filter?${params.toString()}`;
+      // Destinations
+      if (selectedDestinations.length > 0)
+        params.append(
+          "famousDestinations",
+          selectedDestinations.join(",")
+        );
 
-    const res = await fetch(apiURL, {
-      method: "GET",
-      credentials: "include", // refreshToken cookie auto sent
-    });
+      const apiURL = `https://backend.ghardekhoapna.com/api/travel/filter?${params.toString()}`;
 
-    const data = await res.json();
-    console.log("FILTER DATA →", data?.data);
+      const res = await fetch(apiURL, {
+        method: "GET",
+        credentials: "include",
+      });
 
-    onFilterResults(data?.data || []);
-  } catch (error) {
-    console.log("Filter API Error:", error);
-  }
-};
+      const data = await res.json();
+      console.log("FILTER DATA →", data?.data);
 
+      onFilterResults(data?.data || []);
+    } catch (error) {
+      console.log("Filter API Error:", error);
+    }
+  };
 
   // Auto-run filters
   useEffect(() => {
@@ -107,7 +125,7 @@ const fetchFilteredResults = async () => {
 
         <div className="border border-[#B4B4B4] w-full"></div>
 
-        {/* ⭐ DUAL RANGE SLIDER (rc-slider) */}
+        {/* ⭐ Budget */}
         <div>
           <h3 className="font-semibold text-base mb-4">Budget (per person):</h3>
 
@@ -137,11 +155,11 @@ const fetchFilteredResults = async () => {
             ]}
             railStyle={{ backgroundColor: "#e5e7eb", height: 8 }}
           />
-<div className="flex justify-between text-sm font-medium mt-4">
-  <span>₹{minBudget.toLocaleString("en-IN")}</span>
-  <span>₹{maxBudget.toLocaleString("en-IN")}</span>
-</div>
 
+          <div className="flex justify-between text-sm font-medium mt-4">
+            <span>₹{minBudget.toLocaleString("en-IN")}</span>
+            <span>₹{maxBudget.toLocaleString("en-IN")}</span>
+          </div>
         </div>
 
         <div className="border border-[#B4B4B4] w-full"></div>
@@ -173,7 +191,7 @@ const fetchFilteredResults = async () => {
 
         <div className="border border-[#B4B4B4] w-full"></div>
 
-        {/* Types */}
+        {/* ⭐ Types */}
         <div>
           <h3 className="font-semibold text-base mb-4">Type:</h3>
           {[
@@ -184,7 +202,6 @@ const fetchFilteredResults = async () => {
             "Luxury Tours",
             "Premium Holiday Package",
             "Personalized Tours",
-
           ].map((type) => (
             <label key={type} className="flex items-center space-x-2 text-sm">
               <input
@@ -224,7 +241,7 @@ const fetchFilteredResults = async () => {
         {/* Destinations */}
         <div>
           <h3 className="font-semibold text-base mb-4">Famous Destinations:</h3>
-          {["All" , "Char Dham", "Manali", "Kerala", "Bangalore", "Ladakh"].map(
+          {["All", "Char Dham", "Manali", "Kerala", "Bangalore", "Ladakh"].map(
             (dest) => (
               <label
                 key={dest}
@@ -243,6 +260,7 @@ const fetchFilteredResults = async () => {
             )
           )}
         </div>
+
       </div>
     </div>
   );

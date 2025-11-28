@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation"; // Next.js App Router
 export default function HomePageSearchPackages() {
   const router = useRouter();
 
-  const [source, setSource] = useState("");
+  const [search, setSearch] = useState("");
   const [destination, setDestination] = useState("");
   const [departureDate, setDepartureDate] = useState("");
   const [filters, setFilters] = useState("");
@@ -33,7 +33,7 @@ export default function HomePageSearchPackages() {
   const handleSearch = () => {
     const params = new URLSearchParams();
 
-    if (source) params.append("source", source);
+    if (search) params.append("search", search);
     if (destination) params.append("destination", destination);
     if (departureDate) params.append("date", departureDate);
     if (filters) params.append("search", filters);
@@ -58,8 +58,8 @@ export default function HomePageSearchPackages() {
             <label className="text-sm text-gray-500">Source</label>
             <input
               type="text"
-              value={source}
-              onChange={(e) => setSource(e.target.value)}
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
               placeholder="Type..."
               className="text-xl font-semibold focus:outline-none border-none bg-transparent"
             />
