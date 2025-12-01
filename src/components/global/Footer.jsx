@@ -93,15 +93,42 @@ export const Footer = () => {
         <div className="text-left">
           <h3 className="font-semibold text-lg mb-3">Follow us on</h3>
           <div className="flex items-center gap-3">
-            <FaInstagram className="text-pink-500 text-xl cursor-pointer hover:scale-110 transition" />
-            <FaYoutube className="text-red-600 text-xl cursor-pointer hover:scale-110 transition" />
-            <FaLinkedin className="text-blue-600 text-xl cursor-pointer hover:scale-110 transition" />
-            <FaTelegram className="text-sky-500 text-xl cursor-pointer hover:scale-110 transition" />
+            {/* Instagram */}
+            <a
+              href="https://www.instagram.com/Asiago97"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <FaInstagram className="text-pink-500 text-xl cursor-pointer hover:scale-110 transition" />
+            </a>
+
+            {/* YouTube (add your link if needed) */}
+            <a href="#" target="_blank" rel="noopener noreferrer">
+              <FaYoutube className="text-red-600 text-xl cursor-pointer hover:scale-110 transition" />
+            </a>
+
+            {/* LinkedIn */}
+            <a
+              href="https://www.linkedin.com/in/asiagotravels?utm_source=share_via&utm_content=profile&utm_medium=member_android"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <FaLinkedin className="text-blue-600 text-xl cursor-pointer hover:scale-110 transition" />
+            </a>
+
+            {/* Facebook */}
+            <a
+              href="https://facebook.com/profile.php?id=61562349262366"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <FaTelegram className="text-sky-500 text-xl cursor-pointer hover:scale-110 transition" />
+            </a>
           </div>
 
           <ul className="text-sm text-gray-700 space-y-4 mt-6">
             <li>
-              <a href="#" className="hover:text-blue-600">
+              <a href="/privacy-policy" className="hover:text-blue-600">
                 Privacy Policy
               </a>
             </li>

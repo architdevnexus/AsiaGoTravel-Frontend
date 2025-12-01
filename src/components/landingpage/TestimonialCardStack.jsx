@@ -15,18 +15,12 @@ export const TestimonialCardStack = () => {
     </div>
   );
 
-  // ⭐ Fetch Testimonials from API
+  // ⭐ Fetch Testimonials
   const fetchTestimonials = async () => {
     try {
       const res = await fetch(
         "https://www.backend.ghardekhoapna.com/api/allTestimonials"
       );
-
-      if (!res.ok) {
-        console.error("Failed to fetch testimonials");
-        return;
-      }
-
       const data = await res.json();
       setStack(data?.data || []);
     } catch (error) {
@@ -34,10 +28,41 @@ export const TestimonialCardStack = () => {
     }
   };
 
-  // Load testimonials on mount
   useEffect(() => {
     fetchTestimonials();
   }, []);
+
+  // ⭐ Handle throw by arrow click also
+  const forceThrow = (direction) => {
+    if (stack.length === 0) return;
+
+    setStack((prev) => {
+      const next = [...prev];
+      const removed = direction === "next" ? next.shift() : next.pop();
+
+      if (direction === "next") {
+        next.push(removed);
+      } else {
+        next.unshift(removed);
+      }
+
+      return next;
+    });
+  };
+
+  // Listen to arrow events
+  useEffect(() => {
+    const prev = () => forceThrow("prev");
+    const next = () => forceThrow("next");
+
+    window.addEventListener("testimonial-prev", prev);
+    window.addEventListener("testimonial-next", next);
+
+    return () => {
+      window.removeEventListener("testimonial-prev", prev);
+      window.removeEventListener("testimonial-next", next);
+    };
+  }, [stack]);
 
   function handleThrow(index, x, velocityX, controls) {
     const shouldThrow =
@@ -53,23 +78,8 @@ export const TestimonialCardStack = () => {
       return;
     }
 
-    const direction = x > 0 ? 1 : -1;
-    const offX = direction * (window.innerWidth + 400);
-
-    controls
-      .start({
-        x: offX,
-        rotate: direction * 40,
-        transition: { duration: 0.4 },
-      })
-      .then(() => {
-        setStack((prev) => {
-          const next = [...prev];
-          const removed = next.splice(index, 1)[0];
-          next.push(removed);
-          return next;
-        });
-      });
+    const direction = x > 0 ? "next" : "prev";
+    forceThrow(direction);
   }
 
   return (
@@ -77,7 +87,6 @@ export const TestimonialCardStack = () => {
       ref={containerRef}
       className="w-full min-h-[50vh] flex items-center justify-center p-8"
     >
-      {/* ⭐ Loader */}
       {stack.length === 0 && <LoaderSpinner />}
 
       <div className="relative w-[320px] h-[320px]">
@@ -90,6 +99,7 @@ export const TestimonialCardStack = () => {
               zIndex={zIndex}
               onThrow={handleThrow}
               testimonial={item}
+              total={stack.length}
             />
           );
         })}

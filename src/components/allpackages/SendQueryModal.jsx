@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import React, { useState } from "react";
+import { DatePickerDemo } from "../ui/DatePickerDemo";
 
 export const SendQueryModal = ({ title }) => {
   const [formData, setFormData] = useState({
@@ -13,7 +14,17 @@ export const SendQueryModal = ({ title }) => {
     message: "",
   });
 
-  const [loading, setLoading] = useState(false); // ✅ Loader State
+  const [loading, setLoading] = useState(false);
+
+  const handleDate = (date) => {
+    if (!date) return;
+
+    const formatted = date.toLocaleDateString("en-CA"); // YYYY-MM-DD
+    setFormData((prev) => ({
+      ...prev,
+      monthOfTravel: formatted,
+    }));
+  };
 
   const handleChange = (e) => {
     setFormData({
@@ -24,24 +35,27 @@ export const SendQueryModal = ({ title }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setLoading(true); // ✅ Start Loader
+    setLoading(true);
 
     try {
-      const res = await fetch("https://www.backend.ghardekhoapna.com/api/submitQuery", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          fullName: formData.fullName,
-          mobileNumber: Number(formData.mobileNumber),
-          email: formData.email,
-          numberOfTravellers: Number(formData.numberOfTravellers),
-          monthOfTravel: formData.monthOfTravel,
-          message: formData.message,
-          packageTitle: title,
-        }),
-      });
+      const res = await fetch(
+        "https://www.backend.ghardekhoapna.com/api/submitQuery",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            fullName: formData.fullName,
+            mobileNumber: Number(formData.mobileNumber),
+            email: formData.email,
+            numberOfTravellers: Number(formData.numberOfTravellers),
+            monthOfTravel: formData.monthOfTravel,
+            message: formData.message,
+            packageTitle: title,
+          }),
+        }
+      );
 
       const data = await res.json();
 
@@ -62,7 +76,7 @@ export const SendQueryModal = ({ title }) => {
       console.log(error);
       alert("Network error! Try again.");
     } finally {
-      setLoading(false); // ✅ Stop Loader
+      setLoading(false);
     }
   };
 
@@ -118,14 +132,13 @@ export const SendQueryModal = ({ title }) => {
             onChange={handleChange}
             className="w-full border border-gray-300 bg-[#F8F9FA] rounded-md px-3 py-1 outline-none focus:border-[#3FA9F5]"
           />
-          <input
-            type="text"
-            name="monthOfTravel"
-            placeholder="Month of Travel"
-            value={formData.monthOfTravel}
-            onChange={handleChange}
-            className="w-full border border-gray-300 bg-[#F8F9FA] rounded-md px-3 py-1 outline-none focus:border-[#3FA9F5]"
-          />
+  <div className="w-full">
+    <label className="block text-sm font-medium text-gray-700 mb-1">
+      Month of Travel
+    </label>
+    <DatePickerDemo onChange={handleDate} />
+  </div>
+          
         </div>
 
         <textarea

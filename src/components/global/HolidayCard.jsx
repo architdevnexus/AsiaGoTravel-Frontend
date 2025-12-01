@@ -30,7 +30,7 @@ export const HolidayCard = ({
               <div className="relative">
                 {pkg?.overviewCategory?.[0]?.images?.[0] ? (
                   <Image
-                    src={pkg.overviewCategory[0].images[0]}
+                    src={pkg?.overviewCategory[0]?.images[0]?.url}
                     alt={pkg?.location || "Package image"}
                     width={400}
                     height={250}
@@ -62,16 +62,16 @@ export const HolidayCard = ({
                     </li>
                   ))}
                 </ul>
-
+                  
                 {/* Icons */}
                 <div className="flex gap-3 mt-6 text-gray-700 text-3xl">
                   {pkg?.icons?.map((icon, idx) => (
                     <Image
                       key={idx}
-                      src={icon.icon}
+                      src={icon?.url || "No icon"}
                       width={32}
                       height={32}
-                      alt={`icon-${idx}`}
+                      alt={icon?.name}
                       className="w-8 h-8"
                     />
                   ))}

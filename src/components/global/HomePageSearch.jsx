@@ -2,6 +2,7 @@
 import { FaSearch } from "react-icons/fa";
 import { useState, useRef, useEffect } from "react";
 import { useRouter } from "next/navigation"; // Next.js App Router
+import { DatePickerDemo } from "../ui/DatePickerDemo";
 
 export default function HomePageSearchPackages() {
   const router = useRouter();
@@ -86,19 +87,20 @@ export default function HomePageSearchPackages() {
           {/* Departure Date */}
           <div className="flex flex-col w-full md:w-1/5">
             <label className="text-sm text-gray-500">Departure Date</label>
-            <input
+            {/* <input
               type="date"
               value={departureDate}
               onChange={(e) => setDepartureDate(e.target.value)}
               className="text-xl font-semibold focus:outline-none border-none bg-transparent"
-            />
-            <span className="text-xs text-gray-400">
+            /> */}
+            {/* <span className="text-xs text-gray-400">
               {departureDate
                 ? new Date(departureDate).toLocaleDateString("en-GB", {
                     weekday: "long",
                   })
                 : ""}
-            </span>
+            </span> */}
+              <DatePickerDemo  onChange={(d) => console.log("Selected:", d)} />
           </div>
 
           <div className="hidden md:block h-10 w-px bg-gray-200 mr-10" />
@@ -164,7 +166,7 @@ export default function HomePageSearchPackages() {
               type="text"
               value={filters}
               onChange={(e) => setFilters(e.target.value)}
-              placeholder="Beach, Adventure, Family..."
+              placeholder="Beach ..."
               className="text-lg font-semibold focus:outline-none border-none bg-transparent placeholder:text-gray-400"
             />
           </div>

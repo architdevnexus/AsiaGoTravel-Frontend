@@ -94,13 +94,27 @@ export const AboutUsComponent = () => {
           experience on the tour, and create a memories.
         </p>
 
-        <div className="py-3 px-4 rounded-full shadow-md shadow-current bg-[#1B4965] w-50 ">
-          <div className="flex justify-between items-center ">
-            <a href="/aboutus" className="text-white text-[18px] font-normal">
+        <div
+          className="py-3 px-4 rounded-full bg-[#1B4965] w-50 shadow-xs shadow-current
+             transition-all duration-500 ease-out
+             hover:bg-[#163b52] hover:shadow-md hover:scale-[1.015] cursor-pointer"
+        >
+          <div className="flex justify-between items-center gap-3">
+            <a
+              href="/aboutus"
+              className="text-white text-[18px] font-normal transition-all duration-500 ease-out 
+                 group-hover:tracking-wide"
+            >
               Explore More
             </a>
-            <a href="/aboutus" className="rounded-full bg-white p-2 w-10 ">
-              <FaArrowRightLong className="w-6" />
+
+            <a
+              href="/aboutus"
+              className="rounded-full bg-white p-2 w-10 flex items-center justify-center
+                 transition-all duration-500 ease-out
+                 hover:translate-x-1"
+            >
+              <FaArrowRightLong className="w-6 transition-transform duration-500 ease-out" />
             </a>
           </div>
         </div>

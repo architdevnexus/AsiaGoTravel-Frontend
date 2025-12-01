@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import { FaWhatsapp, FaCheckCircle, FaTimesCircle } from "react-icons/fa";
 import { SendQueryModal } from "./SendQueryModal";
+import { ItineraryCard } from "./ItenaryCard";
 
 const OverviewSection = ({ overviewData }) => {
   console.log(overviewData, "overview");
@@ -21,7 +22,6 @@ const OverviewSection = ({ overviewData }) => {
   const inclusions = overviewCategory?.[0]?.inclusions || [];
   const itinerary = overviewCategory?.[0]?.itinerary || [];
   const summary = overviewCategory?.[0]?.summary || [];
-  
 
   const exclusions = overviewCategory?.[0]?.exclusions || [];
   const images = overviewCategory?.[0]?.images || [];
@@ -34,7 +34,7 @@ const OverviewSection = ({ overviewData }) => {
         {/* LEFT CONTENT */}
         <div className="md:col-span-2">
           <h2 className="text-2xl font-bold text-[#1B4965] mb-2">
-            {title || "OVERVIEW"}
+            OVERVIEW !
           </h2>
 
           <p className="text-gray-700 leading-relaxed mb-5">
@@ -64,27 +64,7 @@ const OverviewSection = ({ overviewData }) => {
             <div className="bg-white">
               {itinerary.length > 0 ? (
                 itinerary.map((day, index) => (
-                  <div key={index} className="mb-6">
-                    <h4 className="text-lg font-bold text-gray-800 mb-2">
-                      Day {index + 1}
-                    </h4>
-
-                    <p className="text-gray-600 font-medium mb-3">
-                      {day.title}
-                    </p>
-
-                    {day.details && (
-                      <ul className="space-y-2 text-gray-700">
-                        {day.details.map((point, i) => (
-                          <li key={i} className="flex items-start">
-                            <span className="mr-2">•</span> {point}
-                          </li>
-                        ))}
-                      </ul>
-                    )}
-
-                    <div className="border-t border-gray-200 my-6"></div>
-                  </div>
+                  <ItineraryCard key={index} day={day} index={index} />
                 ))
               ) : (
                 <p className="text-gray-500">No itinerary available.</p>
@@ -146,8 +126,7 @@ const OverviewSection = ({ overviewData }) => {
             <p className="text-3xl font-bold text-gray-900 mt-2">
               ₹ {priceDetails[0]?.discountedPrice || "0"}
               <span className="text-base font-normal text-gray-500 block">
-                {
-                  "Per Person on Triple Sharing Occupancy"}
+                {"Per Person on Triple Sharing Occupancy"}
               </span>
             </p>
 
@@ -183,10 +162,14 @@ const OverviewSection = ({ overviewData }) => {
                 Per Person
               </span>
             </p>
-
-            <button className="flex items-center justify-center gap-2 w-full border border-[#3FA9F5] text-green-600 py-2 rounded-md hover:bg-green-50 transition">
+            <a
+              href="https://wa.me/919119119641"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center justify-center gap-2 w-full border border-[#3FA9F5] text-green-600 py-2 rounded-md hover:bg-green-50 transition"
+            >
               <FaWhatsapp /> Whatsapp
-            </button>
+            </a>
           </div>
         </div>
       </div>
@@ -194,7 +177,7 @@ const OverviewSection = ({ overviewData }) => {
       {/* MODAL */}
       {isOpen && (
         <div className="fixed inset-0 flex items-center justify-center bg-[#000000]/30 backdrop-blur-xs z-50">
-          <div className="bg-white w-full max-w-xl max-h-135 rounded-lg px-6 pb-6 shadow-lg relative">
+          <div className="bg-white w-full max-w-xl max-h-145 rounded-lg px-6 pb-6 shadow-lg relative">
             <button
               onClick={() => setIsOpen(false)}
               className="absolute top-2 right-3 text-gray-500 hover:text-gray-700 text-xl"

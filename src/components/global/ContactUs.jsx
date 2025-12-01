@@ -9,6 +9,7 @@ import {
 } from "react-icons/fa";
 import MonthPickerInput from "react-month-picker-input";
 import "react-month-picker-input/dist/react-month-picker-input.css";
+import { DatePickerDemo } from "../ui/DatePickerDemo";
 
 export const ContactSection = () => {
   const [formData, setFormData] = useState({
@@ -149,8 +150,8 @@ export const ContactSection = () => {
                 <label className="block text-sm text-gray-700 mb-1">
                   Month of Travel
                 </label>
-                <div className="w-full border border-gray-300 rounded-md px-3 py-1.5 focus:outline-none focus:ring-1 focus:ring-[#1B4965]">
-                  <MonthPickerInput
+                <div className=" focus:outline-none focus:ring-1 focus:ring-[#1B4965]">
+                  {/* <MonthPickerInput
                     year={new Date().getFullYear()}
                     month={new Date().getMonth() + 1}
                     onChange={(maskedValue, selectedYear, selectedMonth) => {
@@ -159,7 +160,8 @@ export const ContactSection = () => {
                         monthOfTravel: `${selectedMonth}-${selectedYear}`,
                       });
                     }}
-                  />
+                  /> */}
+                    <DatePickerDemo onChange={(d) => console.log("Selected:", d)} />
                 </div>
               </div>
             </div>

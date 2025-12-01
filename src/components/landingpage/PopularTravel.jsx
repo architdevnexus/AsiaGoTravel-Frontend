@@ -21,12 +21,12 @@ export const PopularPackages = () => {
     const data = res?.data || [];
 
     // ⭐ FLATTEN Nested Packages Array (same as AllPackageComponent)
-    const flattenedPackages = data.flatMap((pkg) => pkg.Packages || []);
+    const flattenedPackages = data?.flatMap((pkg) => pkg?.Packages || []);
     console.log(flattenedPackages , 'nfcjd');
     
 
     // Limit to top 3 for Popular Section
-    setPackages(flattenedPackages.slice(0, 3));
+    setPackages(flattenedPackages?.slice(0, 3));
 
     setLoading(false);
   };
