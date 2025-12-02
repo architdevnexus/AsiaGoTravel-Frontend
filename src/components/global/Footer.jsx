@@ -5,15 +5,19 @@ import { FaInstagram, FaYoutube, FaLinkedin, FaTelegram } from "react-icons/fa";
 
 export const Footer = () => {
   const destinations = [
-    { src: "/img/aboutimg1.jpg", name: "Bangalore" },
-    { src: "/img/aboutimg2.jpg", name: "Kashmir" },
-    { src: "/img/aboutimg3.jpg", name: "GOA" },
-    { src: "/img/aboutimg1.jpg", name: "Kashmir" },
-    { src: "/img/aboutimg2.jpg", name: "GOA" },
-    { src: "/img/aboutimg3.jpg", name: "Kashmir" },
-    { src: "/img/aboutimg3.jpg", name: "GOA" },
-    { src: "/img/aboutimg2.jpg", name: "Kashmir" },
-    { src: "/img/aboutimg1.jpg", name: "Bangalore" },
+      { src: "https://plus.unsplash.com/premium_photo-1697730426664-f04d9916f700?q=80&w=2670&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", name: "Kashmir" },
+    { src: "https://plus.unsplash.com/premium_photo-1697729603226-8c8627dfc12b?q=80&w=2670&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", name: "Bangalore" },
+    { src: "https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?q=80&w=2048&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", name: "Goa" },
+    { src: "https://images.unsplash.com/photo-1609920658906-8223bd289001?q=80&w=901&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", name: "Manali" },
+    { src: "https://images.unsplash.com/photo-1603262110263-fb0112e7cc33?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", name: "Jaipur" },
+    { src: "https://images.unsplash.com/photo-1619837374214-f5b9eb80876d?q=80&w=1287&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", name: "Leh" },
+    { src: "https://images.unsplash.com/photo-1553775927-a071d5a6a39a?q=80&w=2287&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", name: "Africa" },
+    { src: "/img/aboutimg2.jpg", name: "Rajasthan" },
+    { src: "/img/aboutimg3.jpg", name: "Himachal" },
+    { src: "/img/aboutimg1.jpg", name: "UK" },
+    { src: "https://plus.unsplash.com/premium_photo-1697730324062-c012bc98eb13?q=80&w=2340&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", name: "Punjab" },
+    { src: "https://images.unsplash.com/photo-1643449416258-5c8e7ec598b1?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjB8fGphbW11fGVufDB8fDB8fHww", name: "Jammu" },
+
   ];
 
   return (

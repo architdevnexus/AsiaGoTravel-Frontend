@@ -3,11 +3,16 @@ import React, { useState, useEffect } from "react";
 import { FiSearch } from "react-icons/fi";
 import Slider from "rc-slider";
 import "rc-slider/assets/index.css";
+import { KeywordSearch } from "./KeywordSearch";
 
 const FiltersSidebar = ({ onFilterResults }) => {
   const [search, setSearch] = useState("");
 
-  // Dual Range Budget
+  // ⭐ Suggestions State
+  const [suggestions, setSuggestions] = useState([]);
+  const [showSuggestions, setShowSuggestions] = useState(false);
+
+  // ⭐ Dual Range Budget
   const [budgetRange, setBudgetRange] = useState([0, 200000]);
   const minBudget = budgetRange[0];
   const maxBudget = budgetRange[1];
@@ -17,7 +22,7 @@ const FiltersSidebar = ({ onFilterResults }) => {
   const [rating, setRating] = useState(null);
   const [selectedDestinations, setSelectedDestinations] = useState([]);
 
-  // UI → API Mapping (IMPORTANT FIX)
+  // ⭐ UI → API Mapping
   const typeMapping = {
     "Honeymoon Trips": "honeymoonTrip",
     "Family Trips": "familyGroupTrip",
@@ -27,47 +32,92 @@ const FiltersSidebar = ({ onFilterResults }) => {
     "Personalized Tours": "personalizdTours",
   };
 
-  // Helper
+  // Helper toggle
   const toggleItem = (value, list, setter) => {
     if (list.includes(value)) setter(list.filter((x) => x !== value));
     else setter([...list, value]);
   };
 
-  // ⭐ API Call
+  // ⭐ Suggestion API
+  const fetchSuggestions = async (keyword) => {
+    if (!keyword) {
+      setSuggestions([]);
+      return;
+    }
+
+    try {
+    
+
+      const res = await fetch(
+        `https://backend.ghardekhoapna.com/api/suggestions?keyword=${keyword}`,
+        {
+          method: "GET",
+       
+          credentials: "include",
+        }
+      );
+
+      const data = await res.json();
+      setSuggestions(data?.data || []);
+    } catch (error) {
+      console.log("Suggestion API Error:", error);
+    }
+  };
+
+  // Debounce suggestions
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      fetchSuggestions(search);
+    }, 200);
+
+    return () => clearTimeout(timer);
+  }, [search]);
+
+  // ⭐ Save Keyword API
+  const saveKeyword = async (keyword) => {
+    try {
+      const accessToken = localStorage.getItem("accessToken");
+      const refreshToken = localStorage.getItem("refreshToken");
+
+      await fetch("https://backend.ghardekhoapna.com/api/saveKeyword", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        
+        },
+        credentials: "include",
+        body: JSON.stringify({ keyword }),
+      });
+    } catch (error) {
+      console.log("Save Keyword Error:", error);
+    }
+  };
+
+  // ⭐ FILTER API
   const fetchFilteredResults = async () => {
     try {
       const params = new URLSearchParams();
+      params.append("tripCategory", "");
 
-      // Fixed params
-      params.append("tripCategory", "InternationalTrips");
-
-      // Search
       if (search) params.append("search", search);
 
-      // Budget
       params.append("minBudget", minBudget);
       params.append("maxBudget", maxBudget);
 
-      // Duration converted → nights
       const minNights = duration > 0 ? duration : 1;
       const maxNights = duration > 0 ? duration + 1 : 10;
-
       params.append("minNights", minNights);
       params.append("maxNights", maxNights);
 
-      // Rating
       if (rating) params.append("rating", rating);
 
-      // ⭐ Type conversion (UI → API)
       if (selectedTypes.length > 0) {
         const mappedTypes = selectedTypes
           .filter((x) => x !== "All")
-          .map((x) => typeMapping[x]); // convert UI labels → backend keys
-
+          .map((x) => typeMapping[x]);
         params.append("type", mappedTypes.join(","));
       }
 
-      // Destinations
       if (selectedDestinations.length > 0)
         params.append(
           "famousDestinations",
@@ -82,8 +132,6 @@ const FiltersSidebar = ({ onFilterResults }) => {
       });
 
       const data = await res.json();
-      console.log("FILTER DATA →", data?.data);
-
       onFilterResults(data?.data || []);
     } catch (error) {
       console.log("Filter API Error:", error);
@@ -110,22 +158,19 @@ const FiltersSidebar = ({ onFilterResults }) => {
       </div>
 
       <div className="max-w-100 sm:w-92 border-r p-6 shadow-sm space-y-8">
-        
-        {/* Search */}
-        <div className="relative">
-          <input
-            type="text"
-            placeholder="Search by State, City etc."
-            value={search}
-            onChange={(e) => setSearch(e.target.value)}
-            className="w-full border rounded-md pl-3 pr-10 py-2 text-sm"
-          />
-          <FiSearch className="absolute right-3 top-2.5 text-gray-500" />
-        </div>
+        {/* ⭐ SEARCH BOX WITH SUGGESTIONS */}
+      <KeywordSearch
+          search={search}
+          setSearch={setSearch}
+          suggestions={suggestions}
+          showSuggestions={showSuggestions}
+          setShowSuggestions={setShowSuggestions}
+          saveKeyword={saveKeyword}
+        />
 
         <div className="border border-[#B4B4B4] w-full"></div>
 
-        {/* ⭐ Budget */}
+        {/* ⭐ BUDGET */}
         <div>
           <h3 className="font-semibold text-base mb-4">Budget (per person):</h3>
 
@@ -164,7 +209,7 @@ const FiltersSidebar = ({ onFilterResults }) => {
 
         <div className="border border-[#B4B4B4] w-full"></div>
 
-        {/* Duration */}
+        {/* ⭐ DURATION */}
         <div>
           <h3 className="font-semibold text-base mb-4">Duration (in Nights):</h3>
           <div className="flex items-center space-x-3">
@@ -191,7 +236,7 @@ const FiltersSidebar = ({ onFilterResults }) => {
 
         <div className="border border-[#B4B4B4] w-full"></div>
 
-        {/* ⭐ Types */}
+        {/* ⭐ TYPES */}
         <div>
           <h3 className="font-semibold text-base mb-4">Type:</h3>
           {[
@@ -219,7 +264,7 @@ const FiltersSidebar = ({ onFilterResults }) => {
 
         <div className="border border-[#B4B4B4] w-full"></div>
 
-        {/* Rating */}
+        {/* ⭐ RATING */}
         <div>
           <h3 className="font-semibold text-base mb-4">Rating:</h3>
           {[1, 2, 3, 4, 5].map((r) => (
@@ -238,7 +283,7 @@ const FiltersSidebar = ({ onFilterResults }) => {
 
         <div className="border border-[#B4B4B4] w-full"></div>
 
-        {/* Destinations */}
+        {/* ⭐ DESTINATIONS */}
         <div>
           <h3 className="font-semibold text-base mb-4">Famous Destinations:</h3>
           {["All", "Char Dham", "Manali", "Kerala", "Bangalore", "Ladakh"].map(
@@ -260,7 +305,6 @@ const FiltersSidebar = ({ onFilterResults }) => {
             )
           )}
         </div>
-
       </div>
     </div>
   );

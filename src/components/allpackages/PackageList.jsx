@@ -1,5 +1,7 @@
 "use client";
+
 import { HolidayCard } from "../global/HolidayCard";
+
 
 export default function PackageList({ filteredPackages, slug, loading }) {
   return (
