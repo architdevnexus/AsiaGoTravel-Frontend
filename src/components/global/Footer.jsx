@@ -133,12 +133,12 @@ export const Footer = () => {
               </a>
             </li>
             <li>
-              <a href="#" className="hover:text-blue-600">
+              <a href="/terms-conditions" className="hover:text-blue-600">
                 Terms & Conditions
               </a>
             </li>
             <li>
-              <a href="#" className="hover:text-blue-600">
+              <a href="cancellation-policy" className="hover:text-blue-600">
                 Cancellation Policy
               </a>
             </li>

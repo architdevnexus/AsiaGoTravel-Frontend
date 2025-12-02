@@ -37,11 +37,10 @@ export const WhoWeAre = () => {
             "
           >
             <span className="text-2xl">
-              Our <br /> & <br /> Mission
+              Professional <br /> & <br /> Trustworthy
             </span>
             <p className="text-[#EAEAEA] text-[12px] leading-6 pt-10">
-              To design seamless, personalized, and premium travel experiences
-              that inspire, connect, and create lasting memories.
+       Our team of travel experts works tirelessly to curate handpicked destinations, exclusive deals, and personalized itineraries.
             </p>
           </motion.div>
 
@@ -63,12 +62,10 @@ export const WhoWeAre = () => {
             "
           >
             <span className="text-2xl">
-              Core <br /> & <br /> Values
+              Friendly  <br /> & <br /> Modern
             </span>
             <p className="text-[#EAEAEA] text-[12px] leading-6 pt-10">
-              To deliver seamless, end-to-end travel experience built on
-              professionalism, transparency, and meticulous attention to detail
-              while curating tour packages.
+           With transparent pricing, 24/7 support, and curated experiences, we turn your travel dreams into unforgettable stories.
             </p>
           </motion.div>
 
@@ -90,11 +87,10 @@ export const WhoWeAre = () => {
             "
           >
             <span className="text-2xl">
-              Our <br /> & <br /> Vision
+              Premium <br /> & <br /> Elegant
             </span>
             <p className="text-[#EAEAEA] text-[12px] leading-6 pt-10">
-              To become India’s most trusted premium travel brand, known for
-              crafting exceptional and personalized travel experiences worldwide.
+            With a focus on luxury, comfort, and personalization, we curate premium travel experiences across the world’s most stunning destinations.
             </p>
           </motion.div>
 
