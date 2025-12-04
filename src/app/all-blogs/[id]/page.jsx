@@ -24,10 +24,10 @@ const BlogSlugPage = () => {
   return (
     <div className="p-8">
       {/* ====== BACK BUTTON ====== */}
-      <div className="flex items-center gap-1 mb-6 bg-[#0E3A55] text-white items-center w-30">
+      <div className="flex items-center gap-1 mb-6 bg-[#0E3A55] text-white items-center w-30 cursor-pointer">
         <button
           onClick={() => router.back()}
-          className="px-4 py-2   rounded-lg"
+          className="px-4 py-2 cursor-pointer  rounded-lg"
         >
           ←
         </button>
