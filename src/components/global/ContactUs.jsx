@@ -10,7 +10,7 @@ import {
 import { DatePickerDemo } from "../ui/DatePickerDemo";
 
 export const ContactSection = () => {
-  const [packagesList, setPackagesList] = useState([]); // ⭐ package dropdown
+  const [packagesList, setPackagesList] = useState([]); 
   const [loadingPackages, setLoadingPackages] = useState(false);
 
   const [formData, setFormData] = useState({
@@ -25,28 +25,36 @@ export const ContactSection = () => {
 
   const [loading, setLoading] = useState(false);
 
-  // ⭐ Fetch all packages for dropdown
+  // ⭐ Fetch all packages → FLATTEN → store in dropdown
   useEffect(() => {
-    const fetchPackages = async () => {
-      try {
-        setLoadingPackages(true);
-        const res = await fetch(
-          "https://www.backend.ghardekhoapna.com/api/get-all-packages"
-        );
-        const data = await res.json();
-
-        if (res.ok) {
-          setPackagesList(data?.packages || []);
-        }
-      } catch (err) {
-        console.log("Error fetching packages", err);
-      } finally {
-        setLoadingPackages(false);
-      }
-    };
-
     fetchPackages();
   }, []);
+
+  const fetchPackages = async () => {
+    try {
+      setLoadingPackages(true);
+
+      const res = await fetch("https://www.backend.ghardekhoapna.com/api/allPackage");
+      const data = await res.json();
+
+      console.log("RAW API RESPONSE:", data);
+
+      // Some APIs return {data: [...]} — adjust safely
+      const rawArr = data?.data || data;
+
+      // ⭐ Flatten structure like:
+      // [ { categoryName, Packages: [] }, { categoryName, Packages: [] } ]
+      const flattened = rawArr?.flatMap((item) => item?.Packages || []);
+
+      console.log("FLATTENED PACKAGES:", flattened);
+
+      setPackagesList(flattened || []);
+    } catch (err) {
+      console.error("Error fetching packages", err);
+    } finally {
+      setLoadingPackages(false);
+    }
+  };
 
   const handleChange = (e) => {
     setFormData({
@@ -64,9 +72,7 @@ export const ContactSection = () => {
         "https://www.backend.ghardekhoapna.com/api/contact-us",
         {
           method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
+          headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
             name: formData.fullName,
             email: formData.email,
@@ -117,6 +123,7 @@ export const ContactSection = () => {
           </p>
 
           <form onSubmit={handleSubmit} className="space-y-3">
+            
             {/* Name */}
             <div>
               <label className="block text-sm text-gray-700 mb-0.5">Name</label>
@@ -174,7 +181,7 @@ export const ContactSection = () => {
                 />
               </div>
 
-              {/* Packages Dropdown ⭐ */}
+              {/* Package Dropdown */}
               <div className="w-full md:w-1/2">
                 <label className="block text-sm text-gray-700 mb-1">
                   Package
@@ -199,9 +206,10 @@ export const ContactSection = () => {
                   )}
                 </select>
               </div>
+
             </div>
 
-            {/* Month of Travel */}
+            {/* Month */}
             <div>
               <label className="block text-sm text-gray-700 mb-1">
                 Month of Travel
@@ -242,9 +250,9 @@ export const ContactSection = () => {
         </div>
 
         {/* INFO BOX */}
-        <div className="bg-[#1B4965] z-10 text-white justify-center rounded-l-xl w-1/3 pl-10 flex flex-col gap-5 shadow-md
+        <div className="bg-[#1B4965] text-white rounded-l-xl w-1/3 pl-10 flex flex-col gap-5 shadow-md
             md:absolute md:h-1/2 md:-right-30 md:top-1/2 md:-translate-y-1/2
-            max-sm:static max-sm:w-full max-sm:rounded-xl max-sm:p-6">
+            max-sm:static max-sm:w-full max-sm:p-6">
 
           <h3 className="text-2xl font-semibold mb-2">Info</h3>
 
@@ -267,6 +275,7 @@ export const ContactSection = () => {
             <FaClock className="text-white text-2xl" />
             <p className="text-sm">10.00 AM to 07.00 PM</p>
           </div>
+
         </div>
 
         <div className="bg-[#3FA9F5] w-70 h-full absolute -right-40 top-0 rounded-l-xl max-sm:hidden" />
