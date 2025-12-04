@@ -3,6 +3,7 @@ import "./globals.css";
 import { Navbar } from "@/components/global/Navbar";
 import { Footer } from "@/components/global/Footer";
 import { ContactSection } from "@/components/global/ContactUs";
+import WhatsappFloat from "@/components/global/WhatsappFloat";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -27,6 +28,7 @@ export default function RootLayout({ children }) {
       >
         <Navbar />
         {children}
+         <WhatsappFloat />
         <ContactSection />
         <Footer />
       </body>

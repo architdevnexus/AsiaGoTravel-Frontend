@@ -10,12 +10,12 @@ export default function TabSwitcher({ activeTab, setActiveTab }) {
     <div className="px-10 mt-8 flex gap-4 border-b pb-4">
       
       {/* ALL */}
-      {/* <button
+      <button
         onClick={() => setActiveTab("all")}
         className={btnClasses("all")}
       >
         All
-      </button> */}
+      </button>
 
       {/* DOMESTIC */}
       <button

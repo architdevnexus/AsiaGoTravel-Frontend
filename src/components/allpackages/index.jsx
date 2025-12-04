@@ -10,7 +10,7 @@ import usePackageFilters from "../services/usePackageFilters";
 
 
 export const AllPackageComponent = ({ slug }) => {
-  const [activeTab, setActiveTab] = useState("domestic");
+  const [activeTab, setActiveTab] = useState("all");
 
   // Read Params
   const { destination, filters } = useQueryParams();

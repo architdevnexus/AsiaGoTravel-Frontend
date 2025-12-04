@@ -13,7 +13,7 @@ const FiltersSidebar = ({ onFilterResults }) => {
   const [showSuggestions, setShowSuggestions] = useState(false);
 
   // ⭐ Dual Range Budget
-  const [budgetRange, setBudgetRange] = useState([0, 200000]);
+  const [budgetRange, setBudgetRange] = useState([0, 900000]);
   const minBudget = budgetRange[0];
   const maxBudget = budgetRange[1];
 
@@ -26,10 +26,11 @@ const FiltersSidebar = ({ onFilterResults }) => {
   const typeMapping = {
     "Honeymoon Trips": "honeymoonTrip",
     "Family Trips": "familyGroupTrip",
+    "Family Holiday": "familyHoliday",
     "Bachelor Tours": "bachelorTours",
     "Luxury Tours": "luxuryTours",
     "Premium Holiday Package": "premiumHolidayPackage",
-    "Personalized Tours": "personalizdTours",
+    "Personalized Tours": "personalizedTours",
   };
 
   // Helper toggle
