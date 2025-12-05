@@ -10,7 +10,7 @@ import {
 import { DatePickerDemo } from "../ui/DatePickerDemo";
 
 export const ContactSection = () => {
-  const [packagesList, setPackagesList] = useState([]); 
+  const [packagesList, setPackagesList] = useState([]);
   const [loadingPackages, setLoadingPackages] = useState(false);
 
   const [formData, setFormData] = useState({
@@ -25,7 +25,7 @@ export const ContactSection = () => {
 
   const [loading, setLoading] = useState(false);
 
-  // ⭐ Fetch all packages → FLATTEN → store in dropdown
+  // ⭐ Fetch all packages → FLATTEN → Dropdown
   useEffect(() => {
     fetchPackages();
   }, []);
@@ -37,16 +37,8 @@ export const ContactSection = () => {
       const res = await fetch("https://www.backend.ghardekhoapna.com/api/allPackage");
       const data = await res.json();
 
-      console.log("RAW API RESPONSE:", data);
-
-      // Some APIs return {data: [...]} — adjust safely
       const rawArr = data?.data || data;
-
-      // ⭐ Flatten structure like:
-      // [ { categoryName, Packages: [] }, { categoryName, Packages: [] } ]
       const flattened = rawArr?.flatMap((item) => item?.Packages || []);
-
-      console.log("FLATTENED PACKAGES:", flattened);
 
       setPackagesList(flattened || []);
     } catch (err) {
@@ -123,7 +115,7 @@ export const ContactSection = () => {
           </p>
 
           <form onSubmit={handleSubmit} className="space-y-3">
-            
+
             {/* Name */}
             <div>
               <label className="block text-sm text-gray-700 mb-0.5">Name</label>
@@ -249,36 +241,41 @@ export const ContactSection = () => {
           </form>
         </div>
 
-        {/* INFO BOX */}
-        <div className="bg-[#1B4965] text-white rounded-l-xl w-1/3 pl-10 flex flex-col gap-5 shadow-md
-            md:absolute md:h-1/2 md:-right-30 md:top-1/2 md:-translate-y-1/2
-            max-sm:static max-sm:w-full max-sm:p-6">
+        {/* INFO BOX + BLUE BG SHAPE */}
+        <div className="relative w-full md:w-1/3 flex items-center">
 
-          <h3 className="text-2xl font-semibold mb-2">Info</h3>
+          {/* BLUE SHAPE — stays only behind info box */}
+          <div className="bg-[#3FA9F5] w-60 h-full absolute -right-26 top-0 rounded-l-xl max-sm:hidden" />
 
-          <Link href="mailto:asiagotravels@gmail.com" className="flex items-center gap-3">
-            <FaEnvelope className="text-white text-2xl" />
-            <p className="text-sm">asiagotravels@gmail.com</p>
-          </Link>
+          {/* INFO BOX */}
+          <div className="bg-[#1B4965] text-white rounded-l-xl relative z-10 w-full pl-10 py-8 flex flex-col gap-5 shadow-md
+              max-sm:rounded-xl max-sm:p-6">
 
-          <Link href="tel:+919119119641" className="flex items-center gap-3">
-            <FaPhoneAlt className="text-white text-2xl" />
-            <p className="text-sm">+91-9119119641</p>
-          </Link>
+            <h3 className="text-2xl font-semibold mb-2">Info</h3>
 
-          <div className="flex items-center gap-3">
-            <FaMapMarkerAlt className="text-white text-2xl" />
-            <p className="text-sm">Jawahar Nagar, Jaipur 302004, Rajasthan</p>
+            <Link href="mailto:asiagotravels@gmail.com" className="flex items-center gap-3">
+              <FaEnvelope className="text-white text-2xl" />
+              <p className="text-sm">asiagotravels@gmail.com</p>
+            </Link>
+
+            <Link href="tel:+919119119641" className="flex items-center gap-3">
+              <FaPhoneAlt className="text-white text-2xl" />
+              <p className="text-sm">+91-9119119641</p>
+            </Link>
+
+            <div className="flex items-center gap-3">
+              <FaMapMarkerAlt className="text-white text-2xl" />
+              <p className="text-sm">Jawahar Nagar, Jaipur 302004, Rajasthan</p>
+            </div>
+
+            <div className="flex items-center gap-3">
+              <FaClock className="text-white text-2xl" />
+              <p className="text-sm">10.00 AM to 07.00 PM</p>
+            </div>
+
           </div>
-
-          <div className="flex items-center gap-3">
-            <FaClock className="text-white text-2xl" />
-            <p className="text-sm">10.00 AM to 07.00 PM</p>
-          </div>
-
         </div>
 
-        <div className="bg-[#3FA9F5] w-70 h-full absolute -right-40 top-0 rounded-l-xl max-sm:hidden" />
       </div>
     </section>
   );
