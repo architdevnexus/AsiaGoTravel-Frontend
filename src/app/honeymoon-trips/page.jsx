@@ -9,4 +9,4 @@ const HoneyMoonTripspage = () => {
   )
 }
 
-export default HoneyMoonTrips
+export default HoneyMoonTripspage
