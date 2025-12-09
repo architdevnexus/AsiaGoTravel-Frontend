@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
-import { FaPhoneAlt, FaEnvelope, FaMapMarkerAlt } from "react-icons/fa";
-import { FaInstagram, FaYoutube, FaLinkedin, FaTelegram } from "react-icons/fa";
+import { FaPhoneAlt, FaEnvelope, FaMapMarkerAlt, FaFacebook } from "react-icons/fa";
+import { FaInstagram, FaYoutube, FaLinkedin } from "react-icons/fa";
 
 export const Footer = () => {
   const destinations = [
@@ -126,7 +126,7 @@ export const Footer = () => {
               target="_blank"
               rel="noopener noreferrer"
             >
-              <FaTelegram className="text-sky-500 text-xl cursor-pointer hover:scale-110 transition" />
+              <FaFacebook className="text-sky-500 text-xl cursor-pointer hover:scale-110 transition" />
             </a>
           </div>
 

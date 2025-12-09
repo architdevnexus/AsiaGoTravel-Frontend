@@ -2,13 +2,30 @@
 import React, { useState, useRef, useEffect } from "react";
 import { motion, useMotionValue, useTransform } from "framer-motion";
 import { CgProfile } from "react-icons/cg";
+import { FaStar, FaStarHalfAlt, FaRegStar } from "react-icons/fa";
+
+// ⭐ Rating Stars Component
+const RatingStars = ({ rating = 0 }) => {
+  const stars = [];
+
+  for (let i = 1; i <= 5; i++) {
+    if (rating >= i) {
+      stars.push(<FaStar key={i} className="text-yellow-400" />);
+    } else if (rating >= i - 0.5) {
+      stars.push(<FaStarHalfAlt key={i} className="text-yellow-400" />);
+    } else {
+      stars.push(<FaRegStar key={i} className="text-yellow-400" />);
+    }
+  }
+
+  return <div className="flex items-center gap-1 mt-1">{stars}</div>;
+};
 
 export const TestimonialCardStack = () => {
   const [stack, setStack] = useState([]);
   const containerRef = useRef(null);
   const THROW_DISTANCE = 120;
 
-  // ⭐ Loader Component
   const LoaderSpinner = () => (
     <div className="flex justify-center items-center h-40">
       <div className="w-12 h-12 border-4 border-[#1B4965] border-t-transparent rounded-full animate-spin"></div>
@@ -32,7 +49,6 @@ export const TestimonialCardStack = () => {
     fetchTestimonials();
   }, []);
 
-  // ⭐ Handle throw by arrow click also
   const forceThrow = (direction) => {
     if (stack.length === 0) return;
 
@@ -40,17 +56,13 @@ export const TestimonialCardStack = () => {
       const next = [...prev];
       const removed = direction === "next" ? next.shift() : next.pop();
 
-      if (direction === "next") {
-        next.push(removed);
-      } else {
-        next.unshift(removed);
-      }
+      if (direction === "next") next.push(removed);
+      else next.unshift(removed);
 
       return next;
     });
   };
 
-  // Listen to arrow events
   useEffect(() => {
     const prev = () => forceThrow("prev");
     const next = () => forceThrow("next");
@@ -160,13 +172,17 @@ const StackCard = ({ testimonial, index, zIndex, onThrow }) => {
           )}
 
           <p className="text-sm text-gray-600 italic leading-relaxed mb-6 line-clamp-4">
-            “<br />
-            {testimonial.message}”
+            “{testimonial.message}”
           </p>
 
           <div className="pt-3 border-t">
             <h3 className="text-lg font-semibold">{testimonial.name}</h3>
             <p className="text-sm text-gray-500">{testimonial.role}</p>
+
+            {/* ⭐ SHOW RATING IF AVAILABLE */}
+            {testimonial.rating && (
+              <RatingStars rating={testimonial.rating} />
+            )}
           </div>
         </div>
       </div>

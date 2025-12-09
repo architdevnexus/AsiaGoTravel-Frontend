@@ -134,7 +134,7 @@ export const SendQueryModal = ({ title }) => {
           />
   <div className="w-full">
     <label className="block text-sm font-medium text-gray-700 mb-1">
-      Month of Travel
+      Date of Travel
     </label>
     <DatePickerDemo onChange={handleDate} />
   </div>

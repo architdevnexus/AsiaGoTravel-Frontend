@@ -180,7 +180,7 @@ export default function TravelForm() {
                   htmlFor="travelMonth"
                   className="block text-sm font-medium text-gray-700 mb-2"
                 >
-                  Month of Travel
+                  Date of Travel
                 </label>
                 <select
                   id="travelMonth"

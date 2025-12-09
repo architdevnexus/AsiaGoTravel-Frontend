@@ -161,7 +161,7 @@ export const ContactSection = () => {
               {/* Travellers */}
               <div className="w-full md:w-1/2">
                 <label className="block text-sm text-gray-700 mb-1">
-                  Travellers
+                 No of Travellers
                 </label>
                 <input
                   type="number"
@@ -204,7 +204,7 @@ export const ContactSection = () => {
             {/* Month */}
             <div>
               <label className="block text-sm text-gray-700 mb-1">
-                Month of Travel
+                Date of Travel
               </label>
 
               <DatePickerDemo

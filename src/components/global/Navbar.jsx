@@ -33,6 +33,7 @@ export const Navbar = () => {
         { name: "International Trips", href: "/international-trips" },
       ],
     },
+    { name: "Career", href: "/career" },
 
     { name: "Blogs", href: "/all-blogs" },
     { name: "Contact", href: "/contactus" },
