@@ -39,7 +39,7 @@ export const SendQueryModal = ({ title }) => {
 
     try {
       const res = await fetch(
-        "https://www.backend.ghardekhoapna.com/api/submitQuery",
+        "https://backend.ghardekhoapna.com/api/submitQuery",
         {
           method: "POST",
           headers: {

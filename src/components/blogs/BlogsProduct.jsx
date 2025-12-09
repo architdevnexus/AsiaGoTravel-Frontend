@@ -13,7 +13,7 @@ export const BlogContent = () => {
     const fetchBlogById = async () => {
       try {
         const res = await fetch(
-          `https://www.backend.ghardekhoapna.com/api/AllBlog/${id}`,
+          `https://backend.ghardekhoapna.com/api/AllBlog/${id}`,
           { cache: "no-store" }
         );
         const data = await res.json();
