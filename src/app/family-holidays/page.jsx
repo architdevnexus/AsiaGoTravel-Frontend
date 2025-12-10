@@ -2,11 +2,11 @@
 import { FamilyTourComponent } from '@/components/family-tour';
 import React from 'react'
 
- const DomesticGroupTrips = () => {
+const DomesticGroupTrips = () => {
 
   return (
     <div>
-<FamilyTourComponent />
+      <FamilyTourComponent />
     </div>
   )
 }

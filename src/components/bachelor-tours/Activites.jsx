@@ -3,7 +3,7 @@ import React from "react";
 
 
 
-export const Activites = ({activitiesData}) => {
+export const Activites = ({title, activitiesData}) => {
   return (
     <div className="relative w-full">
       {/* Background Image */}
@@ -21,7 +21,7 @@ export const Activites = ({activitiesData}) => {
 
           {/* Title */}
           <h2 className="text-center text-2xl font-semibold text-[#1B4965]">
-            Romantic Activities to Do on Honeymoon
+           {title}
           </h2>
 
           {/* Divider */}

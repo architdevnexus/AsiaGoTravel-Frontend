@@ -28,7 +28,7 @@ export const WhatWeOfferComponent = ({images}) => {
           max-sm:grid-cols-1 max-sm:grid-rows-none
         "
       >
-        {images.map((item, index) => (
+        {images?.map((item, index) => (
           <Link
             key={index}
             href={item.href}

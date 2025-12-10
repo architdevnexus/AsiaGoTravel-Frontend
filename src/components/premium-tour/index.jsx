@@ -74,7 +74,10 @@ export const PremiumTourComponent = () => {
         <Activites activitiesData={activitiesData} />
        <AboutPackage />
        <WhatWeOfferComponent images={images} />
-        <BookPackage />
+       <BookPackage
+                      title="Book Your Family Tour Now!"
+                      bgImage="/img/BookingImage.png"
+                  />
          <PopularPackages />
         <FaqSection />
     </div>

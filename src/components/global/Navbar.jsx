@@ -9,7 +9,7 @@ export const Navbar = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
 
   const menuItems = [
-    { name: "Domestic Trips", href: "/domestic-trips" },
+ 
 
     { name: "Honeymoon Trips", href: "/honeymoon-trips" },
     { name: "Family Holidays", href: "/family-holidays" },
@@ -18,7 +18,7 @@ export const Navbar = () => {
     { name: "Luxury Tours", href: "/luxury-tours" },
     { name: "Premium Holiday Packages", href: "/premium-holiday-packages" },
     { name: "Personalized Tours", href: "/personalized-tours" },
-        { name: "International Trips", href: "/international-trips" },
+     
   ];
 
   const mainLinks = [

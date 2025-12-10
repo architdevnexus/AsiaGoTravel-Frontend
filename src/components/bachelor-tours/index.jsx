@@ -6,6 +6,7 @@ import { Activites } from './Activites'
 import { BookPackage } from './BookPackage'
 import { AboutPackage } from './AboutPackage'
 import { WhatWeOfferComponent } from '../landingpage/WhatweOffer'
+import { OurBenefitsSection } from '../career/OurBenefitsSection'
 
 export const BachelorToursComponent = () => {
       const images = [
@@ -16,8 +17,11 @@ export const BachelorToursComponent = () => {
     { src: "https://images.unsplash.com/photo-1617365209649-56138ac3aefc?q=80&w=2670&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", text: "Premium Holiday Packages", href: "/premium-holiday-packages" },
   ];
 
+
+
   // DYNAMIC DATA
   const activitiesData = [
+
     {
       icon: "/icons/candle.svg",
       title: "Candlelight Dinner",
@@ -67,14 +71,21 @@ export const BachelorToursComponent = () => {
       ],
     },
   ];
+
+
   return (
     <div>
         <HeroBannerTours  title="Bachelors Tours"
-  description="A honeymoon is more than just a holiday—it’s the first chapter of your life together." />
-        <Activites activitiesData={activitiesData} />
+  description="A Bachelors Tours is more than just a holiday—it’s the first chapter of your life together." />
+        <Activites activitiesData={activitiesData} title="Activities We Offer"  />
        <AboutPackage />
+      
        <WhatWeOfferComponent images={images} />
-        <BookPackage />
+        <OurBenefitsSection />
+        <BookPackage
+                       title="Book Your Bachelors Tour Now!"
+                       bgImage="/img/BookingImage.png"
+                   />
          <PopularPackages />
         <FaqSection />
     </div>

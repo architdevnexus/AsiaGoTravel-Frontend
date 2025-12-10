@@ -70,9 +70,9 @@ export const FamilyTourComponent = () => {
   ];
   return (
     <div>
-        <HeroBannerTours  title="Bachelors Tours"
+        <HeroBannerTours  title="Family Holiday Tours"
   description="A honeymoon is more than just a holiday—it’s the first chapter of your life together." />
-        <Activites activitiesData={activitiesData} />
+        <Activites activitiesData={activitiesData} title="Activities We Offer"   />
        <AboutPackage />
        <WhatWeOfferComponent images={images} />
         <BookPackage />
