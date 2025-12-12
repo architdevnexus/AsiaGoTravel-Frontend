@@ -1,7 +1,7 @@
 // services/getAllPackages.js
 export const getAllPackages = async () => {
   try {
-    const res = await fetch("https://backend.ghardekhoapna.com/api/allPackage", {
+    const res = await fetch("https://backend.asiagotravels.com/api/allPackage", {
       method: "GET",
     });
 

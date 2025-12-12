@@ -13,7 +13,7 @@ const CareerJobComponent = () => {
 
   const fetchJobs = async () => {
     try {
-      const res = await fetch("https://backend.ghardekhoapna.com/api/jobs/all", {
+      const res = await fetch("https://backend.asiagotravels.com/api/jobs/all", {
         method: "GET",
         headers: {
           "Content-Type": "application/json",

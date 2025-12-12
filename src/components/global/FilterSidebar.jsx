@@ -51,7 +51,7 @@ const fetchSuggestions = async (keyword) => {
     setLoading(true);
 
     const res = await fetch(
-      `https://backend.ghardekhoapna.com/api/location/search?q=${keyword}`
+      `https://backend.asiagotravels.com/api/location/search?q=${keyword}`
     );
 
     const data = await res.json();
@@ -77,7 +77,7 @@ const fetchSuggestions = async (keyword) => {
   // ⭐ Save Keyword (your existing API)
   const saveKeyword = async (keyword) => {
     try {
-      await fetch("https://backend.ghardekhoapna.com/api/saveKeyword", {
+      await fetch("https://backend.asiagotravels.com/api/saveKeyword", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -121,7 +121,7 @@ const fetchSuggestions = async (keyword) => {
           selectedDestinations.join(",")
         );
 
-      const apiURL = `https://backend.ghardekhoapna.com/api/travel/filter?${params.toString()}`;
+      const apiURL = `https://backend.asiagotravels.com/api/travel/filter?${params.toString()}`;
 
       const res = await fetch(apiURL, {
         method: "GET",

@@ -6,6 +6,10 @@ import { WhatWeOfferComponent } from '../landingpage/WhatweOffer';
 import { BookPackage } from '../bachelor-tours/BookPackage';
 import { PopularPackages } from '../landingpage/PopularTravel';
 import { FaqSection } from '../global/Faq';
+import { GiCandleLight } from 'react-icons/gi';
+import { TbBeach, TbMassage } from 'react-icons/tb';
+import { BsSunrise } from 'react-icons/bs';
+import { MdMonochromePhotos, MdPool } from 'react-icons/md';
 
 
 export const PersonalizedTourComponent = () => {
@@ -18,9 +22,9 @@ export const PersonalizedTourComponent = () => {
   ];
 
   // DYNAMIC DATA
-  const activitiesData = [
+ const activitiesData = [
     {
-      icon: "/icons/candle.svg",
+      icon: <GiCandleLight /> ,
       title: "Candlelight Dinner",
       points: [
         "Enjoy a private, romantic dinner setup",
@@ -28,7 +32,7 @@ export const PersonalizedTourComponent = () => {
       ],
     },
     {
-      icon: "/icons/beach.svg",
+      icon: <TbBeach /> ,
       title: "Private Beach Time",
       points: [
         "Relax together by the sea",
@@ -36,7 +40,7 @@ export const PersonalizedTourComponent = () => {
       ],
     },
     {
-      icon: "/icons/spa.svg",
+       icon: <TbMassage /> ,
       title: "Couple Spa & Massage",
       points: [
         "Rejuvenating full-body couple massages",
@@ -44,7 +48,7 @@ export const PersonalizedTourComponent = () => {
       ],
     },
     {
-      icon: "/icons/cruise.svg",
+      icon: <BsSunrise /> ,
       title: "Sunset Cruise",
       points: [
         "Peaceful boat ride during sunset",
@@ -52,7 +56,7 @@ export const PersonalizedTourComponent = () => {
       ],
     },
     {
-      icon: "/icons/pool.svg",
+      icon: <MdPool /> ,
       title: "Private Pool",
       points: [
         "Stay in villas with private pools",
@@ -60,7 +64,7 @@ export const PersonalizedTourComponent = () => {
       ],
     },
     {
-      icon: "/icons/photo.svg",
+       icon: <MdMonochromePhotos /> ,
       title: "Romantic Photoshoots",
       points: [
         "Professional shoots at scenic spots",
@@ -70,13 +74,13 @@ export const PersonalizedTourComponent = () => {
   ];
   return (
     <div>
-        <HeroBannerTours  title="Bachelors Tours"
-  description="A honeymoon is more than just a holiday—it’s the first chapter of your life together." />
+        <HeroBannerTours  title="Personalized Tours"
+  description="A Personalized is more than just a holiday—it’s the first chapter of your life together." />
         <Activites activitiesData={activitiesData} />
        <AboutPackage />
        <WhatWeOfferComponent images={images} />
          <BookPackage
-                        title="Book Your Family Tour Now!"
+                        title="Book Your Personalized Tour Now!"
                         bgImage="/img/BookingImage.png"
                     />
          <PopularPackages />

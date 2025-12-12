@@ -41,7 +41,7 @@ export const JoinOurTeamForm = () => {
       form.append("Message", formData.Message);
       form.append("cvFile", cvFile);
 
-      const res = await fetch("https://backend.ghardekhoapna.com/api/jointeam", {
+      const res = await fetch("https://backend.asiagotravels.com/api/jointeam", {
         method: "POST",
         body: form,
         credentials: "include", // sends cookies automatically

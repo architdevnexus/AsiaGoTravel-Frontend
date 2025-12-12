@@ -36,7 +36,7 @@ export const TestimonialCardStack = () => {
   const fetchTestimonials = async () => {
     try {
       const res = await fetch(
-        "https://backend.ghardekhoapna.com/api/allTestimonials"
+        "https://backend.asiagotravels.com/api/allTestimonials"
       );
       const data = await res.json();
       setStack(data?.data || []);

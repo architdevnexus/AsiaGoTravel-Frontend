@@ -7,6 +7,11 @@ import { BookPackage } from './BookPackage'
 import { AboutPackage } from './AboutPackage'
 import { WhatWeOfferComponent } from '../landingpage/WhatweOffer'
 import { OurBenefitsSection } from '../career/OurBenefitsSection'
+import { GiCandleLight } from 'react-icons/gi';
+import { TbBeach, TbMassage } from 'react-icons/tb';
+import { BsSunrise } from 'react-icons/bs';
+import { MdMonochromePhotos, MdPool } from 'react-icons/md';
+
 
 export const BachelorToursComponent = () => {
       const images = [
@@ -19,11 +24,9 @@ export const BachelorToursComponent = () => {
 
 
 
-  // DYNAMIC DATA
   const activitiesData = [
-
     {
-      icon: "/icons/candle.svg",
+      icon: <GiCandleLight /> ,
       title: "Candlelight Dinner",
       points: [
         "Enjoy a private, romantic dinner setup",
@@ -31,7 +34,7 @@ export const BachelorToursComponent = () => {
       ],
     },
     {
-      icon: "/icons/beach.svg",
+      icon: <TbBeach /> ,
       title: "Private Beach Time",
       points: [
         "Relax together by the sea",
@@ -39,7 +42,7 @@ export const BachelorToursComponent = () => {
       ],
     },
     {
-      icon: "/icons/spa.svg",
+       icon: <TbMassage /> ,
       title: "Couple Spa & Massage",
       points: [
         "Rejuvenating full-body couple massages",
@@ -47,7 +50,7 @@ export const BachelorToursComponent = () => {
       ],
     },
     {
-      icon: "/icons/cruise.svg",
+      icon: <BsSunrise /> ,
       title: "Sunset Cruise",
       points: [
         "Peaceful boat ride during sunset",
@@ -55,7 +58,7 @@ export const BachelorToursComponent = () => {
       ],
     },
     {
-      icon: "/icons/pool.svg",
+      icon: <MdPool /> ,
       title: "Private Pool",
       points: [
         "Stay in villas with private pools",
@@ -63,7 +66,7 @@ export const BachelorToursComponent = () => {
       ],
     },
     {
-      icon: "/icons/photo.svg",
+       icon: <MdMonochromePhotos /> ,
       title: "Romantic Photoshoots",
       points: [
         "Professional shoots at scenic spots",

@@ -34,7 +34,7 @@ export default function TravelForm() {
         message: formData.message || "",
       };
 
-      const res = await fetch("https://backend.ghardekhoapna.com/api/contact-us", {
+      const res = await fetch("https://backend.asiagotravels.com/api/contact-us", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

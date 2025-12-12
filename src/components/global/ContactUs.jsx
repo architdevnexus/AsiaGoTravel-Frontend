@@ -34,7 +34,7 @@ export const ContactSection = () => {
     try {
       setLoadingPackages(true);
 
-      const res = await fetch("https://backend.ghardekhoapna.com/api/allPackage");
+      const res = await fetch("https://backend.asiagotravels.com/api/allPackage");
       const data = await res.json();
 
       const rawArr = data?.data || data;
@@ -61,7 +61,7 @@ export const ContactSection = () => {
 
     try {
       const res = await fetch(
-        "https://backend.ghardekhoapna.com/api/contact-us",
+        "https://backend.asiagotravels.com/api/contact-us",
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
