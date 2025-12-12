@@ -1,5 +1,7 @@
-import React from "react";
+"use client";
+import React, { useRef } from "react";
 import { FiSearch } from "react-icons/fi";
+import { MdLocationOn } from "react-icons/md";
 
 export const KeywordSearch = ({
   search,
@@ -7,46 +9,67 @@ export const KeywordSearch = ({
   suggestions,
   showSuggestions,
   setShowSuggestions,
-  saveKeyword,
+  loading,
+  saveKeyword
 }) => {
+  const containerRef = useRef(null);
+
   return (
-    <div className="relative">
+    <div className="relative" ref={containerRef}>
       {/* Search Input */}
-      <input
-        type="text"
-        placeholder="Search by State, City etc."
-        value={search}
-        onChange={(e) => {
-          setSearch(e.target.value);
-          setShowSuggestions(true);
-        }}
-        onKeyDown={(e) => {
-          if (e.key === "Enter") {
-            saveKeyword(search);
-            setShowSuggestions(false);
-          }
-        }}
-        className="w-full border rounded-md pl-3 pr-10 py-2 text-sm"
-      />
+      <div className="flex items-center border px-3 py-2 rounded-lg bg-white shadow-sm">
+        <FiSearch className="text-gray-500 mr-2 text-lg" />
+        <input
+          type="text"
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+          onFocus={() => setShowSuggestions(true)}
+          placeholder="Search destinations..."
+          className="w-full focus:outline-none text-sm"
+        />
 
-      <FiSearch className="absolute right-3 top-2.5 text-gray-500" />
+        {/* Loader spinner while typing */}
+        {loading && (
+          <div className="animate-spin h-4 w-4 border-2 border-blue-500 border-t-transparent rounded-full mr-2"></div>
+        )}
+      </div>
 
-      {/* Suggestion Dropdown */}
-      {showSuggestions && suggestions.length > 0 && (
-        <div className="absolute left-0 right-0 bg-white border rounded-md mt-1 shadow-lg z-20 max-h-60 overflow-auto text-sm">
-          {suggestions.map((item, index) => (
-            <div
-              key={index}
-              onClick={() => {
-                setSearch(item.name);
-                saveKeyword(item.name);
-                setShowSuggestions(false);
-              }}
-              className="px-3 py-2 hover:bg-gray-100 cursor-pointer"
-            >
-              {item.name}
+      {/* ⭐ Suggestions Dropdown */}
+      {showSuggestions && (suggestions.length > 0 || loading) && (
+        <div
+          className={`absolute top-full left-0 w-full bg-white border rounded-2xl shadow-lg mt-2 max-h-72 overflow-y-auto z-50 transition-all duration-200 ${
+            showSuggestions ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-2"
+          }`}
+        >
+          {/* Loader Placeholder */}
+          {loading && (
+            <div className="p-4 text-center text-gray-500 text-sm">
+              Searching…
             </div>
-          ))}
+          )}
+
+          {/* Suggestion Items */}
+          {!loading &&
+            suggestions.map((item, idx) => (
+              <div
+                key={idx}
+                onClick={() => {
+                  setSearch(item.name);
+                  saveKeyword(item.name);
+                  setShowSuggestions(false);
+                }}
+                className="flex items-center px-4 py-3 hover:bg-gray-100 cursor-pointer transition text-sm"
+              >
+                <MdLocationOn className="text-red-500 text-xl mr-3" />
+
+                <div className="flex flex-col">
+                  <span className="font-medium">{item.name}</span>
+                  <span className="text-xs text-gray-500">
+                    {item.city}, {item.country}
+                  </span>
+                </div>
+              </div>
+            ))}
         </div>
       )}
     </div>

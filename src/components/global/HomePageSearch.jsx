@@ -1,7 +1,7 @@
 "use client";
 import { FaSearch } from "react-icons/fa";
 import { useState, useRef, useEffect } from "react";
-import { useRouter } from "next/navigation"; // Next.js App Router
+import { useRouter } from "next/navigation";
 import { DatePickerDemo } from "../ui/DatePickerDemo";
 
 export default function HomePageSearchPackages() {
@@ -19,7 +19,11 @@ export default function HomePageSearchPackages() {
   const [rooms, setRooms] = useState("");
   const rgRef = useRef(null);
 
-  // Close dropdown when clicking outside
+  // ---- NEW STATES FOR API ----
+  const [destResults, setDestResults] = useState([]);
+  const [showDropdown, setShowDropdown] = useState(false);
+
+  // Close Rooms & Guests dropdown
   useEffect(() => {
     const handler = (e) => {
       if (rgRef.current && !rgRef.current.contains(e.target)) {
@@ -30,7 +34,31 @@ export default function HomePageSearchPackages() {
     return () => document.removeEventListener("mousedown", handler);
   }, []);
 
-  // Navigate to /all-package with query params
+  // 👉 Fetch Destination Suggestions
+  useEffect(() => {
+    if (!destination) {
+      setDestResults([]);
+      return;
+    }
+
+    const fetchData = async () => {
+      try {
+        const res = await fetch(
+          `http://backend.ghardekhoapna.com/api/location/search?q=${destination}`
+        );
+        const data = await res.json();
+        setDestResults(data?.data || []);
+        setShowDropdown(true);
+      } catch (error) {
+        console.log("Location Search Error:", error);
+      }
+    };
+
+    const debounce = setTimeout(fetchData, 400);
+    return () => clearTimeout(debounce);
+  }, [destination]);
+
+  // Navigate to all-packages
   const handleSearch = () => {
     const params = new URLSearchParams();
 
@@ -38,6 +66,7 @@ export default function HomePageSearchPackages() {
     if (destination) params.append("destination", destination);
     if (departureDate) params.append("date", departureDate);
     if (filters) params.append("search", filters);
+
     params.append("adults", adults);
     params.append("children", children);
     params.append("rooms", rooms);
@@ -51,10 +80,10 @@ export default function HomePageSearchPackages() {
         Search for Packages
       </h2>
 
-      {/* Container */}
       <div className="relative bg-white shadow-md rounded-lg p-6 w-full md:w-[95%] lg:w-[90%] xl:w-[90%] border border-gray-200">
         <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-6 md:gap-0">
-          {/* Source */}
+          
+          {/* SOURCE INPUT */}
           <div className="flex flex-col w-full md:w-1/5">
             <label className="text-sm text-gray-500">Source</label>
             <input
@@ -69,8 +98,9 @@ export default function HomePageSearchPackages() {
 
           <div className="hidden md:block h-10 w-px bg-gray-200 mr-10" />
 
-          {/* Destination */}
-          <div className="flex flex-col w-full md:w-1/5">
+
+          {/* DESTINATION WITH API SEARCH */}
+          <div className="flex flex-col w-full md:w-1/5 relative">
             <label className="text-sm text-gray-500">Destination</label>
             <input
               type="text"
@@ -78,34 +108,45 @@ export default function HomePageSearchPackages() {
               onChange={(e) => setDestination(e.target.value)}
               placeholder="Type..."
               className="text-xl font-semibold focus:outline-none border-none bg-transparent"
+              onFocus={() => destResults.length > 0 && setShowDropdown(true)}
             />
+
+            {/* Dropdown */}
+            {showDropdown && destResults.length > 0 && (
+              <ul className="absolute top-16 bg-white border rounded-lg shadow-md w-full max-h-60 overflow-y-auto z-50">
+                {destResults.map((item, index) => (
+                  <li
+                    key={index}
+                    className="p-2 hover:bg-gray-100 cursor-pointer"
+                    onClick={() => {
+                      setDestination(item.name);
+                      setShowDropdown(false);
+                    }}
+                  >
+                    {item.name}
+                  </li>
+                ))}
+              </ul>
+            )}
+
             <span className="text-xs text-gray-400">State, Country</span>
           </div>
 
+
           <div className="hidden md:block h-10 w-px bg-gray-200 mr-10" />
 
-          {/* Departure Date */}
+
+          {/* DATE PICKER */}
           <div className="flex flex-col w-full md:w-1/5">
             <label className="text-sm text-gray-500">Departure Date</label>
-            {/* <input
-              type="date"
-              value={departureDate}
-              onChange={(e) => setDepartureDate(e.target.value)}
-              className="text-xl font-semibold focus:outline-none border-none bg-transparent"
-            /> */}
-            {/* <span className="text-xs text-gray-400">
-              {departureDate
-                ? new Date(departureDate).toLocaleDateString("en-GB", {
-                    weekday: "long",
-                  })
-                : ""}
-            </span> */}
-              <DatePickerDemo  onChange={(d) => console.log("Selected:", d)} />
+            <DatePickerDemo onChange={(d) => setDepartureDate(d)} />
           </div>
+
 
           <div className="hidden md:block h-10 w-px bg-gray-200 mr-10" />
 
-          {/* Rooms & Guests */}
+
+          {/* ROOMS & GUESTS */}
           <div className="flex flex-col w-full md:w-1/5 relative" ref={rgRef}>
             <label className="text-sm text-gray-500">Rooms & Guests</label>
             <div
@@ -133,6 +174,7 @@ export default function HomePageSearchPackages() {
                     className="border p-1 w-16 text-center"
                   />
                 </div>
+
                 <div className="flex justify-between items-center mb-3">
                   <span>Children</span>
                   <input
@@ -143,6 +185,7 @@ export default function HomePageSearchPackages() {
                     className="border p-1 w-16 text-center"
                   />
                 </div>
+
                 <div className="flex justify-between items-center">
                   <span>Rooms</span>
                   <input
@@ -157,9 +200,11 @@ export default function HomePageSearchPackages() {
             )}
           </div>
 
+
           <div className="hidden md:block h-10 w-px bg-gray-200 mr-10" />
 
-          {/* Filters */}
+
+          {/* FILTERS */}
           <div className="flex flex-col w-full md:w-1/5">
             <label className="text-sm text-gray-500">Filters</label>
             <input
@@ -173,16 +218,10 @@ export default function HomePageSearchPackages() {
         </div>
       </div>
 
-      {/* Search Button */}
+      {/* SEARCH BUTTON */}
       <button
         onClick={handleSearch}
-        className="
-          flex items-center justify-center gap-3
-          bg-[#28A9E0] hover:bg-[#1C94C9] text-white
-          font-medium px-8 py-3 rounded-full shadow-md transition
-          w-full sm:w-auto
-          mt-6
-        "
+        className="flex items-center justify-center gap-3 bg-[#28A9E0] hover:bg-[#1C94C9] text-white font-medium px-8 py-3 rounded-full shadow-md transition w-full sm:w-auto mt-6"
       >
         <FaSearch />
         Search

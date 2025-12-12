@@ -1,14 +1,17 @@
-"use client";
+"use client"; 
 import React, { useState, useEffect } from "react";
 import { FiSearch } from "react-icons/fi";
 import Slider from "rc-slider";
 import "rc-slider/assets/index.css";
 import { KeywordSearch } from "./KeywordSearch";
 
+
 const FiltersSidebar = ({ onFilterResults }) => {
   const [search, setSearch] = useState("");
+  const [loading, setLoading] = useState(false);
 
-  // ⭐ Suggestions State
+
+  // ⭐ Suggestions
   const [suggestions, setSuggestions] = useState([]);
   const [showSuggestions, setShowSuggestions] = useState(false);
 
@@ -22,7 +25,6 @@ const FiltersSidebar = ({ onFilterResults }) => {
   const [rating, setRating] = useState(null);
   const [selectedDestinations, setSelectedDestinations] = useState([]);
 
-  // ⭐ UI → API Mapping
   const typeMapping = {
     "Honeymoon Trips": "honeymoonTrip",
     "Family Trips": "familyGroupTrip",
@@ -33,37 +35,35 @@ const FiltersSidebar = ({ onFilterResults }) => {
     "Personalized Tours": "personalizedTours",
   };
 
-  // Helper toggle
+  // Toggle helper
   const toggleItem = (value, list, setter) => {
     if (list.includes(value)) setter(list.filter((x) => x !== value));
     else setter([...list, value]);
   };
 
-  // ⭐ Suggestion API
-  const fetchSuggestions = async (keyword) => {
-    if (!keyword) {
-      setSuggestions([]);
-      return;
-    }
+const fetchSuggestions = async (keyword) => {
+  if (!keyword) {
+    setSuggestions([]);
+    return;
+  }
 
-    try {
-    
+  try {
+    setLoading(true);
 
-      const res = await fetch(
-        `https://backend.ghardekhoapna.com/api/suggestions?keyword=${keyword}`,
-        {
-          method: "GET",
-       
-          credentials: "include",
-        }
-      );
+    const res = await fetch(
+      `https://backend.ghardekhoapna.com/api/location/search?q=${keyword}`
+    );
 
-      const data = await res.json();
-      setSuggestions(data?.data || []);
-    } catch (error) {
-      console.log("Suggestion API Error:", error);
-    }
-  };
+    const data = await res.json();
+    setSuggestions(data?.data || []);
+    setShowSuggestions(true);
+  } catch (error) {
+    console.log("Suggestion API Error:", error);
+  } finally {
+    setLoading(false);
+  }
+};
+
 
   // Debounce suggestions
   useEffect(() => {
@@ -74,17 +74,13 @@ const FiltersSidebar = ({ onFilterResults }) => {
     return () => clearTimeout(timer);
   }, [search]);
 
-  // ⭐ Save Keyword API
+  // ⭐ Save Keyword (your existing API)
   const saveKeyword = async (keyword) => {
     try {
-      const accessToken = localStorage.getItem("accessToken");
-      const refreshToken = localStorage.getItem("refreshToken");
-
       await fetch("https://backend.ghardekhoapna.com/api/saveKeyword", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-        
         },
         credentials: "include",
         body: JSON.stringify({ keyword }),
@@ -94,7 +90,7 @@ const FiltersSidebar = ({ onFilterResults }) => {
     }
   };
 
-  // ⭐ FILTER API
+  // ⭐ MAIN FILTER API
   const fetchFilteredResults = async () => {
     try {
       const params = new URLSearchParams();
@@ -139,7 +135,7 @@ const FiltersSidebar = ({ onFilterResults }) => {
     }
   };
 
-  // Auto-run filters
+  // Auto-run filter on change
   useEffect(() => {
     const delay = setTimeout(fetchFilteredResults, 120);
     return () => clearTimeout(delay);
@@ -159,19 +155,22 @@ const FiltersSidebar = ({ onFilterResults }) => {
       </div>
 
       <div className="max-w-100 sm:w-92 border-r p-6 shadow-sm space-y-8">
-        {/* ⭐ SEARCH BOX WITH SUGGESTIONS */}
-      <KeywordSearch
-          search={search}
-          setSearch={setSearch}
-          suggestions={suggestions}
-          showSuggestions={showSuggestions}
-          setShowSuggestions={setShowSuggestions}
-          saveKeyword={saveKeyword}
-        />
+
+        {/* ⭐ Search with Suggestions */}
+   <KeywordSearch
+  search={search}
+  setSearch={setSearch}
+  suggestions={suggestions}
+  showSuggestions={showSuggestions}
+  setShowSuggestions={setShowSuggestions}
+  saveKeyword={saveKeyword}
+  loading={loading}
+/>
+
 
         <div className="border border-[#B4B4B4] w-full"></div>
 
-        {/* ⭐ BUDGET */}
+        {/* ⭐ Budget */}
         <div>
           <h3 className="font-semibold text-base mb-4">Budget (per person):</h3>
 
@@ -210,7 +209,7 @@ const FiltersSidebar = ({ onFilterResults }) => {
 
         <div className="border border-[#B4B4B4] w-full"></div>
 
-        {/* ⭐ DURATION */}
+        {/* Duration */}
         <div>
           <h3 className="font-semibold text-base mb-4">Duration (in Nights):</h3>
           <div className="flex items-center space-x-3">
@@ -237,7 +236,7 @@ const FiltersSidebar = ({ onFilterResults }) => {
 
         <div className="border border-[#B4B4B4] w-full"></div>
 
-        {/* ⭐ TYPES */}
+        {/* Types */}
         <div>
           <h3 className="font-semibold text-base mb-4">Type:</h3>
           {[
@@ -265,26 +264,7 @@ const FiltersSidebar = ({ onFilterResults }) => {
 
         <div className="border border-[#B4B4B4] w-full"></div>
 
-        {/* ⭐ RATING */}
-        <div>
-          <h3 className="font-semibold text-base mb-4">Rating:</h3>
-          {[1, 2, 3, 4, 5].map((r) => (
-            <label key={r} className="flex items-center space-x-2 text-sm">
-              <input
-                type="radio"
-                name="rating"
-                checked={rating === r}
-                onChange={() => setRating(r)}
-                className="accent-blue-500"
-              />
-              <span>{r} star</span>
-            </label>
-          ))}
-        </div>
-
-        <div className="border border-[#B4B4B4] w-full"></div>
-
-        {/* ⭐ DESTINATIONS */}
+        {/* Destinations */}
         <div>
           <h3 className="font-semibold text-base mb-4">Famous Destinations:</h3>
           {["All", "Char Dham", "Manali", "Kerala", "Bangalore", "Ladakh"].map(
