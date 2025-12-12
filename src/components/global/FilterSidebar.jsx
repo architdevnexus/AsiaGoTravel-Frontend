@@ -1,4 +1,4 @@
-"use client"; 
+"use client";
 import React, { useState, useEffect } from "react";
 import { FiSearch } from "react-icons/fi";
 import Slider from "rc-slider";
@@ -41,28 +41,29 @@ const FiltersSidebar = ({ onFilterResults }) => {
     else setter([...list, value]);
   };
 
-const fetchSuggestions = async (keyword) => {
-  if (!keyword) {
-    setSuggestions([]);
-    return;
-  }
+  const fetchSuggestions = async (keyword) => {
+    if (!keyword) {
+      setSuggestions([]);
+      return;
+    }
 
-  try {
-    setLoading(true);
+    try {
+      setLoading(true);
 
-    const res = await fetch(
-      `https://backend.asiagotravels.com/api/location/search?q=${keyword}`
-    );
+      const res = await fetch(
+        `https://backend.asiagotravels.com/api/location/search?q=${keyword}`
+      );
 
-    const data = await res.json();
-    setSuggestions(data?.data || []);
-    setShowSuggestions(true);
-  } catch (error) {
-    console.log("Suggestion API Error:", error);
-  } finally {
-    setLoading(false);
-  }
-};
+      const data = await res.json();
+      setSuggestions(data);
+  
+      setShowSuggestions(true);
+    } catch (error) {
+      console.log("Suggestion API Error:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
 
 
   // Debounce suggestions
@@ -157,15 +158,15 @@ const fetchSuggestions = async (keyword) => {
       <div className="max-w-100 sm:w-92 border-r p-6 shadow-sm space-y-8">
 
         {/* ⭐ Search with Suggestions */}
-   <KeywordSearch
-  search={search}
-  setSearch={setSearch}
-  suggestions={suggestions}
-  showSuggestions={showSuggestions}
-  setShowSuggestions={setShowSuggestions}
-  saveKeyword={saveKeyword}
-  loading={loading}
-/>
+        <KeywordSearch
+          search={search}
+          setSearch={setSearch}
+          suggestions={suggestions}
+          showSuggestions={showSuggestions}
+          setShowSuggestions={setShowSuggestions}
+          saveKeyword={saveKeyword}
+          loading={loading}
+        />
 
 
         <div className="border border-[#B4B4B4] w-full"></div>

@@ -29,8 +29,8 @@ export const Navbar = () => {
       name: "Packages",
       href: "/all-packages",
       subMenu: [
-        { name: "Domestic Trips", href: "/domestic-trips" },
-        { name: "International Trips", href: "/international-trips" },
+        { name: "Domestic Trips", href: "/all-packages/domestic-trips" },
+        { name: "International Trips", href: "/all-packages/international-trips" },
       ],
     },
     { name: "Career", href: "/career" },

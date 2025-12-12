@@ -1,5 +1,6 @@
 "use client";
 import { FaSearch } from "react-icons/fa";
+import { MdLocationOn } from "react-icons/md";
 import { useState, useRef, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { DatePickerDemo } from "../ui/DatePickerDemo";
@@ -8,7 +9,7 @@ export default function HomePageSearchPackages() {
   const router = useRouter();
 
   const [search, setSearch] = useState("");
-  const [destination, setDestination] = useState("");
+  const [keyword, setKeyword] = useState(""); // ⭐ THE SEARCH KEYWORD
   const [departureDate, setDepartureDate] = useState("");
   const [filters, setFilters] = useState("");
 
@@ -19,51 +20,61 @@ export default function HomePageSearchPackages() {
   const [rooms, setRooms] = useState("");
   const rgRef = useRef(null);
 
-  // ---- NEW STATES FOR API ----
+  // ⭐ Destination Suggestions
   const [destResults, setDestResults] = useState([]);
   const [showDropdown, setShowDropdown] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const dropRef = useRef(null);
 
-  // Close Rooms & Guests dropdown
+  // Close dropdown when clicking outside
   useEffect(() => {
     const handler = (e) => {
       if (rgRef.current && !rgRef.current.contains(e.target)) {
         setOpenRG(false);
       }
+      if (dropRef.current && !dropRef.current.contains(e.target)) {
+        setShowDropdown(false);
+      }
     };
+
     document.addEventListener("mousedown", handler);
     return () => document.removeEventListener("mousedown", handler);
   }, []);
 
-  // 👉 Fetch Destination Suggestions
+  // ⭐ Fetch Destination Suggestions (using keyword)
   useEffect(() => {
-    if (!destination) {
+    if (!keyword) {
       setDestResults([]);
       return;
     }
 
     const fetchData = async () => {
       try {
-        const res = await fetch(
-          `http://backend.ghardekhoapna.com/api/location/search?q=${destination}`
-        );
+        setLoading(true);
+
+        // IMPORTANT: fetch through proxy to avoid CORS
+        const res = await fetch(  `https://backend.asiagotravels.com/api/location/search?q=${keyword}`);
         const data = await res.json();
-        setDestResults(data?.data || []);
+
+        setDestResults(data || []);
         setShowDropdown(true);
       } catch (error) {
-        console.log("Location Search Error:", error);
+        console.log("Suggestion API Error:", error);
+      } finally {
+        setLoading(false);
       }
     };
 
-    const debounce = setTimeout(fetchData, 400);
+    const debounce = setTimeout(fetchData, 300);
     return () => clearTimeout(debounce);
-  }, [destination]);
+  }, [keyword]);
 
-  // Navigate to all-packages
+  // ⭐ Navigate to all-packages
   const handleSearch = () => {
     const params = new URLSearchParams();
 
     if (search) params.append("search", search);
-    if (destination) params.append("destination", destination);
+    if (keyword) params.append("destination", keyword); // ⭐ send keyword
     if (departureDate) params.append("date", departureDate);
     if (filters) params.append("search", filters);
 
@@ -83,8 +94,8 @@ export default function HomePageSearchPackages() {
       <div className="relative bg-white shadow-md rounded-lg p-6 w-full md:w-[95%] lg:w-[90%] xl:w-[90%] border border-gray-200">
         <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-6 md:gap-0">
           
-          {/* SOURCE INPUT */}
-          <div className="flex flex-col w-full md:w-1/5">
+          {/* SOURCE */}
+          {/* <div className="flex flex-col w-full md:w-1/5">
             <label className="text-sm text-gray-500">Source</label>
             <input
               type="text"
@@ -94,47 +105,70 @@ export default function HomePageSearchPackages() {
               className="text-xl font-semibold focus:outline-none border-none bg-transparent"
             />
             <span className="text-xs text-gray-400">State, Country</span>
-          </div>
+          </div> */}
 
-          <div className="hidden md:block h-10 w-px bg-gray-200 mr-10" />
+          <div className="hidden md:block h-10 w-px bg-gray-200 mr-5" />
 
+          {/* ⭐ DESTINATION with keyword search */}
+          <div className="flex flex-col w-full md:w-1/5 relative" ref={dropRef}>
+            <label className="text-sm text-gray-500 mb-1">Destination</label>
 
-          {/* DESTINATION WITH API SEARCH */}
-          <div className="flex flex-col w-full md:w-1/5 relative">
-            <label className="text-sm text-gray-500">Destination</label>
-            <input
-              type="text"
-              value={destination}
-              onChange={(e) => setDestination(e.target.value)}
-              placeholder="Type..."
-              className="text-xl font-semibold focus:outline-none border-none bg-transparent"
-              onFocus={() => destResults.length > 0 && setShowDropdown(true)}
-            />
+            <div className="flex items-center border px-3 py-2 rounded-lg bg-white shadow-sm">
+              <MdLocationOn className="text-gray-500 mr-2 text-lg" />
 
-            {/* Dropdown */}
-            {showDropdown && destResults.length > 0 && (
-              <ul className="absolute top-16 bg-white border rounded-lg shadow-md w-full max-h-60 overflow-y-auto z-50">
-                {destResults.map((item, index) => (
-                  <li
-                    key={index}
-                    className="p-2 hover:bg-gray-100 cursor-pointer"
-                    onClick={() => {
-                      setDestination(item.name);
-                      setShowDropdown(false);
-                    }}
-                  >
-                    {item.name}
-                  </li>
-                ))}
-              </ul>
+              <input
+                type="text"
+                value={keyword}
+                onChange={(e) => setKeyword(e.target.value)} // ⭐ update keyword
+                onFocus={() => setShowDropdown(true)}
+                placeholder="Search ..."
+                className="text-sm font-semibold focus:outline-none bg-transparent w-full"
+              />
+
+              {/* Loader */}
+              {loading && (
+                <div className="animate-spin h-4 w-4 border-2 border-blue-500 border-t-transparent rounded-full mr-2"></div>
+              )}
+            </div>
+
+            {/* ⭐ Suggestions Dropdown */}
+            {showDropdown && (destResults.length > 0 || loading) && (
+              <div
+                className={`absolute top-full left-0 w-full bg-white border rounded-2xl shadow-lg mt-2 max-h-72 overflow-y-auto z-50 transition-all duration-200`}
+              >
+                {loading && (
+                  <div className="p-4 text-center text-gray-500 text-sm">
+                    Searching…
+                  </div>
+                )}
+
+                {!loading &&
+                  destResults.map((item, index) => (
+                    <div
+                      key={index}
+                      onClick={() => {
+                        setKeyword(item.name); // ⭐ store selected keyword
+                        setShowDropdown(false);
+                      }}
+                      className="flex items-center px-4 py-3 hover:bg-gray-100 cursor-pointer transition text-sm"
+                    >
+                      <MdLocationOn className="text-red-500 text-xl mr-3" />
+
+                      <div className="flex flex-col">
+                        <span className="font-medium">{item.name}</span>
+                        <span className="text-xs text-gray-500">
+                          {item.city}, {item.country}
+                        </span>
+                      </div>
+                    </div>
+                  ))}
+              </div>
             )}
 
             <span className="text-xs text-gray-400">State, Country</span>
           </div>
 
-
-          <div className="hidden md:block h-10 w-px bg-gray-200 mr-10" />
-
+          <div className="hidden md:block h-10 w-px bg-gray-200 mr-5" />
 
           {/* DATE PICKER */}
           <div className="flex flex-col w-full md:w-1/5">
@@ -142,9 +176,7 @@ export default function HomePageSearchPackages() {
             <DatePickerDemo onChange={(d) => setDepartureDate(d)} />
           </div>
 
-
           <div className="hidden md:block h-10 w-px bg-gray-200 mr-10" />
-
 
           {/* ROOMS & GUESTS */}
           <div className="flex flex-col w-full md:w-1/5 relative" ref={rgRef}>
@@ -200,21 +232,32 @@ export default function HomePageSearchPackages() {
             )}
           </div>
 
-
-          <div className="hidden md:block h-10 w-px bg-gray-200 mr-10" />
-
+          <div className="hidden md:block h-10 w-px bg-gray-200 mr-5" />
 
           {/* FILTERS */}
-          <div className="flex flex-col w-full md:w-1/5">
-            <label className="text-sm text-gray-500">Filters</label>
-            <input
-              type="text"
-              value={filters}
-              onChange={(e) => setFilters(e.target.value)}
-              placeholder="Beach ..."
-              className="text-lg font-semibold focus:outline-none border-none bg-transparent placeholder:text-gray-400"
-            />
-          </div>
+        {/* FILTERS DROPDOWN */}
+<div className="flex flex-col w-full md:w-1/5 relative">
+  <label className="text-sm text-gray-500">Filters</label>
+
+  <select
+    value={filters}
+    onChange={(e) => setFilters(e.target.value)}
+    className="text-lg font-semibold bg-transparent border border-gray-300 rounded-lg px-3 py-2 focus:outline-none cursor-pointer"
+  >
+    <option value="" disabled>
+      Select a category
+    </option>
+
+    <option value="Honeymoon Trips">Honeymoon Trips</option>
+    <option value="Family Holidays">Family Holidays</option>
+    <option value="Family Group Tours">Family Group Tours</option>
+    <option value="Bachelor Tours">Bachelor Tours</option>
+    <option value="Luxury Tours">Luxury Tours</option>
+    <option value="Premium Holiday Packages">Premium Holiday Packages</option>
+    <option value="Personalized Tours">Personalized Tours</option>
+  </select>
+</div>
+
         </div>
       </div>
 
