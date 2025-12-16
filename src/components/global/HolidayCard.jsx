@@ -86,7 +86,7 @@ export const HolidayCard = ({
                 <div className="text-sm">
                   <p className="opacity-70">Starting From</p>
                   <p className="font-semibold">
-                    ₹{pkg?.priceDetails?.[0]?.originalPrice || "N/A"}
+                    ₹{pkg?.priceDetails?.[0]?.originalPrice || "As per Request"}
                   </p>
                 </div>
 

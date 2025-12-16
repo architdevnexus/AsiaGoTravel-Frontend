@@ -51,7 +51,7 @@ export const Navbar = () => {
         >
           <Link href="/">
             <Image
-              src="/img/asiagologo.svg"
+              src="/img/asiagologo.jpeg"
               alt="Logo"
               width={200}
               height={13}

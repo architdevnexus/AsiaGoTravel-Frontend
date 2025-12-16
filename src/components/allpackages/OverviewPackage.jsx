@@ -124,7 +124,7 @@ const OverviewSection = ({ overviewData }) => {
             <h3 className="text-gray-800 font-semibold">Starting From</h3>
 
             <p className="text-3xl font-bold text-gray-900 mt-2">
-              ₹ {priceDetails[0]?.discountedPrice || "0"}
+              ₹ {priceDetails[0]?.discountedPrice || "As per request"}
               <span className="text-base font-normal text-gray-500 block">
                 {"Per Person on Triple Sharing Occupancy"}
               </span>
@@ -157,7 +157,7 @@ const OverviewSection = ({ overviewData }) => {
             </div>
 
             <p className="text-lg font-bold text-gray-900 mb-2">
-              ₹ {priceDetails[0]?.discountedPrice || "0"}{" "}
+              ₹ {priceDetails[0]?.discountedPrice || "As per request"}{" "}
               <span className="text-sm text-gray-500 font-normal">
                 Per Person
               </span>

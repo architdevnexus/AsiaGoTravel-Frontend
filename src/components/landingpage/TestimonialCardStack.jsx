@@ -171,17 +171,17 @@ const StackCard = ({ testimonial, index, zIndex, onThrow }) => {
             <CgProfile size={30} className="mb-4" />
           )}
 
-          <p className="text-sm text-gray-600 italic leading-relaxed mb-6 line-clamp-4">
-            “{testimonial.message}”
+          <p className="text-sm text-gray-600 italic leading-relaxed mb-6 line-clamp-3">
+            “{testimonial?.message}”
           </p>
 
           <div className="pt-3 border-t">
-            <h3 className="text-lg font-semibold">{testimonial.name}</h3>
-            <p className="text-sm text-gray-500">{testimonial.role}</p>
+            <h3 className="text-lg font-semibold">{testimonial?.name}</h3>
+            <p className="text-sm text-gray-500">{testimonial?.role}</p>
 
             {/* ⭐ SHOW RATING IF AVAILABLE */}
-            {testimonial.rating && (
-              <RatingStars rating={testimonial.rating} />
+            {testimonial?.rating && (
+              <RatingStars rating={testimonial?.rating} />
             )}
           </div>
         </div>

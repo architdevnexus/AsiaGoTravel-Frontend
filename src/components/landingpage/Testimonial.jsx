@@ -15,53 +15,32 @@ const LoaderSpinner = () => {
 export const Testimonial = () => {
   const [loading, setLoading] = useState(true);
 
-  // Simulate loading (replace with actual fetch if needed)
+  // Simulate loading
   useEffect(() => {
     const timer = setTimeout(() => setLoading(false), 1500);
     return () => clearTimeout(timer);
   }, []);
 
-  // Handlers (if needed later)
+  // Dispatch events to Card Stack
   const handlePrev = () => {
-    const event = new CustomEvent("testimonial-prev");
-    window.dispatchEvent(event);
+    window.dispatchEvent(new CustomEvent("testimonial-prev"));
   };
 
   const handleNext = () => {
-    const event = new CustomEvent("testimonial-next");
-    window.dispatchEvent(event);
+    window.dispatchEvent(new CustomEvent("testimonial-next"));
   };
-
-  useEffect(() => {
-  const prev = () => setCurrentIndex((prev) => prev - 1);
-  const next = () => setCurrentIndex((prev) => prev + 1);
-
-  window.addEventListener("testimonial-prev", prev);
-  window.addEventListener("testimonial-next", next);
-
-  return () => {
-    window.removeEventListener("testimonial-prev", prev);
-    window.removeEventListener("testimonial-next", next);
-  };
-}, []);
-
 
   return (
-    <div className="relative flex justify-center items-center pt-20 pb-10 
-                    flex-col md:flex-row">
+    <div className="relative flex justify-center items-center pt-20 pb-10 flex-col md:flex-row">
 
-      {/* ---------------- WEB LEFT SIDE CONTENT ---------------- */}
+      {/* ---------------- WEB LEFT SIDE ---------------- */}
       <div className="w-full md:w-1/2 md:block hidden">
         <div className="bg-[#CCDEEB] h-2 rounded-tr-4xl my-10"></div>
 
         <div className="pl-20">
           <div className="h-1 my-4 bg-[#1B4965] w-10"></div>
-
-          <span className="text-[#949494] text-normal font-medium py-10">
-            Our Reviews
-          </span>
-
-          <p className="text-3xl font-bold leading-12 pt-2">
+          <span className="text-[#949494] font-medium">Our Reviews</span>
+          <p className="text-3xl font-bold pt-2">
             What Our <br /> Clients say
           </p>
         </div>
@@ -69,62 +48,46 @@ export const Testimonial = () => {
         <div className="bg-[#CCDEEB] h-2 rounded-tr-4xl my-10"></div>
       </div>
 
-      {/* ---------------- MOBILE/TAB HEADER ---------------- */}
+      {/* ---------------- MOBILE HEADER ---------------- */}
       <div className="w-full text-center md:hidden">
-        <div className="bg-[#CCDEEB] h-2 rounded-tr-4xl my-6 w-1/2 mx-auto"></div>
+        <div className="bg-[#CCDEEB] h-2 w-1/2 mx-auto my-6"></div>
 
         <div className="flex flex-col items-center">
-          <div className="h-1 my-2 bg-[#1B4965] w-10"></div>
-
-          <span className="text-[#949494] text-sm font-medium">
-            Our Reviews
-          </span>
-
-          <p className="text-2xl font-bold leading-tight pt-2">
-            What Our Clients Say
-          </p>
+          <div className="h-1 bg-[#1B4965] w-10 my-2"></div>
+          <span className="text-[#949494] text-sm font-medium">Our Reviews</span>
+          <p className="text-2xl font-bold pt-2">What Our Clients Say</p>
         </div>
 
-        <div className="bg-[#CCDEEB] h-2 rounded-tr-4xl my-6 w-1/2 mx-auto"></div>
+        <div className="bg-[#CCDEEB] h-2 w-1/2 mx-auto my-6"></div>
       </div>
 
-      {/* ---------------- TESTIMONIAL CARDS + ARROWS ---------------- */}
+      {/* ---------------- CARD STACK + ARROWS ---------------- */}
       <div className="md:absolute md:right-52 w-full md:w-auto flex justify-center mt-6 relative">
 
-        {/* Left Arrow */}
         {!loading && (
           <button
             onClick={handlePrev}
-            className="absolute left-0 md:-left-14 top-1/2 -translate-y-1/2 
-                     bg-white shadow-md p-3 rounded-full hover:bg-gray-100 transition"
+            className="absolute left-0 md:-left-20 top-1/2 -translate-y-1/2 bg-white shadow-md p-3 rounded-full"
           >
             <FaChevronLeft className="text-[#1B4965]" />
           </button>
         )}
 
-        {/* Loader or Cards */}
         {loading ? <LoaderSpinner /> : <TestimonialCardStack />}
 
-        {/* Right Arrow */}
         {!loading && (
           <button
             onClick={handleNext}
-            className="absolute right-0 md:-right-14 top-1/2 -translate-y-1/2 
-                     bg-white shadow-md p-3 rounded-full hover:bg-gray-100 transition"
+            className="absolute right-0 md:-right-12 top-1/2 -translate-y-1/2 bg-white shadow-md p-3 rounded-full"
           >
             <FaChevronRight className="text-[#1B4965]" />
           </button>
         )}
       </div>
 
-      {/* ---------------- RIGHT SIDE BG (WEB) ---------------- */}
+      {/* ---------------- RIGHT BG IMAGE ---------------- */}
       <div className="w-1/2 md:block hidden">
-        <Image
-          src="/img/Testimonialbg.svg"
-          width={460}
-          height={100}
-          alt="bg"
-        />
+        <Image src="/img/Testimonialbg.svg" width={460} height={100} alt="bg" />
       </div>
     </div>
   );

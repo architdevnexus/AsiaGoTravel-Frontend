@@ -4,6 +4,7 @@ import { FaCalculator } from "react-icons/fa";
 
 export const BookPackage = ({
   title,
+  description,
   bgImage
 }) => {
   return (
@@ -63,6 +64,19 @@ export const BookPackage = ({
         >
           {title}
         </h2>
+
+        <p  className="
+            text-sm
+            md:text-sm      /* DESKTOP unchanged */
+            text-center 
+            font-normal
+            drop-shadow-lg
+            /* RESPONSIVE */
+            sm:text-sm
+            text-sm
+          ">
+{description}
+        </p>
 
         {/* CTA Box */}
         <div

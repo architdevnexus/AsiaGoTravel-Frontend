@@ -70,10 +70,21 @@ export const JobDetailModal = ({ job, onClose }) => {
 
         </div>
 
-        {/* Apply Button */}
-        <button className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg w-full">
+        <button
+          onClick={() => {
+            onClose();
+
+            setTimeout(() => {
+              document
+                .getElementById("apply-form")
+                ?.scrollIntoView({ behavior: "smooth" });
+            }, 100);
+          }}
+          className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg w-full"
+        >
           Apply Now
         </button>
+
 
       </div>
     </div>
