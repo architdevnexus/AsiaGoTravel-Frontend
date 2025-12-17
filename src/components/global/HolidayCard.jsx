@@ -30,11 +30,11 @@ export const HolidayCard = ({
               {/* Image */}
               <div className="relative">
                 <div className="absolute top-6 left-5 group">
-  <div className="text-white text-lg px-3 py-1 rounded-full flex items-center gap-1 
+  <div className="text-white text-md px-3 py-1 rounded-full flex items-center gap-1 
                   bg-black/40 backdrop-blur-sm cursor-pointer">
     <IoLocationOutline className="text-[20px] shrink-0" />
-    <span>
-      {pkg?.location?.split(" ").slice(0, 6).join(" ")}
+    <span className="text-normal">
+      {pkg?.location?.split(" ").slice(0, 4).join(" ")}
       {pkg?.location?.split(" ").length > 7 && " ..."}
     </span>
   </div>

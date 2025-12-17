@@ -31,9 +31,15 @@ export const AllPackageComponent = ({ slug }) => {
       <div className="flex bg-white rounded-2xl border m-10 relative bottom-24 border-[#B4B4B4]">
         
         {/* Sidebar */}
-        <div className="hidden md:block">
-          <FiltersSidebar onFilterResults={handleFilteredResults} />
-        </div>
+  {/* Sidebar */}
+<aside className="hidden md:block">
+  <div className="sticky top-0 ">
+    <div className="max-h-[calc(120vh-6rem)] overflow-y-auto pr-2">
+      <FiltersSidebar onFilterResults={handleFilteredResults} />
+    </div>
+  </div>
+</aside>
+
 
         {/* Right Side Content */}
         <div className="w-full">

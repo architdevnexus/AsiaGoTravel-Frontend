@@ -13,8 +13,16 @@ const FiltersSidebar = ({ onFilterResults }) => {
   const [suggestions, setSuggestions] = useState([]);
   const [showSuggestions, setShowSuggestions] = useState(false);
 
+  const [famousDestinations, setFamousDestinations] = useState([]);
+
+
   // ⭐ Dual Range Budget
-  const [budgetRange, setBudgetRange] = useState([0, 900000]);
+
+  const DEFAULT_MIN = 0;
+const DEFAULT_MAX = 900000;
+
+
+const [budgetRange, setBudgetRange] = useState([DEFAULT_MIN, DEFAULT_MAX]);
   const minBudget = budgetRange[0];
   const maxBudget = budgetRange[1];
 
@@ -31,13 +39,13 @@ const FiltersSidebar = ({ onFilterResults }) => {
   const [selectedCountries, setSelectedCountries] = useState([]);
 
   const citiesList = [
-    { name: "Jaipur" },
-    { name: "Delhi" },
-    { name: "Amritsar" },
-    { name: "Udaipur" },
-    { name: "Agra" },
-    { name: "Alleppey" },
-    { name: "Bangalore" },
+    { name: "Goa" },
+    { name: "Kashmir" },
+    { name: "Europe" },
+    { name: "Japan" },
+    { name: "Sri Lanka" },
+    { name: "Nepal" },
+    { name: "Himachal" },
   ];
 
 const countriesList = [
@@ -118,74 +126,84 @@ const countriesList = [
     }
   };
 
-  // ⭐ MAIN FILTER API (existing + cities added)
-  const fetchFilteredResults = async () => {
-    try {
-      const params = new URLSearchParams();
-      params.append("tripCategory", "");
+const fetchFilteredResults = async () => {
+  try {
+    const params = new URLSearchParams();
 
-      if (search) params.append("search", search);
-      params.append("minBudget", minBudget);
-      params.append("maxBudget", maxBudget);
-
-      const minNights = duration > 0 ? duration : 1;
-      const maxNights = duration > 0 ? duration + 1 : 10;
-      params.append("minNights", minNights);
-      params.append("maxNights", maxNights);
-
-      if (rating) params.append("rating", rating);
-
-      if (selectedTypes.length > 0) {
-        const mappedTypes = selectedTypes
-          .filter((x) => x !== "All")
-          .map((x) => typeMapping[x]);
-        params.append("type", mappedTypes.join(","));
-      }
-
-      if (selectedDestinations.length > 0) {
-        params.append(
-          "famousDestinations",
-          selectedDestinations.join(",")
-        );
-      }
-
-      // ⭐ NEW: Cities param (only addition)
-      if (selectedCities.length > 0) {
-        params.append("cities", selectedCities.join(","));
-      }
-
-      const apiURL = `https://backend.asiagotravels.com/api/travel/filter?${params.toString()}`;
-
-      const res = await fetch(apiURL, {
-        method: "GET",
-        credentials: "include",
-      });
-
-      const data = await res.json();
-      onFilterResults(data?.data || []);
-    } catch (error) {
-      console.log("Filter API Error:", error);
+    // 🔍 SAFE Search (FIXES $regexMatch error)
+    if (typeof search === "string" && search.trim().length > 0) {
+      params.append("search", search.trim());
     }
-  };
 
-  // Auto-run filter (existing + cities added)
-  useEffect(() => {
-    const delay = setTimeout(fetchFilteredResults, 120);
-    return () => clearTimeout(delay);
-  }, [
-    search,
-    budgetRange,
-    duration,
-    selectedTypes,
-    rating,
-    selectedDestinations,
-    selectedCities, // ⭐ added only
-  ]);
+if (
+  minBudget !== DEFAULT_MIN ||
+  maxBudget !== DEFAULT_MAX
+) {
+  params.append("minPrice", String(minBudget));
+  params.append("maxPrice", String(maxBudget));
+}
+
+    // 🏙 Departure Cities
+    if (selectedCities.length > 0) {
+      params.append("departureCities", selectedCities.join(","));
+    }
+if (famousDestinations.length > 0) {
+  params.append(
+    "famousDestinations",
+    famousDestinations.join(",")
+  );
+}
+
+
+    // 🌍 Countries
+    if (selectedCountries.length > 0) {
+      params.append("countries", selectedCountries.join(","));
+    }
+
+    // 📆 Duration
+    if (duration > 0) {
+      params.append("minDays", String(duration));
+      params.append("maxDays", String(duration + 2));
+    }
+
+    const apiURL = `https://backend.asiagotravels.com/api/travel/filter?${params.toString()}`;
+
+    const res = await fetch(apiURL, {
+      method: "GET",
+      credentials: "include",
+    });
+
+    const data = await res.json();
+    onFilterResults(data?.data || []);
+  } catch (error) {
+    console.log("Filter API Error:", error);
+  }
+};
+
+
+
+useEffect(() => {
+  const delay = setTimeout(fetchFilteredResults, 120);
+  return () => clearTimeout(delay);
+}, [
+  search,
+  budgetRange,
+  duration,
+  selectedTypes,
+  rating,
+  selectedDestinations,
+  selectedCities,
+  selectedCountries,
+  famousDestinations,
+]);
+
 
   return (
     <div>
-      <div className="border-[#B4B4B4] border-b w-full p-6 pb-2 border-r">
+      <div className="border-[#B4B4B4] border-b w-full p-6 pb-2 border-r flex justify-between text-center
+      ">
         <h2 className="text-lg font-semibold">FILTERS</h2>
+        <span className="text-sm text-gray-500">Reset</span>
       </div>
 
       <div className="max-w-100 sm:w-92 border-r p-6 shadow-sm space-y-8">
@@ -208,9 +226,9 @@ const countriesList = [
           <h3 className="font-semibold text-base mb-4">Budget (per person):</h3>
           <Slider
             range
-            min={1000}
+            min={0}
             max={200000}
-            step={1000}
+            step={100}
             value={budgetRange}
             onChange={setBudgetRange}
             trackStyle={[{ backgroundColor: "#2563EB", height: 8 }]}
@@ -279,26 +297,35 @@ const countriesList = [
           ))}
         </div> */}
 
-        <div className="border border-[#B4B4B4] w-full"></div>
+        {/* <div className="border border-[#B4B4B4] w-full"></div> */}
 
         {/* ⭐ Destinations (unchanged) */}
-        <div>
+        <div className="space-y-2">
           <h3 className="font-semibold text-base mb-4">Famous Destinations:</h3>
-          {["All", "Char Dham", "Manali", "Kerala", "Bangalore", "Ladakh"].map(
-            (dest) => (
-              <label key={dest} className="flex items-center space-x-2 text-sm">
-                <input
-                  type="checkbox"
-                  checked={selectedDestinations.includes(dest)}
-                  onChange={() =>
-                    toggleItem(dest, selectedDestinations, setSelectedDestinations)
-                  }
-                  className="accent-blue-500"
-                />
-                <span>{dest}</span>
-              </label>
-            )
-          )}
+        {[
+  "Char Dham",
+  "Himachal",
+  "South Africa",
+  "Europe",
+  "Serengeti National Park",
+  "Mount Kenya National Park",
+  "Nairobi",
+  "Amboseli",
+  "Samburu",
+].map((dest) => (
+  <label key={dest} className="flex items-center space-x-2 text-sm">
+    <input
+      type="checkbox"
+      checked={famousDestinations.includes(dest)}
+      onChange={() =>
+        toggleItem(dest, famousDestinations, setFamousDestinations)
+      }
+      className="accent-blue-500"
+    />
+    <span>{dest}</span>
+  </label>
+))}
+
         </div>
 
         <div className="border border-[#B4B4B4] w-full"></div>
@@ -317,7 +344,19 @@ const countriesList = [
             />
             <FiSearch className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400" />
           </div>
+{/* <div className="pb-4">
 
+            <KeywordSearch
+          search={search}
+          setSearch={setSearch}
+          suggestions={suggestions}
+          showSuggestions={showSuggestions}
+          setShowSuggestions={setShowSuggestions}
+          saveKeyword={saveKeyword}
+          loading={loading}
+        />
+
+</div> */}
           <div className="space-y-2 max-h-48 overflow-y-auto">
             {filteredCities.map((city) => (
               <label
@@ -348,11 +387,22 @@ const countriesList = [
      <h3 className="font-semibold text-base mb-3">Countries</h3>
 
           <div className="relative mb-4">
+
+              {/* <KeywordSearch
+          search={search}
+          setSearch={setSearch}
+          suggestions={suggestions}
+          showSuggestions={showSuggestions}
+          setShowSuggestions={setShowSuggestions}
+          saveKeyword={saveKeyword}
+          loading={loading}
+        /> */}
+
             <input
               type="text"
               placeholder="Search"
-              value={citySearch}
-              onChange={(e) => setCitySearch(e.target.value)}
+              value={countrySearch}
+              onChange={(e) => setCountrySearch(e.target.value)}
               className="w-full border rounded-md pl-3 pr-10 py-2 text-sm"
             />
             <FiSearch className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400" />
