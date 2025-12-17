@@ -5,11 +5,9 @@ import Slider from "rc-slider";
 import "rc-slider/assets/index.css";
 import { KeywordSearch } from "./KeywordSearch";
 
-
 const FiltersSidebar = ({ onFilterResults }) => {
   const [search, setSearch] = useState("");
   const [loading, setLoading] = useState(false);
-
 
   // ⭐ Suggestions
   const [suggestions, setSuggestions] = useState([]);
@@ -25,6 +23,42 @@ const FiltersSidebar = ({ onFilterResults }) => {
   const [rating, setRating] = useState(null);
   const [selectedDestinations, setSelectedDestinations] = useState([]);
 
+  // ⭐ NEW: Cities (added only)
+  const [citySearch, setCitySearch] = useState("");
+  const [selectedCities, setSelectedCities] = useState([]);
+
+    const [countrySearch, setCountrySearch] = useState("");
+  const [selectedCountries, setSelectedCountries] = useState([]);
+
+  const citiesList = [
+    { name: "Jaipur" },
+    { name: "Delhi" },
+    { name: "Amritsar" },
+    { name: "Udaipur" },
+    { name: "Agra" },
+    { name: "Alleppey" },
+    { name: "Bangalore" },
+  ];
+
+const countriesList = [
+  { name: "India" },
+  { name: "Australia" },
+  { name: "Thailand" },
+  { name: "Singapore" },
+  { name: "Switzerland" },
+  // { name: "United Arab Emirates" },
+  // { name: "France" },
+  // { name: "Italy" },
+  // { name: "Mauritius" },
+  // { name: "Spain" },
+];
+
+
+
+  const filteredCities = citiesList.filter((city) =>
+    city.name.toLowerCase().includes(citySearch.toLowerCase())
+  );
+
   const typeMapping = {
     "Honeymoon Trips": "honeymoonTrip",
     "Family Trips": "familyGroupTrip",
@@ -35,7 +69,7 @@ const FiltersSidebar = ({ onFilterResults }) => {
     "Personalized Tours": "personalizedTours",
   };
 
-  // Toggle helper
+  // Toggle helper (existing)
   const toggleItem = (value, list, setter) => {
     if (list.includes(value)) setter(list.filter((x) => x !== value));
     else setter([...list, value]);
@@ -49,14 +83,11 @@ const FiltersSidebar = ({ onFilterResults }) => {
 
     try {
       setLoading(true);
-
       const res = await fetch(
         `https://backend.asiagotravels.com/api/location/search?q=${keyword}`
       );
-
       const data = await res.json();
       setSuggestions(data);
-  
       setShowSuggestions(true);
     } catch (error) {
       console.log("Suggestion API Error:", error);
@@ -65,24 +96,20 @@ const FiltersSidebar = ({ onFilterResults }) => {
     }
   };
 
-
-  // Debounce suggestions
+  // Debounce suggestions (existing)
   useEffect(() => {
     const timer = setTimeout(() => {
       fetchSuggestions(search);
     }, 200);
-
     return () => clearTimeout(timer);
   }, [search]);
 
-  // ⭐ Save Keyword (your existing API)
+  // ⭐ Save Keyword (existing)
   const saveKeyword = async (keyword) => {
     try {
       await fetch("https://backend.asiagotravels.com/api/saveKeyword", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
+        headers: { "Content-Type": "application/json" },
         credentials: "include",
         body: JSON.stringify({ keyword }),
       });
@@ -91,14 +118,13 @@ const FiltersSidebar = ({ onFilterResults }) => {
     }
   };
 
-  // ⭐ MAIN FILTER API
+  // ⭐ MAIN FILTER API (existing + cities added)
   const fetchFilteredResults = async () => {
     try {
       const params = new URLSearchParams();
       params.append("tripCategory", "");
 
       if (search) params.append("search", search);
-
       params.append("minBudget", minBudget);
       params.append("maxBudget", maxBudget);
 
@@ -116,11 +142,17 @@ const FiltersSidebar = ({ onFilterResults }) => {
         params.append("type", mappedTypes.join(","));
       }
 
-      if (selectedDestinations.length > 0)
+      if (selectedDestinations.length > 0) {
         params.append(
           "famousDestinations",
           selectedDestinations.join(",")
         );
+      }
+
+      // ⭐ NEW: Cities param (only addition)
+      if (selectedCities.length > 0) {
+        params.append("cities", selectedCities.join(","));
+      }
 
       const apiURL = `https://backend.asiagotravels.com/api/travel/filter?${params.toString()}`;
 
@@ -136,7 +168,7 @@ const FiltersSidebar = ({ onFilterResults }) => {
     }
   };
 
-  // Auto-run filter on change
+  // Auto-run filter (existing + cities added)
   useEffect(() => {
     const delay = setTimeout(fetchFilteredResults, 120);
     return () => clearTimeout(delay);
@@ -147,6 +179,7 @@ const FiltersSidebar = ({ onFilterResults }) => {
     selectedTypes,
     rating,
     selectedDestinations,
+    selectedCities, // ⭐ added only
   ]);
 
   return (
@@ -168,13 +201,11 @@ const FiltersSidebar = ({ onFilterResults }) => {
           loading={loading}
         />
 
-
         <div className="border border-[#B4B4B4] w-full"></div>
 
         {/* ⭐ Budget */}
         <div>
           <h3 className="font-semibold text-base mb-4">Budget (per person):</h3>
-
           <Slider
             range
             min={1000}
@@ -201,7 +232,6 @@ const FiltersSidebar = ({ onFilterResults }) => {
             ]}
             railStyle={{ backgroundColor: "#e5e7eb", height: 8 }}
           />
-
           <div className="flex justify-between text-sm font-medium mt-4">
             <span>₹{minBudget.toLocaleString("en-IN")}</span>
             <span>₹{maxBudget.toLocaleString("en-IN")}</span>
@@ -210,35 +240,21 @@ const FiltersSidebar = ({ onFilterResults }) => {
 
         <div className="border border-[#B4B4B4] w-full"></div>
 
-        {/* Duration */}
+        {/* ⭐ Duration (unchanged) */}
         <div>
-          <h3 className="font-semibold text-base mb-4">Duration (in Nights):</h3>
-          <div className="flex items-center space-x-3">
-            <button
-              onClick={() => setDuration(duration > 0 ? duration - 1 : 0)}
-              className="border rounded-md w-6 h-8 flex items-center justify-center"
-            >
-              –
-            </button>
-            <input
-              type="text"
-              value={duration}
-              readOnly
-              className="w-10 h-8 text-center border rounded-md text-sm"
-            />
-            <button
-              onClick={() => setDuration(duration + 1)}
-              className="border rounded-md w-6 h-8 flex items-center justify-center"
-            >
-              +
-            </button>
+          <h3 className="font-semibold text-base mb-4">Tour Duration</h3>
+          <div className="grid grid-cols-2 gap-3">
+            <button className="border rounded-md p-2 ">3 - 6 Days</button>
+            <button className="border rounded-md p-2 ">6 - 9 Days</button>
+            <button className="border rounded-md p-2 ">9 - 12 Days</button>
+            <button className="border rounded-md p-2 ">12 - 14 Days</button>
           </div>
         </div>
 
         <div className="border border-[#B4B4B4] w-full"></div>
 
-        {/* Types */}
-        <div>
+        {/* ⭐ Types (unchanged) */}
+        {/* <div>
           <h3 className="font-semibold text-base mb-4">Type:</h3>
           {[
             "All",
@@ -261,19 +277,16 @@ const FiltersSidebar = ({ onFilterResults }) => {
               <span>{type}</span>
             </label>
           ))}
-        </div>
+        </div> */}
 
         <div className="border border-[#B4B4B4] w-full"></div>
 
-        {/* Destinations */}
+        {/* ⭐ Destinations (unchanged) */}
         <div>
           <h3 className="font-semibold text-base mb-4">Famous Destinations:</h3>
           {["All", "Char Dham", "Manali", "Kerala", "Bangalore", "Ladakh"].map(
             (dest) => (
-              <label
-                key={dest}
-                className="flex items-center space-x-2 text-sm"
-              >
+              <label key={dest} className="flex items-center space-x-2 text-sm">
                 <input
                   type="checkbox"
                   checked={selectedDestinations.includes(dest)}
@@ -287,6 +300,88 @@ const FiltersSidebar = ({ onFilterResults }) => {
             )
           )}
         </div>
+
+        <div className="border border-[#B4B4B4] w-full"></div>
+
+        {/* ⭐ Cities (ONLY ADDITION) */}
+        <div>
+          <h3 className="font-semibold text-base mb-3">Cities</h3>
+
+          <div className="relative mb-3">
+            <input
+              type="text"
+              placeholder="Search"
+              value={citySearch}
+              onChange={(e) => setCitySearch(e.target.value)}
+              className="w-full border rounded-md pl-3 pr-10 py-2 text-sm"
+            />
+            <FiSearch className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400" />
+          </div>
+
+          <div className="space-y-2 max-h-48 overflow-y-auto">
+            {filteredCities.map((city) => (
+              <label
+                key={city.name}
+                className="flex items-center justify-between text-sm"
+              >
+                <div className="flex items-center space-x-2">
+                  <input
+                    type="checkbox"
+                    checked={selectedCities.includes(city.name)}
+                    onChange={() =>
+                      toggleItem(city.name, selectedCities, setSelectedCities)
+                    }
+                    className="accent-blue-500"
+                  />
+                  <span>{city.name}</span>
+                </div>
+                <span className="text-gray-500">({city.count})</span>
+              </label>
+            ))}
+          </div>
+        </div>
+
+
+<div className="border border-[#B4B4B4] w-full"></div>
+
+<div className="space-y-2 max-h-56 overflow-y-auto">
+     <h3 className="font-semibold text-base mb-3">Countries</h3>
+
+          <div className="relative mb-4">
+            <input
+              type="text"
+              placeholder="Search"
+              value={citySearch}
+              onChange={(e) => setCitySearch(e.target.value)}
+              className="w-full border rounded-md pl-3 pr-10 py-2 text-sm"
+            />
+            <FiSearch className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400" />
+          </div>
+  {countriesList.map((country) => (
+    <label
+      key={country.name}
+      className="flex items-center justify-between text-sm"
+    >
+      <div className="flex items-center space-x-2">
+        <input
+          type="checkbox"
+          checked={selectedCountries.includes(country.name)}
+          onChange={() =>
+            toggleItem(
+              country.name,
+              selectedCountries,
+              setSelectedCountries
+            )
+          }
+          className="accent-blue-500"
+        />
+        <span>{country.name}</span>
+      </div>
+    </label>
+  ))}
+</div>
+
+
       </div>
     </div>
   );

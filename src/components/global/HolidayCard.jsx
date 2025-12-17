@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import { FaArrowRightLong, FaCheck } from "react-icons/fa6";
+import { IoLocationOutline } from "react-icons/io5";
 
 export const HolidayCard = ({
   grid = "grid-cols-1 md:grid-cols-3",
@@ -28,6 +29,26 @@ export const HolidayCard = ({
             >
               {/* Image */}
               <div className="relative">
+                <div className="absolute top-6 left-5 group">
+  <div className="text-white text-lg px-3 py-1 rounded-full flex items-center gap-1 
+                  bg-black/40 backdrop-blur-sm cursor-pointer">
+    <IoLocationOutline className="text-[20px] shrink-0" />
+    <span>
+      {pkg?.location?.split(" ").slice(0, 6).join(" ")}
+      {pkg?.location?.split(" ").length > 7 && " ..."}
+    </span>
+  </div>
+
+  {/* TOOLTIP */}
+  {pkg?.location && (
+    <div className="absolute left-0 top-full mt-2 z-50 hidden group-hover:block
+                    bg-black text-white text-sm px-3 py-2 rounded-md
+                    max-w-xs shadow-lg whitespace-normal">
+      {pkg.location}
+    </div>
+  )}
+</div>
+
                 {pkg?.overviewCategory?.[0]?.images?.[0] ? (
                   <Image
                     src={pkg?.overviewCategory[0]?.images[0]?.url}
@@ -86,7 +107,7 @@ export const HolidayCard = ({
                 <div className="text-sm">
                   <p className="opacity-70">Starting From</p>
                   <p className="font-semibold">
-                    ₹{pkg?.priceDetails?.[0]?.originalPrice || "As per Request"}
+                    ₹{pkg?.priceDetails?.[0]?.originalPrice || " As per Request"}
                   </p>
                 </div>
 

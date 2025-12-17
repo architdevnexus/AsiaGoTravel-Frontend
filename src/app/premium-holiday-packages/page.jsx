@@ -17,74 +17,84 @@ import { MdMonochromePhotos, MdPool } from 'react-icons/md';
 
  const PremiumHolidayPackage = () => {
     const images = [
-        { src: "https://images.unsplash.com/photo-1496602910407-bacda74a0fe4?q=80&w=2500&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", text: "Beautiful Beaches / Lakes", href: "/honeymoon-trips" },
-        { src: "https://images.unsplash.com/photo-1609220136736-443140cffec6?q=80&w=2670&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", text: "Local Markets", href: "/family-holidays" },
-        { src: "/img/aboutimg5.jpg", text: "Adventure Hotspots", href: "/bachelor-tours" },
-        { src: "/img/aboutimg3.jpg", text: "Scenic Viewpointss", href: "/luxury-tours" },
-        { src: "https://images.unsplash.com/photo-1617365209649-56138ac3aefc?q=80&w=2670&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", text: "Premium Holiday Packages", href: "/premium-holiday-packages" },
+        { src: "https://images.unsplash.com/photo-1496602910407-bacda74a0fe4?q=80&w=2500&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", text: "Premium hotels & resorts", href: "/honeymoon-trips" },
+        { src: "https://images.unsplash.com/photo-1609220136736-443140cffec6?q=80&w=2670&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", text: "Personalized attentive service", href: "/family-holidays" },
+        { src: "/img/aboutimg5.jpg", text: "Private transfers & guides", href: "/bachelor-tours" },
+        { src: "/img/aboutimg3.jpg", text: "Visa & travel assistance", href: "/luxury-tours" },
+        { src: "https://images.unsplash.com/photo-1617365209649-56138ac3aefc?q=80&w=2670&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", text: "Thoughtfully planned itineraries ", href: "/premium-holiday-packages" },
     ];
 
     // DYNAMIC DATA
-  const activitiesData = [
-    {
-      icon: <GiCandleLight /> ,
-      title: "Candlelight Dinner",
-      points: [
-        "Enjoy a private, romantic dinner setup",
-        "Often includes soft music & beautiful views",
-      ],
-    },
-    {
-      icon: <TbBeach /> ,
-      title: "Private Beach Time",
-      points: [
-        "Relax together by the sea",
-        "Sunrise & sunset walks on quiet beaches",
-      ],
-    },
-    {
-       icon: <TbMassage /> ,
-      title: "Couple Spa & Massage",
-      points: [
-        "Rejuvenating full-body couple massages",
-        "Helps you relax after wedding stress",
-      ],
-    },
-    {
-      icon: <BsSunrise /> ,
-      title: "Sunset Cruise",
-      points: [
-        "Peaceful boat ride during sunset",
-        "Perfect for photos & romantic moments",
-      ],
-    },
-    {
-      icon: <MdPool /> ,
-      title: "Private Pool",
-      points: [
-        "Stay in villas with private pools",
-        "Great for relaxation & romantic photos",
-      ],
-    },
-    {
-       icon: <MdMonochromePhotos /> ,
-      title: "Romantic Photoshoots",
-      points: [
-        "Professional shoots at scenic spots",
-        "Beach, waterfalls, gardens & resorts",
-      ],
-    },
-  ];
+const activitiesData = [
+  {
+    icon: <GiCandleLight />,
+    title: "Premium Dining Experiences",
+    points: [
+      "Curated meals at top-rated restaurants",
+      "Elegant ambience with personalized service",
+    ],
+  },
+  {
+    icon: <TbBeach />,
+    title: "Scenic Leisure Time",
+    points: [
+      "Relax at pristine beaches or viewpoints",
+      "Enjoy sunrise & sunset at premium locations",
+    ],
+  },
+  {
+    icon: <TbMassage />,
+    title: "Wellness & Spa Sessions",
+    points: [
+      "Rejuvenating spa & wellness therapies",
+      "Perfect for relaxation during the holiday",
+    ],
+  },
+  {
+    icon: <BsSunrise />,
+    title: "Sunset Experiences",
+    points: [
+      "Sunset cruises or viewpoint visits",
+      "Comfortable, peaceful evening moments",
+    ],
+  },
+  {
+    icon: <MdPool />,
+    title: "Premium Stays & Pools",
+    points: [
+      "High-end hotels with pool access",
+      "Comfort-focused stays with modern amenities",
+    ],
+  },
+  {
+    icon: <MdMonochromePhotos />,
+    title: "Travel Photography",
+    points: [
+      "Capture memories at scenic locations",
+      "Beautiful backdrops across the destination",
+    ],
+  },
+];
+
 
     return (
         <div>
-            <HeroBannerTours title="Premium Holiday Packages"
-                description="A Premium Holiday Packages is more than just a holiday—it’s the first chapter of your life together." />
+            <HeroBannerTours title="Refined Travel Experiences with Comfort, Style & Exclusivity"
+                description="Premium holidays blend elegance with exceptional value. Enjoy curated comfort, handpicked hotels, and tailored experiences—perfect for refined leisure travelers, couples, and families." />
             <Activites activitiesData={activitiesData} title="Fun Activities to Do with Premium Holiday Packages" />
-            <AboutPackage />
+              <AboutPackage
+                    title="Premium holidays"
+                    description="Premium Holiday Gateways are curated for travelers who seek a perfect balance of comfort, elegance, and exclusive experiences—without being overly extravagant. These holidays feature handpicked premium hotels and resorts, personalized services, scenic destinations, and thoughtfully planned itineraries. Ideal for couples, families, and refined leisure travelers, premium holidays offer elevated travel experiences with excellent value and sophistication."
+                    images={[
+                      "https://images.unsplash.com/photo-1507525428034-b723cf961d3e",
+                      "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267",
+                      "https://images.unsplash.com/photo-1509721926668-25a8dd274c1b",
+                    ]}
+                  />
             <WhatWeOfferComponent images={images} />
             <BookPackage
-                title="Book Your Premium Holiday Tour Now!"
+                title="Elevate Your Next Holiday"
+              description="Discover destinations that offer comfort, style, and memorable experiences. Contact us today to plan your Premium Holiday Gateway, customized to your preferred season, destination, and travel style."
                 bgImage="/img/BookingImage.png"
             />
             <PopularPackages />
