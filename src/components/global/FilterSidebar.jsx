@@ -19,10 +19,10 @@ const FiltersSidebar = ({ onFilterResults }) => {
   // ⭐ Dual Range Budget
 
   const DEFAULT_MIN = 0;
-const DEFAULT_MAX = 900000;
+  const DEFAULT_MAX = 900000;
 
 
-const [budgetRange, setBudgetRange] = useState([DEFAULT_MIN, DEFAULT_MAX]);
+  const [budgetRange, setBudgetRange] = useState([DEFAULT_MIN, DEFAULT_MAX]);
   const minBudget = budgetRange[0];
   const maxBudget = budgetRange[1];
 
@@ -35,7 +35,7 @@ const [budgetRange, setBudgetRange] = useState([DEFAULT_MIN, DEFAULT_MAX]);
   const [citySearch, setCitySearch] = useState("");
   const [selectedCities, setSelectedCities] = useState([]);
 
-    const [countrySearch, setCountrySearch] = useState("");
+  const [countrySearch, setCountrySearch] = useState("");
   const [selectedCountries, setSelectedCountries] = useState([]);
 
   const citiesList = [
@@ -48,18 +48,18 @@ const [budgetRange, setBudgetRange] = useState([DEFAULT_MIN, DEFAULT_MAX]);
     { name: "Himachal" },
   ];
 
-const countriesList = [
-  { name: "India" },
-  { name: "Australia" },
-  { name: "Thailand" },
-  { name: "Singapore" },
-  { name: "Switzerland" },
-  // { name: "United Arab Emirates" },
-  // { name: "France" },
-  // { name: "Italy" },
-  // { name: "Mauritius" },
-  // { name: "Spain" },
-];
+  const countriesList = [
+    { name: "India" },
+    { name: "Australia" },
+    { name: "Thailand" },
+    { name: "Singapore" },
+    { name: "Switzerland" },
+    // { name: "United Arab Emirates" },
+    // { name: "France" },
+    // { name: "Italy" },
+    // { name: "Mauritius" },
+    // { name: "Spain" },
+  ];
 
 
 
@@ -82,6 +82,32 @@ const countriesList = [
     if (list.includes(value)) setter(list.filter((x) => x !== value));
     else setter([...list, value]);
   };
+
+
+  const handleResetFilters = () => {
+  setSearch("");
+  setSuggestions([]);
+  setShowSuggestions(false);
+
+  setBudgetRange([DEFAULT_MIN, DEFAULT_MAX]);
+  setDuration(0);
+
+  setSelectedTypes([]);
+  setRating(null);
+  setSelectedDestinations([]);
+
+  setSelectedCities([]);
+  setCitySearch("");
+
+  setSelectedCountries([]);
+  setCountrySearch("");
+
+  setFamousDestinations([]);
+
+  // Clear results immediately (optional but clean)
+  onFilterResults([]);
+};
+
 
   const fetchSuggestions = async (keyword) => {
     if (!keyword) {
@@ -126,76 +152,76 @@ const countriesList = [
     }
   };
 
-const fetchFilteredResults = async () => {
-  try {
-    const params = new URLSearchParams();
+  const fetchFilteredResults = async () => {
+    try {
+      const params = new URLSearchParams();
 
-    // 🔍 SAFE Search (FIXES $regexMatch error)
-    if (typeof search === "string" && search.trim().length > 0) {
-      params.append("search", search.trim());
+      // 🔍 SAFE Search (FIXES $regexMatch error)
+      if (typeof search === "string" && search.trim().length > 0) {
+        params.append("search", search.trim());
+      }
+
+      if (
+        minBudget !== DEFAULT_MIN ||
+        maxBudget !== DEFAULT_MAX
+      ) {
+        params.append("minPrice", String(minBudget));
+        params.append("maxPrice", String(maxBudget));
+      }
+
+      // 🏙 Departure Cities
+      if (selectedCities.length > 0) {
+        params.append("departureCities", selectedCities.join(","));
+      }
+      if (famousDestinations.length > 0) {
+        params.append(
+          "famousDestinations",
+          famousDestinations.join(",")
+        );
+      }
+
+
+      // 🌍 Countries
+      if (selectedCountries.length > 0) {
+        params.append("countries", selectedCountries.join(","));
+      }
+
+      // 📆 Duration
+      if (duration > 0) {
+        params.append("minDays", String(duration));
+        params.append("maxDays", String(duration + 2));
+      }
+
+      const apiURL = `https://backend.asiagotravels.com/api/travel/filter?${params.toString()}`;
+
+      const res = await fetch(apiURL, {
+        method: "GET",
+        credentials: "include",
+      });
+
+      const data = await res.json();
+      onFilterResults(data?.data || []);
+    } catch (error) {
+      console.log("Filter API Error:", error);
     }
-
-if (
-  minBudget !== DEFAULT_MIN ||
-  maxBudget !== DEFAULT_MAX
-) {
-  params.append("minPrice", String(minBudget));
-  params.append("maxPrice", String(maxBudget));
-}
-
-    // 🏙 Departure Cities
-    if (selectedCities.length > 0) {
-      params.append("departureCities", selectedCities.join(","));
-    }
-if (famousDestinations.length > 0) {
-  params.append(
-    "famousDestinations",
-    famousDestinations.join(",")
-  );
-}
-
-
-    // 🌍 Countries
-    if (selectedCountries.length > 0) {
-      params.append("countries", selectedCountries.join(","));
-    }
-
-    // 📆 Duration
-    if (duration > 0) {
-      params.append("minDays", String(duration));
-      params.append("maxDays", String(duration + 2));
-    }
-
-    const apiURL = `https://backend.asiagotravels.com/api/travel/filter?${params.toString()}`;
-
-    const res = await fetch(apiURL, {
-      method: "GET",
-      credentials: "include",
-    });
-
-    const data = await res.json();
-    onFilterResults(data?.data || []);
-  } catch (error) {
-    console.log("Filter API Error:", error);
-  }
-};
+  };
 
 
 
-useEffect(() => {
-  const delay = setTimeout(fetchFilteredResults, 120);
-  return () => clearTimeout(delay);
-}, [
-  search,
-  budgetRange,
-  duration,
-  selectedTypes,
-  rating,
-  selectedDestinations,
-  selectedCities,
-  selectedCountries,
-  famousDestinations,
-]);
+  useEffect(() => {
+    const delay = setTimeout(fetchFilteredResults, 120);
+    return () => clearTimeout(delay);
+  }, [
+    search,
+    budgetRange,
+    duration,
+    selectedTypes,
+    rating,
+    selectedDestinations,
+    selectedCities,
+    selectedCountries,
+    famousDestinations,
+  ]);
 
 
   return (
@@ -203,10 +229,15 @@ useEffect(() => {
       <div className="border-[#B4B4B4] border-b w-full p-6 pb-2 border-r flex justify-between text-center
       ">
         <h2 className="text-lg font-semibold">FILTERS</h2>
-        <span className="text-sm text-gray-500">Reset</span>
+       <button
+  onClick={handleResetFilters}
+  className="text-sm  hover:text-[#1B4965] transition hover:border underline hover:border-[#1B4965] px-2 py-1 rounded-2xl"
+>
+  Reset
+</button>
       </div>
 
-      <div className="max-w-100 sm:w-92 border-r p-6 shadow-sm space-y-8">
+      <div className="max-w-100 sm:w-92 border-r p-6 pb-40 shadow-sm space-y-8">
 
         {/* ⭐ Search with Suggestions */}
         <KeywordSearch
@@ -259,15 +290,42 @@ useEffect(() => {
         <div className="border border-[#B4B4B4] w-full"></div>
 
         {/* ⭐ Duration (unchanged) */}
-        <div>
-          <h3 className="font-semibold text-base mb-4">Tour Duration</h3>
-          <div className="grid grid-cols-2 gap-3">
-            <button className="border rounded-md p-2 ">3 - 6 Days</button>
-            <button className="border rounded-md p-2 ">6 - 9 Days</button>
-            <button className="border rounded-md p-2 ">9 - 12 Days</button>
-            <button className="border rounded-md p-2 ">12 - 14 Days</button>
-          </div>
-        </div>
+       {/* ⭐ Duration */}
+<div>
+  <h3 className="font-semibold text-base mb-4">Tour Duration</h3>
+
+  <div className="grid grid-cols-2 gap-3">
+    {[
+      { label: "3 - 6 Days", value: 3 },
+      { label: "6 - 9 Days", value: 6 },
+      { label: "9 - 12 Days", value: 9 },
+      { label: "12 - 14 Days", value: 12 },
+    ].map((item) => {
+      const isSelected = duration === item.value;
+
+      return (
+        <button
+          key={item.value}
+          type="button"
+          onClick={() =>
+            setDuration((prev) => (prev === item.value ? 0 : item.value))
+          }
+          className={`border rounded-md p-2 text-sm transition-all
+            hover:border-[#1B4965] hover:bg-[#1B4965]/5
+            ${
+              isSelected
+                ? "border-[#1B4965] bg-[#1B4965]/10 font-medium"
+                : "border-gray-300"
+            }
+          `}
+        >
+          {item.label}
+        </button>
+      );
+    })}
+  </div>
+</div>
+
 
         <div className="border border-[#B4B4B4] w-full"></div>
 
@@ -302,29 +360,29 @@ useEffect(() => {
         {/* ⭐ Destinations (unchanged) */}
         <div className="space-y-2">
           <h3 className="font-semibold text-base mb-4">Famous Destinations:</h3>
-        {[
-  "Char Dham",
-  "Himachal",
-  "South Africa",
-  "Europe",
-  "Serengeti National Park",
-  "Mount Kenya National Park",
-  "Nairobi",
-  "Amboseli",
-  "Samburu",
-].map((dest) => (
-  <label key={dest} className="flex items-center space-x-2 text-sm">
-    <input
-      type="checkbox"
-      checked={famousDestinations.includes(dest)}
-      onChange={() =>
-        toggleItem(dest, famousDestinations, setFamousDestinations)
-      }
-      className="accent-blue-500"
-    />
-    <span>{dest}</span>
-  </label>
-))}
+          {[
+            "Char Dham",
+            "Himachal",
+            "South Africa",
+            "Europe",
+            "Serengeti National Park",
+            "Mount Kenya National Park",
+            "Nairobi",
+            "Amboseli",
+            "Samburu",
+          ].map((dest) => (
+            <label key={dest} className="flex items-center space-x-2 text-sm">
+              <input
+                type="checkbox"
+                checked={famousDestinations.includes(dest)}
+                onChange={() =>
+                  toggleItem(dest, famousDestinations, setFamousDestinations)
+                }
+                className="accent-blue-500"
+              />
+              <span>{dest}</span>
+            </label>
+          ))}
 
         </div>
 
@@ -344,7 +402,7 @@ useEffect(() => {
             />
             <FiSearch className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400" />
           </div>
-{/* <div className="pb-4">
+          {/* <div className="pb-4">
 
             <KeywordSearch
           search={search}
@@ -381,14 +439,14 @@ useEffect(() => {
         </div>
 
 
-<div className="border border-[#B4B4B4] w-full"></div>
+        <div className="border border-[#B4B4B4] w-full"></div>
 
-<div className="space-y-2 max-h-56 overflow-y-auto">
-     <h3 className="font-semibold text-base mb-3">Countries</h3>
+        <div className="space-y-2 max-h-56 overflow-y-auto">
+          <h3 className="font-semibold text-base mb-3">Countries</h3>
 
           <div className="relative mb-4">
 
-              {/* <KeywordSearch
+            {/* <KeywordSearch
           search={search}
           setSearch={setSearch}
           suggestions={suggestions}
@@ -407,29 +465,29 @@ useEffect(() => {
             />
             <FiSearch className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400" />
           </div>
-  {countriesList.map((country) => (
-    <label
-      key={country.name}
-      className="flex items-center justify-between text-sm"
-    >
-      <div className="flex items-center space-x-2">
-        <input
-          type="checkbox"
-          checked={selectedCountries.includes(country.name)}
-          onChange={() =>
-            toggleItem(
-              country.name,
-              selectedCountries,
-              setSelectedCountries
-            )
-          }
-          className="accent-blue-500"
-        />
-        <span>{country.name}</span>
-      </div>
-    </label>
-  ))}
-</div>
+          {countriesList.map((country) => (
+            <label
+              key={country.name}
+              className="flex items-center justify-between text-sm"
+            >
+              <div className="flex items-center space-x-2">
+                <input
+                  type="checkbox"
+                  checked={selectedCountries.includes(country.name)}
+                  onChange={() =>
+                    toggleItem(
+                      country.name,
+                      selectedCountries,
+                      setSelectedCountries
+                    )
+                  }
+                  className="accent-blue-500"
+                />
+                <span>{country.name}</span>
+              </div>
+            </label>
+          ))}
+        </div>
 
 
       </div>

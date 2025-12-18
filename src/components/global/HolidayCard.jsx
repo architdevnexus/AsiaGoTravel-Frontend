@@ -85,31 +85,44 @@ export const HolidayCard = ({
                 </ul>
                   
                 {/* Icons */}
-                <div className="flex gap-3 mt-6 text-gray-700 text-3xl">
-                  {pkg?.icons?.map((icon, idx) => (
-                    <Image
-                      key={idx}
-                      src={icon?.url || "No icon"}
-                      width={32}
-                      height={32}
-                      alt={icon?.name}
-                      className="w-8 h-8"
-                    />
-                  ))}
-                </div>
+          <div className="flex gap-5 mt-6 text-gray-700 text-3xl">
+  {(pkg?.icons && pkg.icons.length > 0
+    ? pkg.icons
+    : [
+        { url: "/img/Group1.svg", name: "Hotel" },
+        { url: "/img/Group2.svg", name: "Flight" },
+        { url: "/img/Group3.svg", name: "Meal" },
+        { url: "/img/Group4.svg", name: "Transfer" },
+      ]
+  ).map((icon, idx) => (
+    <Image
+      key={idx}
+      src={icon.url}
+      width={32}
+      height={32}
+      alt={icon.name}
+      className="w-8 h-8"
+    />
+  ))}
+</div>
+
 
                 {/* Push footer down */}
                 <div className="mt-auto"></div>
               </div>
 
               {/* Footer (Fixed at bottom) */}
-              <div className="bg-[#1B4965] text-white flex justify-between items-center px-5 py-3 rounded-b-2xl">
-                <div className="text-sm">
-                  <p className="opacity-70">Starting From</p>
-                  <p className="font-semibold">
-                    ₹{pkg?.priceDetails?.[0]?.originalPrice || " As per Request"}
-                  </p>
-                </div>
+         <div className="bg-[#1B4965] text-white flex justify-between items-center px-5 py-3 rounded-b-2xl">
+  <div className="text-sm">
+    <p className="opacity-70">Starting From</p>
+    <p className="font-semibold">
+      {pkg?.priceDetails?.[0]?.originalPrice > 0
+        ? `₹${pkg.priceDetails[0].originalPrice}`
+        : "As per Request"}
+    </p>
+  </div>
+
+
 
                 <Link href={`/all-packages/${pkg?._id}`}>
                   <span className="flex cursor-pointer items-center gap-4 bg-[#3FA9F5] px-4 py-1.5 rounded-full hover:bg-[#357ca8] transition">

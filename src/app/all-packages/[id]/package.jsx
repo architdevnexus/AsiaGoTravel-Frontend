@@ -6,6 +6,7 @@ import OverviewSection from "@/components/allpackages/OverviewPackage";
 import { PackageProductPage } from "@/components/allpackages/PackageProductPage";
 import { useParams } from "next/navigation";
 import { BestDestinationComponent } from "@/components/landingpage/BestSelling";
+import NeedToKnow from "./NeedToKnow";
 
 const PackageDetailPage = () => {
   const { id } = useParams();
@@ -35,7 +36,10 @@ const PackageDetailPage = () => {
       />
 
       <OverviewSection overviewData={packageData} />
+      <NeedToKnow />
       <BestDestinationComponent />
+
+
     </div>
   );
 };

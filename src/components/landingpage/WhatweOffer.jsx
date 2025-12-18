@@ -31,7 +31,7 @@ export const WhatWeOfferComponent = ({images}) => {
         {images?.map((item, index) => (
           <Link
             key={index}
-            href={item.href}
+            href={item?.href}
             className={`
               relative overflow-hidden rounded-xl shadow-md group cursor-pointer block
               ${index === images.length - 1 ? "col-span-2" : ""}
@@ -39,7 +39,7 @@ export const WhatWeOfferComponent = ({images}) => {
             `}
           >
             <Image
-              src={item.src}
+              src={item?.src}
               alt={`offer-${index}`}
               fill
               className="
@@ -62,7 +62,7 @@ export const WhatWeOfferComponent = ({images}) => {
               "
             >
               <h3 className="text-xl font-semibold max-sm:text-base">
-                {item.text}
+                {item?.text}
               </h3>
               <IoIosArrowRoundForward className="text-white h-18 w-10 max-sm:w-6 max-sm:h-6" />
             </div>

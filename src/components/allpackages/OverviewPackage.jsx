@@ -123,12 +123,14 @@ const OverviewSection = ({ overviewData }) => {
           <div className="mb-5">
             <h3 className="text-gray-800 font-semibold">Starting From</h3>
 
-            <p className="text-3xl font-bold text-gray-900 mt-2">
-              ₹ {priceDetails[0]?.discountedPrice || "As per request"}
-              <span className="text-base font-normal text-gray-500 block">
-                {"Per Person on Triple Sharing Occupancy"}
-              </span>
-            </p>
+     <p className="text-3xl font-bold text-gray-900 mt-2">
+  {Number(priceDetails?.[0]?.discountedPrice) > 0
+    ? `₹ ${priceDetails[0].discountedPrice}`
+    : "As per request"}
+  <span className="text-base font-normal text-gray-500 block">
+    Per Person on Triple Sharing Occupancy
+  </span>
+</p>
 
             <button
               onClick={() => setIsOpen(true)}
