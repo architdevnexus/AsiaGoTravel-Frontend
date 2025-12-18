@@ -4,6 +4,8 @@ import React, { useRef, useState } from "react";
 import { FaChevronLeft } from "react-icons/fa";
 import { FaChevronRight } from "react-icons/fa6";
 import ImagePreviewModal from "./ImagePreviewModal";
+import { GallerySkeleton } from "./GallerySkeleton";
+
 
 export const PackageProductPage = ({ images = [], title = "" }) => {
   const scrollRef = useRef(null);
@@ -39,7 +41,10 @@ export const PackageProductPage = ({ images = [], title = "" }) => {
             className="flex gap-3 px-0 md:px-12 overflow-x-auto md:overflow-visible"
           >
             {/* Left Large Image */}
-            {images[0]?.url && (
+            {images.length === 0 ? (
+              <GallerySkeleton />
+            ) : (
+              // images[0]?.url && (
               <div
                 onClick={() => setPreviewImage(images[0].url)}
                 className="

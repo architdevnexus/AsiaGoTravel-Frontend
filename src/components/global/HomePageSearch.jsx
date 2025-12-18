@@ -11,7 +11,8 @@ export default function HomePageSearchPackages() {
   const [search, setSearch] = useState("");
   const [keyword, setKeyword] = useState(""); // ⭐ THE SEARCH KEYWORD
   const [departureDate, setDepartureDate] = useState("");
-  const [filters, setFilters] = useState("");
+  const [famousDestinations, setFamousDestinations] = useState("");
+
 
   // Rooms & Guests
   const [openRG, setOpenRG] = useState(false);
@@ -53,7 +54,7 @@ export default function HomePageSearchPackages() {
         setLoading(true);
 
         // IMPORTANT: fetch through proxy to avoid CORS
-        const res = await fetch(  `https://backend.asiagotravels.com/api/location/search?q=${keyword}`);
+        const res = await fetch(`https://backend.asiagotravels.com/api/location/search?q=${keyword}`);
         const data = await res.json();
 
         setDestResults(data || []);
@@ -76,7 +77,7 @@ export default function HomePageSearchPackages() {
     if (search) params.append("search", search);
     if (keyword) params.append("destination", keyword); // ⭐ send keyword
     if (departureDate) params.append("date", departureDate);
-    if (filters) params.append("search", filters);
+    if (famousDestinations) params.append("famousDestinations", famousDestinations);
 
     params.append("adults", adults);
     params.append("children", children);
@@ -93,7 +94,7 @@ export default function HomePageSearchPackages() {
 
       <div className="relative bg-white shadow-md rounded-lg p-6 w-full md:w-[95%] lg:w-[90%] xl:w-[90%] border border-gray-200">
         <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-6 md:gap-0">
-          
+
           {/* SOURCE */}
           {/* <div className="flex flex-col w-full md:w-1/5">
             <label className="text-sm text-gray-500">Source</label>
@@ -235,28 +236,28 @@ export default function HomePageSearchPackages() {
           <div className="hidden md:block h-10 w-px bg-gray-200 mr-5" />
 
           {/* FILTERS */}
-        {/* FILTERS DROPDOWN */}
-<div className="flex flex-col w-full md:w-1/5 relative">
-  <label className="text-sm text-gray-500">Filters</label>
+          {/* FILTERS DROPDOWN */}
+          <div className="flex flex-col w-full md:w-1/5 relative">
+            <label className="text-sm text-gray-500">Filters</label>
 
-  <select
-    value={filters}
-    onChange={(e) => setFilters(e.target.value)}
-    className="text-lg font-semibold bg-transparent border border-gray-300 rounded-lg px-3 py-2 focus:outline-none cursor-pointer"
-  >
-    <option value="" disabled>
-      Select a category
-    </option>
+            <select
+              value={famousDestinations}
+              onChange={(e) => setFamousDestinations(e.target.value)}
+              className="text-lg font-semibold bg-transparent border border-gray-300 rounded-lg px-3 py-2 focus:outline-none cursor-pointer"
+            >
+              <option value="" disabled>
+                Select a category
+              </option>
 
-    <option value="Honeymoon Trips">Honeymoon Trips</option>
-    <option value="Family Holidays">Family Holidays</option>
-    <option value="Family Group Tours">Family Group Tours</option>
-    <option value="Bachelor Tours">Bachelor Tours</option>
-    <option value="Luxury Tours">Luxury Tours</option>
-    <option value="Premium Holiday Packages">Premium Holiday Packages</option>
-    <option value="Personalized Tours">Personalized Tours</option>
-  </select>
-</div>
+              <option value="Char Dham">Char Dham</option>
+              <option value="South Africa">South Africa</option>
+              <option value="Do Dham">Do Dham</option>
+              <option value="Kashmir">Kashmir</option>
+              <option value="Africa">Africa</option>
+              <option value="Uttrakhand">Uttrakhand</option>
+              <option value="KathMandu">KathMandu</option>
+            </select>
+          </div>
 
         </div>
       </div>

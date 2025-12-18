@@ -28,34 +28,34 @@ export const HolidayCard = ({
               className="bg-white rounded-2xl shadow-md overflow-hidden hover:shadow-lg transition-all flex flex-col h-full"
             >
               {/* IMAGE */}
-<div className="relative">
-  {/* Location Badge */}
-  <div className="absolute top-4 lg:top-6 left-4 lg:left-5 group">
-    <div
-      className="text-white text-sm lg:text-md px-3 py-1 rounded-full flex items-center gap-1 
+              <div className="relative">
+                {/* Location Badge */}
+                <div className="absolute top-4 lg:top-6 left-4 lg:left-5 group">
+                  <div
+                    className="text-white text-sm lg:text-md px-3 py-1 rounded-full flex items-center gap-1 
                  bg-black/40 backdrop-blur-sm cursor-pointer"
-    >
-      <IoLocationOutline className="text-[18px] lg:text-[20px] shrink-0" />
-      <span>
-        {pkg?.location?.split(" ").slice(0, 5).join(" ")}
-        {pkg?.location?.split(" ").length > 7 && " ..."}
-      </span>
-    </div>
+                  >
+                    <IoLocationOutline className="text-[18px] lg:text-[20px] shrink-0" />
+                    <span>
+                      {pkg?.location?.split(" ").slice(0, 5).join(" ")}
+                      {pkg?.location?.split(" ").length > 7 && " ..."}
+                    </span>
+                  </div>
 
-    {/* Tooltip (desktop only – show on hover) */}
-    {pkg?.location && (
-      <div
-        className="hidden lg:block absolute left-0 top-full mt-2 z-50
+                  {/* Tooltip (desktop only – show on hover) */}
+                  {pkg?.location && (
+                    <div
+                      className="hidden lg:block absolute left-0 top-full mt-2 z-50
                    bg-black text-white text-sm px-3 py-2 rounded-md
                    max-w-xs shadow-lg whitespace-normal
                    opacity-0 invisible
                    group-hover:opacity-100 group-hover:visible
                    transition-all duration-200"
-      >
-        {pkg.location}
-      </div>
-    )}
-  </div>
+                    >
+                      {pkg.location}
+                    </div>
+                  )}
+                </div>
 
 
 
@@ -100,11 +100,11 @@ export const HolidayCard = ({
                   {(pkg?.icons && pkg.icons.length > 0
                     ? pkg.icons
                     : [
-                        { url: "/img/Group1.svg", name: "Hotel" },
-                        { url: "/img/Group2.svg", name: "Flight" },
-                        { url: "/img/Group3.svg", name: "Meal" },
-                        { url: "/img/Group4.svg", name: "Transfer" },
-                      ]
+                      { url: "/img/Group1.svg", name: "Hotel" },
+                      { url: "/img/Group2.svg", name: "Flight" },
+                      { url: "/img/Group3.svg", name: "Meal" },
+                      { url: "/img/Group4.svg", name: "Transfer" },
+                    ]
                   ).map((icon, idx) => (
                     <Image
                       key={idx}
