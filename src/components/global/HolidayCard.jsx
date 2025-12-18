@@ -95,27 +95,28 @@ export const HolidayCard = ({
                   ))}
                 </ul>
 
-                {/* ICONS */}
-                <div className="flex gap-4 lg:gap-5 mt-5 lg:mt-6 text-gray-700">
-                  {(pkg?.icons && pkg.icons.length > 0
-                    ? pkg.icons
-                    : [
-                      { url: "/img/Group1.svg", name: "Hotel" },
-                      { url: "/img/Group2.svg", name: "Flight" },
-                      { url: "/img/Group3.svg", name: "Meal" },
-                      { url: "/img/Group4.svg", name: "Transfer" },
-                    ]
-                  ).map((icon, idx) => (
-                    <Image
-                      key={idx}
-                      src={icon.url}
-                      width={32}
-                      height={32}
-                      alt={icon.name}
-                      className="w-7 h-7 lg:w-8 lg:h-8"
-                    />
-                  ))}
-                </div>
+             {/* ICONS (stick to bottom) */}
+<div className="flex gap-4 lg:gap-5 mt-auto pt-5 lg:pt-6 text-gray-700">
+  {(pkg?.icons && pkg.icons.length > 0
+    ? pkg.icons
+    : [
+        { url: "/img/Group1.svg", name: "Hotel" },
+        { url: "/img/Group2.svg", name: "Flight" },
+        { url: "/img/Group3.svg", name: "Meal" },
+        { url: "/img/Group4.svg", name: "Transfer" },
+      ]
+  ).map((icon, idx) => (
+    <Image
+      key={idx}
+      src={icon.url}
+      width={32}
+      height={32}
+      alt={icon.name}
+      className="w-7 h-7 lg:w-8 lg:h-8"
+    />
+  ))}
+</div>
+
 
                 <div className="mt-auto" />
               </div>
