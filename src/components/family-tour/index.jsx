@@ -14,11 +14,11 @@ import { GiAnimalSkull } from 'react-icons/gi';
 
 export const FamilyTourComponent = () => {
       const images = [
-    { src: "https://images.unsplash.com/photo-1496602910407-bacda74a0fe4?q=80&w=2500&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", text: "Family-friendly stays", href: "/honeymoon-trips" },
-    { src: "https://images.unsplash.com/photo-1609220136736-443140cffec6?q=80&w=2670&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", text: "Everyone's adventure, perfectly planned", href: "/family-holidays" },
-    { src: "/img/aboutimg5.jpg", text: "Private transfers and guided sightseeing", href: "/bachelor-tours" },
-    { src: "/img/aboutimg3.jpg", text: "24/7 on-trip assistance", href: "/luxury-tours" },
-    { src: "https://images.unsplash.com/photo-1617365209649-56138ac3aefc?q=80&w=2670&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", text: "Easy visa assistance and documentation support", href: "/premium-holiday-packages" },
+    { src: "https://images.unsplash.com/photo-1622610607501-32ac9c927216?w=700&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fGZhbWlseSUyMHZhY2F0aW9ufGVufDB8fDB8fHww", text: "Family-friendly stays", href: "/honeymoon-trips" },
+    { src: "https://images.unsplash.com/photo-1541542684-be0c46417a12?w=700&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fGFkdmVudHVyZXxlbnwwfHwwfHx8MA%3D%3D", text: "Everyone's adventure, perfectly planned", href: "/family-holidays" },
+    { src: "https://plus.unsplash.com/premium_photo-1718146019127-ebfb31a4af15?w=700&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OXx8dG91ciUyMGd1aWRlfGVufDB8fDB8fHww", text: "Private transfers and guided sightseeing", href: "/bachelor-tours" },
+    { src: "https://plus.unsplash.com/premium_photo-1701113010478-b16fb74e6b8c?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", text: "24/7 on-trip assistance", href: "/luxury-tours" },
+    { src: "https://plus.unsplash.com/premium_photo-1681505189991-157ecae8c0e6?w=700&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTN8fHN1cHBvcnR8ZW58MHx8MHx8fDA%3D", text: "Easy visa assistance and documentation support", href: "/premium-holiday-packages" },
   ];
 
   // DYNAMIC DATA
@@ -81,9 +81,9 @@ export const FamilyTourComponent = () => {
   title="Family Holidays"
   description="Family holidays are the perfect way to bond, relax, and create lifelong memories together. Designed to suit all age groups, our family holiday packages combine comfort, fun, sightseeing, and leisure. From kid-friendly attractions and scenic destinations to relaxing resorts and cultural experiences, we ensure a stress-free and enjoyable vacation for every member of the family"
   images={[
-    "https://images.unsplash.com/photo-1507525428034-b723cf961d3e",
-    "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267",
-    "https://images.unsplash.com/photo-1509721926668-25a8dd274c1b",
+    "https://images.unsplash.com/photo-1588979355313-6711a095465f?q=80&w=972&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    "https://images.unsplash.com/photo-1503431153573-96e959f4d9b7?q=80&w=2148&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    "https://images.unsplash.com/photo-1578496780896-7081cc23c111?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   ]}
 />
 

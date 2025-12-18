@@ -17,11 +17,11 @@ import { MdMonochromePhotos, MdPool } from 'react-icons/md';
 
  const PremiumHolidayPackage = () => {
     const images = [
-        { src: "https://images.unsplash.com/photo-1496602910407-bacda74a0fe4?q=80&w=2500&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", text: "Premium hotels & resorts", href: "/honeymoon-trips" },
-        { src: "https://images.unsplash.com/photo-1609220136736-443140cffec6?q=80&w=2670&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", text: "Personalized attentive service", href: "/family-holidays" },
+        { src: "https://images.unsplash.com/photo-1669043962012-a5b8496cd664?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", text: "Premium hotels & resorts", href: "/honeymoon-trips" },
+        { src: "https://plus.unsplash.com/premium_photo-1663018215282-ef11af8fd8e4?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", text: "Personalized attentive service", href: "/family-holidays" },
         { src: "/img/aboutimg5.jpg", text: "Private transfers & guides", href: "/bachelor-tours" },
-        { src: "/img/aboutimg3.jpg", text: "Visa & travel assistance", href: "/luxury-tours" },
-        { src: "https://images.unsplash.com/photo-1617365209649-56138ac3aefc?q=80&w=2670&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", text: "Thoughtfully planned itineraries ", href: "/premium-holiday-packages" },
+        { src: "https://images.unsplash.com/photo-1600880292203-757bb62b4baf?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", text: "Visa & travel assistance", href: "/luxury-tours" },
+        { src: "https://images.unsplash.com/photo-1612257998531-70e0d0a15f6d?q=80&w=2148&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", text: "Thoughtfully planned itineraries ", href: "/premium-holiday-packages" },
     ];
 
     // DYNAMIC DATA
@@ -86,8 +86,8 @@ const activitiesData = [
                     title="Premium holidays"
                     description="Premium Holiday Gateways are curated for travelers who seek a perfect balance of comfort, elegance, and exclusive experiences—without being overly extravagant. These holidays feature handpicked premium hotels and resorts, personalized services, scenic destinations, and thoughtfully planned itineraries. Ideal for couples, families, and refined leisure travelers, premium holidays offer elevated travel experiences with excellent value and sophistication."
                     images={[
-                      "https://images.unsplash.com/photo-1507525428034-b723cf961d3e",
-                      "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267",
+                      "https://plus.unsplash.com/premium_photo-1738099062448-7f6194176524?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+                      "https://images.unsplash.com/photo-1589129140837-67287c22521b?q=80&w=1365&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
                       "https://images.unsplash.com/photo-1509721926668-25a8dd274c1b",
                     ]}
                   />
@@ -95,7 +95,7 @@ const activitiesData = [
             <BookPackage
                 title="Elevate Your Next Holiday"
               description="Discover destinations that offer comfort, style, and memorable experiences. Contact us today to plan your Premium Holiday Gateway, customized to your preferred season, destination, and travel style."
-                bgImage="/img/BookingImage.png"
+                bgImage="https://images.unsplash.com/photo-1499750310107-5fef28a66643?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
             />
             <PopularPackages />
             <FaqSection />

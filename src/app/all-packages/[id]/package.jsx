@@ -21,7 +21,7 @@ const PackageDetailPage = () => {
   const fetchPackageById = async () => {
     const data = await getPackageById(id);
 
-    console.log("afgnh" , data?.overviewCategory.exclusions)
+    console.log("afgnh" , data)
 
     setPackageData(data);
   };

@@ -16,11 +16,11 @@ import { FaCar } from 'react-icons/fa'
 
 export const BachelorToursComponent = () => {
   const images = [
-    { src: "https://images.unsplash.com/photo-1496602910407-bacda74a0fe4?q=80&w=2500&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", text: "Group-customized itineraries", href: "/honeymoon-trips" },
-    { src: "https://images.unsplash.com/photo-1609220136736-443140cffec6?q=80&w=2670&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", text: "Budget & luxury options", href: "/family-holidays" },
-    { src: "/img/aboutimg5.jpg", text: "Adventure, nightlife & parties", href: "/bachelor-tours" },
-    { src: "/img/aboutimg3.jpg", text: "Hassle-free visa support", href: "/luxury-tours" },
-    { src: "https://images.unsplash.com/photo-1617365209649-56138ac3aefc?q=80&w=2670&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", text: "24/7 travel assistance", href: "/premium-holiday-packages" },
+    { src: "https://images.unsplash.com/photo-1612257998531-70e0d0a15f6d?q=80&w=2148&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", text: "Group-customized itineraries", href: "/honeymoon-trips" },
+    { src: "https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", text: "Budget & luxury options", href: "/family-holidays" },
+    { src: "https://images.unsplash.com/photo-1506699311528-5be252edc26a?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", text: "Adventure, nightlife & parties", href: "/bachelor-tours" },
+    { src: "https://plus.unsplash.com/premium_photo-1663018215282-ef11af8fd8e4?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", text: "Hassle-free visa support", href: "/luxury-tours" },
+    { src: "https://plus.unsplash.com/premium_photo-1701113010478-b16fb74e6b8c?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", text: "24/7 travel assistance", href: "/premium-holiday-packages" },
   ];
 
 
@@ -87,9 +87,9 @@ const activitiesData = [
   title="Bachelor Tours"
   description="Bachelor tours are all about fun, freedom, adventure, nightlife, and unforgettable experiences with friends. Whether it’s beach parties, thrilling adventures, road trips, or international nightlife hubs, bachelor tours are designed for groups looking to celebrate friendships and milestones in style. Our bachelor tour packages focus on exciting destinations, vibrant nightlife, adventure activities, and hassle-free travel planning."
   images={[
-    "https://images.unsplash.com/photo-1507525428034-b723cf961d3e",
-    "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267",
-    "https://images.unsplash.com/photo-1509721926668-25a8dd274c1b",
+    "https://images.unsplash.com/photo-1615561479656-46419d14de5a?q=80&w=996&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    "https://images.unsplash.com/photo-1539635278303-d4002c07eae3?q=80&w=2670&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    "https://images.unsplash.com/photo-1492462543947-040389c4a66c?q=80&w=2670&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   ]}
 />
 
@@ -99,7 +99,7 @@ const activitiesData = [
       <BookPackage
         title="Plan the Ultimate Bachelor Tour"
         description="Gather your gang and get ready for an epic trip. Contact us today to create a customized bachelor tour package tailored to your destination, season, and budget."
-        bgImage="/img/BookingImage.png"
+        bgImage="https://images.unsplash.com/photo-1627556704243-5f0771d90783?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
       />
       <PopularPackages />
       <FaqSection />

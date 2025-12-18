@@ -167,6 +167,79 @@ const NeedToKnow = () => {
           <li>All aviation company terms & conditions apply.</li>
         </ul>
       </div>
+
+      {/* Terms & Conditions */}
+<div>
+  <h3 className="font-semibold text-lg mb-2">Terms & Conditions</h3>
+
+  <p className="text-sm text-gray-700 mb-3">
+    <strong>Important Note:</strong> Rates quoted above are based on Contracted
+    Tariff. It may sometimes happen that hotels regret to confirm on these rates
+    and may offer confirmation only on BAR rates due to high demand. Please do
+    not confirm anything to the client unless written confirmation is provided
+    by us.
+  </p>
+
+  <ul className="list-disc pl-5 space-y-2 text-sm text-gray-700">
+    <li>All hotels allow only Double/Twin sharing unless specified.</li>
+    <li>
+      Meals at Indian restaurants can be included (except Hermanus & Kruger).
+      International restaurants follow A la carte or fixed-course meals.
+    </li>
+    <li>
+      Vehicle usage: Cape Town till 17:00, Garden Route till 21:00, Johannesburg
+      & surroundings include end-to-end transfers only.
+    </li>
+    <li>No animal interaction activities will be booked; only transfers included.</li>
+    <li>
+      Children below 7 years are generally not allowed on game drives, subject
+      to management decision.
+    </li>
+    <li>
+      Zipline over the ocean must be paid directly; slots cannot be pre-booked.
+    </li>
+    <li>All Stay/Pay offers are subject to availability.</li>
+    <li>Interleading rooms are subject to availability and not guaranteed.</li>
+    <li>
+      Meals at lodges will follow dietary requirements; Indian meals are not
+      guaranteed.
+    </li>
+    <li>
+      All flights must be discussed before issuance. Extra charges may apply for
+      arrivals/departures after 16:00 (international) or case-by-case (domestic).
+    </li>
+    <li>
+      Table Mountain Cableway maintenance: 15 July 2024 – 1 September 2024.
+    </li>
+    <li>Rates are applicable for Indian citizens unless stated otherwise.</li>
+    <li>
+      Due to flight delays at OR Tambo International Airport, no transfers will
+      operate post 18:00 outside Johannesburg.
+    </li>
+    <li>This is strictly for client safety.</li>
+    <li>
+      Certain accommodations may need to be paid directly by the client; we can
+      assist with reservations.
+    </li>
+    <li>
+      For self-drive tours, an English-written Indian/International driving
+      license and a credit card are mandatory.
+    </li>
+    <li>
+      Vehicle types may include Sedan (Toyota Corolla Quest or similar),
+      7-seater (Hyundai H1 or similar), or 13-seater (Toyota Quantum or similar).
+    </li>
+    <li>
+      Prices and number of nights may change during super peak season.
+    </li>
+    <li>
+      Tours such as Table Mountain, skydiving, cruises, etc., are weather
+      permitting.
+    </li>
+    <li>Please carry international chargers for safety.</li>
+  </ul>
+</div>
+
     </section>
   );
 };
