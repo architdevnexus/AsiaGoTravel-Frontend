@@ -107,9 +107,9 @@ export const Footer = () => {
             </a>
 
             {/* YouTube (add your link if needed) */}
-            <a href="#" target="_blank" rel="noopener noreferrer">
+            {/* <a href="#" target="_blank" rel="noopener noreferrer">
               <FaYoutube className="text-red-600 text-xl cursor-pointer hover:scale-110 transition" />
-            </a>
+            </a> */}
 
             {/* LinkedIn */}
             <a
