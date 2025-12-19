@@ -91,7 +91,7 @@ export const FamilyTourComponent = () => {
      <BookPackage
             title="Plan Your Perfect Family Holiday"
             description="Let us design a family holiday that suits your travel style, season, and budget. Get in touch with us today to explore customized family holiday packages for India and abroad."
-            bgImage="/img/BookingImage.png"
+            bgImage="https://plus.unsplash.com/premium_photo-1661440028839-447e432ed10f?q=80&w=2340&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
           />
          <PopularPackages />
         <FaqSection />
