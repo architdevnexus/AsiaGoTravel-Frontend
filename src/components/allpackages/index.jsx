@@ -28,7 +28,7 @@ export const AllPackageComponent = ({ slug }) => {
 
   return (
     <div>
-      <div className="flex bg-white rounded-2xl border m-10 relative bottom-24 border-[#B4B4B4]">
+      <div className="flex bg-white rounded-2xl border m-4 md:m-10 lg:m-10 relative bottom-24 border-[#B4B4B4]">
 
         {/* Sidebar */}
         {/* Sidebar */}

@@ -8,6 +8,13 @@ export const Navbar = () => {
   const [activeDropdown, setActiveDropdown] = useState(null);
   const [mobileOpen, setMobileOpen] = useState(false);
 
+
+  const closeMobileMenu = () => {
+  setMobileOpen(false);
+  setActiveDropdown(null);
+};
+
+
   const menuItems = [
  
 
@@ -40,7 +47,8 @@ export const Navbar = () => {
   ];
 
   return (
-    <nav className="w-full bg-white text-white font-sans relative">
+<nav className="w-full bg-white text-white font-sans sticky top-0 z-50">
+
       {/* Top Navbar */}
       <div className="flex items-center justify-between bg-[#0E3A55] h-18 pr-4 font-medium">
         <div
@@ -80,13 +88,15 @@ export const Navbar = () => {
               {link.subMenu && activeDropdown === link.name && (
                 <div className="absolute left-0 mt-0 bg-white text-black shadow-lg rounded-md w-48 py-2 px-4 z-50">
                   {link.subMenu.map((item, i) => (
-                    <Link
-                      key={i}
-                      href={item.href}
-                      className="block py-1 hover:text-[#0E3A55]"
-                    >
-                      {item.name}
-                    </Link>
+               <Link
+  key={i}
+  href={item.href}
+  className="block py-1"
+  onClick={closeMobileMenu}
+>
+  {item.name}
+</Link>
+
                   ))}
                 </div>
               )}
@@ -125,7 +135,10 @@ export const Navbar = () => {
         <div className="lg:hidden bg-[#1B4965] text-white px-4 py-4">
           {menuItems.map((item, index) => (
             <div key={index} className="border-b border-white/20 py-2">
-              <Link href={item.href}>{item.name}</Link>
+            <Link href={item.href} onClick={closeMobileMenu}>
+  {item.name}
+</Link>
+
             </div>
           ))}
 
@@ -159,15 +172,24 @@ export const Navbar = () => {
           {/* Bottom Links */}
           <div className="mt-4 space-y-2">
             {mainLinks.map((link) => (
-              <Link key={link.name} href={link.href} className="block">
-                {link.name}
-              </Link>
+    <Link
+  key={link.name}
+  href={link.href}
+  className="block"
+  onClick={closeMobileMenu}
+>
+  {link.name}
+</Link>
+
             ))}
 
-            <Link
-              href="tel:+919119119641"
-              className="flex items-center bg-[#F5F7FA] border border-gray-300 text-[#0E3A55] px-4 py-2 mx-3 rounded-xl "
-            >
+     <Link
+  href="tel:+919119119641"
+  onClick={closeMobileMenu}
+  className="flex items-center bg-[#F5F7FA] border border-gray-300 
+             text-[#0E3A55] px-4 py-2 mx-3 rounded-xl"
+>
+
               <FaPhoneAlt className="mr-2" />
               +91-9119119641
             </Link>
