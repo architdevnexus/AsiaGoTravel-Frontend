@@ -1,3 +1,4 @@
+import { OurBenefitsSection } from '@/components/career/OurBenefitsSection'
 import Map from '@/components/contactus/Map'
 import React from 'react'
 
@@ -5,6 +6,7 @@ import React from 'react'
   return (
     <div>
         <Map />
+        <OurBenefitsSection />
     </div>
   )
 }

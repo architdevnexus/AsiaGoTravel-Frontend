@@ -168,23 +168,25 @@ const FiltersSidebar = ({ onFilterResults }) => {
         params.append("minPrice", String(minBudget));
         params.append("maxPrice", String(maxBudget));
       }
+if (selectedCities.length > 0) {
+  selectedCities.forEach((city) => {
+    params.append("departureCities", city);
+  });
+}
 
-      // 🏙 Departure Cities
-      if (selectedCities.length > 0) {
-        params.append("departureCities", selectedCities.join(","));
-      }
-      if (famousDestinations.length > 0) {
-        params.append(
-          "famousDestinations",
-          famousDestinations.join(",")
-        );
-      }
+ // ⭐ Famous Destinations (MULTIPLE)
+if (famousDestinations.length > 0) {
+  famousDestinations.forEach((dest) => {
+    params.append("famousDestinations", dest);
+  });
+}
 
+if (selectedCountries.length > 0) {
+  selectedCountries.forEach((country) => {
+    params.append("countries", country);
+  });
+}
 
-      // 🌍 Countries
-      if (selectedCountries.length > 0) {
-        params.append("countries", selectedCountries.join(","));
-      }
 
       // 📆 Duration
       if (duration > 0) {
