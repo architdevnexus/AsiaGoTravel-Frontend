@@ -23,7 +23,7 @@ export const Navbar = () => {
     { name: "Family Group Tours", href: "/family-group-tours" },
     { name: "Bachelor Tours", href: "/bachelor-tours" },
     { name: "Luxury Tours", href: "/luxury-tours" },
-    { name: "Premium Holiday Packages", href: "/premium-holiday-packages" },
+    { name: "Premium Holidays", href: "/premium-holiday-packages" },
     { name: "Personalized Tours", href: "/personalized-tours" },
      
   ];
@@ -48,6 +48,13 @@ export const Navbar = () => {
 
   return (
 <nav className="w-full bg-white text-white font-sans sticky top-0 z-50">
+
+
+
+
+
+
+
 
       {/* Top Navbar */}
       <div className="flex items-center justify-between bg-[#0E3A55] h-18 pr-4 font-medium">

@@ -12,6 +12,7 @@ import { TbBeach, TbMassage } from 'react-icons/tb';
 import { BsMusicNoteBeamed, BsSunrise } from 'react-icons/bs';
 import { MdBeachAccess, MdCameraAlt, MdMonochromePhotos, MdPool } from 'react-icons/md';
 import { FaCar } from 'react-icons/fa'
+import HoneymoonSeasonSection from '../global/HoneymoonSeasonSection'
 
 
 export const BachelorToursComponent = () => {
@@ -25,56 +26,222 @@ export const BachelorToursComponent = () => {
 
 
 
-const activitiesData = [
-  {
-    icon: <BsMusicNoteBeamed />,
-    title: "Nightlife & Clubbing",
-    points: [
-      "Entry to popular clubs & bars",
-      "Dance, DJ nights & party vibes",
-    ],
-  },
-  {
-    icon: <GiBeerStein />,
-    title: "Pub Crawling",
-    points: [
-      "Hop across top pubs & lounges",
-      "Group fun with drinks & music",
-    ],
-  },
-  {
-    icon: <GiParachute />,
-    title: "Adventure Activities",
-    points: [
-      "Paragliding, water sports & treks",
-      "Adrenaline-filled group experiences",
-    ],
-  },
-  {
-    icon: <MdBeachAccess />,
-    title: "Beach & Pool Parties",
-    points: [
-      "Poolside parties with music",
-      "Beach games & chill sessions",
-    ],
-  },
-  {
-    icon: <FaCar />,
-    title: "Road Trips & Sightseeing",
-    points: [
-      "Scenic drives with friends",
-      "Explore local hotspots together",
-    ],
-  },
-  {
-    icon: <MdCameraAlt />,
-    title: "Group Photos & Reels",
-    points: [
-      "Fun group photos & videos",
-      "Create memories for social media",
-    ],
-  },
-];
+  const activitiesData = [
+    {
+      icon: <BsMusicNoteBeamed />,
+      title: "Nightlife Experience (Clubs / Pub Crawl)",
+      points: [
+        "Entry to popular clubs & bars",
+        "Dance, DJ nights & party vibes",
+      ],
+    },
+    {
+      icon: <GiBeerStein />,
+      title: "Adventure Activities",
+      points: [
+        "Options like desert safari, dune bashing, bungee jumping, skydiving, ATV rides, rafting, or zip-lining.",
+        // "Group fun with drinks & music",
+      ],
+    },
+    {
+      icon: <GiParachute />,
+      title: "Party Boat / Yacht Cruise",
+      points: [
+        "Private or shared yacht parties, booze cruises, or sunset party boats with music and dancing.",
+        // "Adrenaline-filled group experiences",
+      ],
+    },
+    {
+      icon: <MdBeachAccess />,
+      title: "Beach & Pool Parties",
+      points: [
+        "Access to beach clubs, pool parties, or resort day passes with DJs and entertainment.",
+        // "Beach games & chill sessions",
+      ],
+    },
+    {
+      icon: <FaCar />,
+      title: "Local Street Food & Bar-Hopping Tour",
+      points: [
+        "Guided food trails combined with local bars or breweries—fun, social, and relaxed.",
+        // "Explore local hotspots together",
+      ],
+    },
+    {
+      icon: <MdCameraAlt />,
+      title: "Live Entertainment Show",
+      points: [
+        "Comedy shows, concerts, casino nights, or themed party nights depending on the destination.",
+        // "Create memories for social media",
+      ],
+    },
+  ];
+
+
+
+  const DESTINATION_DATA = {
+    domestic: {
+      summer: [
+        {
+          title: "Manali",
+          image: "https://images.unsplash.com/photo-1579689189009-874f5cac2db5?q=80&w=1304&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+          points: ["Adventure sports", "Cafes", "Road trips"],
+          featured: true,
+        },
+        {
+          title: "Leh – Ladakh",
+          image: "https://images.unsplash.com/photo-1501785888041-af3ef285b470",
+          points: ["Biking trips", "High-altitude adventure"],
+        },
+        {
+          title: "Kasol & Tosh",
+          image: "https://images.unsplash.com/photo-1612638039814-1a67ea727114?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8a2Fzb2x8ZW58MHx8MHx8fDA%3D",
+          points: ["Backpacker vibes", "Nature retreats"],
+        },
+        {
+          title: "Rishikesh",
+          image: "https://images.unsplash.com/photo-1720819029162-8500607ae232?q=80&w=1932&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+          points: ["River rafting", "Camping", "Nightlife cafés"],
+        },
+        {
+          title: "Spiti Valley",
+          image: "https://images.unsplash.com/photo-1628782379401-4fff9cdcbbfe?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+          points: ["Offbeat adventure", "Scenic drives"],
+        },
+      ],
+
+      monsoon: [
+        {
+          title: "Goa (Monsoon)",
+          image: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e",
+          points: ["Budget stays", "Quiet beaches", "Monsoon vibes"],
+          featured: true,
+        },
+        {
+          title: "Lonavala – Pawna",
+          image: "https://images.unsplash.com/photo-1600508774634-4e11d34730e2",
+          points: ["Camping", "Weekend trips"],
+        },
+        {
+          title: "Coorg & Chikmagalur",
+          image: "https://images.unsplash.com/photo-1710612198146-77512950a4b7?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+          points: ["Coffee estates", "Waterfalls"],
+        },
+        {
+          title: "Udaipur",
+          image: "https://images.unsplash.com/photo-1599661046289-e31897846e41",
+          points: ["Lakeside nightlife", "Heritage experiences"],
+        },
+      ],
+
+      winter: [
+        {
+          title: "Goa",
+          image: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e",
+          points: ["Nightclubs", "Beach parties", "Music festivals"],
+          featured: true,
+        },
+        {
+          title: "Gokarna",
+          image: "https://images.unsplash.com/photo-1589308078059-be1415eab4c3",
+          points: ["Laid-back beaches", "Nightlife"],
+        },
+        {
+          title: "Jaipur",
+          image: "https://images.unsplash.com/photo-1587295656906-b06dca8f2340?q=80&w=864&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+          points: ["Heritage", "Rooftop nightlife"],
+        },
+        {
+          title: "Andaman Islands",
+          image: "https://images.unsplash.com/photo-1589308078059-be1415eab4c3",
+          points: ["Beach parties", "Water activities"],
+        },
+      ],
+    },
+
+    international: {
+      summer: [
+        {
+          title: "Bali, Indonesia",
+          image: "https://images.unsplash.com/photo-1500375592092-40eb2168fd21",
+          points: ["Beach clubs", "Nightlife", "Adventure"],
+          featured: true,
+        },
+        {
+          title: "Thailand",
+          image: "https://images.unsplash.com/photo-1552465011-b4e21bf6e79a?q=80&w=2039&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+          points: ["Bangkok nightlife", "Phuket & Pattaya beaches"],
+        },
+        {
+          title: "Maldives (Budget)",
+          image: "https://images.unsplash.com/photo-1512100356356-de1b84283e18?q=80&w=950&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+          points: ["Budget resorts", "Water sports", "Island vibes"],
+        },
+        {
+          title: "Turkey",
+          image: "https://images.unsplash.com/photo-1524231757912-21f4fe3a7200",
+          points: ["Beach towns", "Nightlife", "Culture"],
+        },
+        {
+          title: "Vietnam",
+          image: "https://images.unsplash.com/photo-1528127269322-539801943592",
+          points: ["Nightlife", "Cruises", "Adventure activities"],
+        },
+      ],
+
+      winter: [
+        {
+          title: "Dubai, UAE",
+          image: "https://images.unsplash.com/photo-1512453979798-5ea266f8880c",
+          points: ["Luxury clubs", "Desert parties", "Nightlife"],
+          featured: true,
+        },
+        {
+          title: "Sri Lanka",
+          image: "https://images.unsplash.com/photo-1651264042769-ef84e30f4ac8?q=80&w=1932&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+          points: ["Surfing", "Beaches", "Nightlife cafés"],
+        },
+        {
+          title: "Malaysia",
+          image: "https://images.unsplash.com/photo-1596422846543-75c6fc197f07",
+          points: ["Nightlife", "Casinos", "Theme parks"],
+        },
+        {
+          title: "Hong Kong",
+          image: "https://images.unsplash.com/photo-1506976785307-8732e854ad03",
+          points: ["Clubs", "Theme parks", "City nightlife"],
+        },
+        {
+          title: "Cambodia",
+          image: "https://images.unsplash.com/photo-1558980664-10c236b87b98",
+          points: ["Party islands", "Nightlife"],
+        },
+      ],
+    },
+  };
+
+  const SEASONS_CONFIG = [
+    {
+      key: "summer",
+      title: "Summer Bachelor Tour Destinations",
+      period: "(March – June)",
+      desc: "Best for hill escapes, road trips, and adventure.",
+    },
+    {
+      key: "monsoon",
+      title: "Monsoon Bachelor Tour Destinations",
+      period: "(July – September)",
+      desc: "Ideal for greenery, short trips, and relaxed partying.",
+    },
+    {
+      key: "winter",
+      title: "Winter Bachelor Tour Destinations",
+      period: "(October – February)",
+      desc: "Perfect for beaches, festivals, and party scenes.",
+    },
+  ];
+
+
 
 
 
@@ -83,15 +250,15 @@ const activitiesData = [
       <HeroBannerTours title="Travel Hard, Party Hard, Make Memories Forever"
         description="A Bachelors Tours is more than just a holiday—it’s the first chapter of your life together." />
       <Activites activitiesData={activitiesData} title="Activities We Offer" />
-     <AboutPackage
-  title="Bachelor Tours"
-  description="Bachelor tours are all about fun, freedom, adventure, nightlife, and unforgettable experiences with friends. Whether it’s beach parties, thrilling adventures, road trips, or international nightlife hubs, bachelor tours are designed for groups looking to celebrate friendships and milestones in style. Our bachelor tour packages focus on exciting destinations, vibrant nightlife, adventure activities, and hassle-free travel planning."
-  images={[
-    "https://images.unsplash.com/photo-1615561479656-46419d14de5a?q=80&w=996&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    "https://images.unsplash.com/photo-1539635278303-d4002c07eae3?q=80&w=2670&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    "https://images.unsplash.com/photo-1492462543947-040389c4a66c?q=80&w=2670&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-  ]}
-/>
+      <AboutPackage
+        title="Bachelor Tours"
+        description="Bachelor tours are all about fun, freedom, adventure, nightlife, and unforgettable experiences with friends. Whether it’s beach parties, thrilling adventures, road trips, or international nightlife hubs, bachelor tours are designed for groups looking to celebrate friendships and milestones in style. Our bachelor tour packages focus on exciting destinations, vibrant nightlife, adventure activities, and hassle-free travel planning."
+        images={[
+          "https://images.unsplash.com/photo-1615561479656-46419d14de5a?q=80&w=996&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+          "https://images.unsplash.com/photo-1539635278303-d4002c07eae3?q=80&w=2670&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+          "https://images.unsplash.com/photo-1492462543947-040389c4a66c?q=80&w=2670&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        ]}
+      />
 
 
       <WhatWeOfferComponent images={images} />
@@ -100,6 +267,12 @@ const activitiesData = [
         title="Plan the Ultimate Bachelor Tour"
         description="Gather your gang and get ready for an epic trip. Contact us today to create a customized bachelor tour package tailored to your destination, season, and budget."
         bgImage="https://images.unsplash.com/photo-1627556704243-5f0771d90783?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+      />
+
+      <HoneymoonSeasonSection
+        title="Best Bachelor Tour Destinations"
+        destinationData={DESTINATION_DATA}
+        seasonsConfig={SEASONS_CONFIG}
       />
       <PopularPackages />
       <FaqSection />

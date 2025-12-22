@@ -7,10 +7,12 @@ import { PopularPackages } from '@/components/landingpage/PopularTravel';
 import { WhatWeOfferComponent } from '@/components/landingpage/WhatweOffer';
 import React from 'react'
 
-import { GiCandleLight } from 'react-icons/gi';
+import { GiCandleLight, GiDesert } from 'react-icons/gi';
 import { TbBeach, TbMassage } from 'react-icons/tb';
 import { BsSunrise } from 'react-icons/bs';
-import { MdMonochromePhotos, MdPool } from 'react-icons/md';
+import { MdEventSeat, MdMonochromePhotos, MdPool, MdRestaurant, MdShoppingBag } from 'react-icons/md';
+import HoneymoonSeasonSection from '@/components/global/HoneymoonSeasonSection';
+import { FaCarSide } from 'react-icons/fa';
 
 
 
@@ -27,54 +29,225 @@ import { MdMonochromePhotos, MdPool } from 'react-icons/md';
     // DYNAMIC DATA
 const activitiesData = [
   {
-    icon: <GiCandleLight />,
-    title: "Premium Dining Experiences",
+    icon: <FaCarSide />,
+    title: "Comfortable City Tours with Premium Transport",
     points: [
-      "Curated meals at top-rated restaurants",
-      "Elegant ambience with personalized service",
+      "Luxury coaches or premium SUVs for city sightseeing",
+      "Professional guides ensuring a smooth and enriching experience",
     ],
   },
   {
-    icon: <TbBeach />,
-    title: "Scenic Leisure Time",
+    icon: <GiDesert />,
+    title: "Signature Experience (One Highlight Activity)",
     points: [
-      "Relax at pristine beaches or viewpoints",
-      "Enjoy sunrise & sunset at premium locations",
+      "Premium desert safari with luxury camps",
+      "Luxury cruise or iconic attraction experience",
     ],
   },
   {
     icon: <TbMassage />,
-    title: "Wellness & Spa Sessions",
+    title: "Wellness & Leisure Time",
     points: [
-      "Rejuvenating spa & wellness therapies",
-      "Perfect for relaxation during the holiday",
+      "Access to premium spa and wellness facilities",
+      "Relaxed leisure time at resorts or scenic locations",
     ],
   },
   {
-    icon: <BsSunrise />,
-    title: "Sunset Experiences",
+    icon: <MdEventSeat />,
+    title: "Cultural Show with Reserved Seating",
     points: [
-      "Sunset cruises or viewpoint visits",
-      "Comfortable, peaceful evening moments",
+      "Top-category reserved seats for cultural performances",
+      "Premium access to shows, events, or live entertainment",
     ],
   },
   {
-    icon: <MdPool />,
-    title: "Premium Stays & Pools",
+    icon: <MdShoppingBag />,
+    title: "Curated Shopping Experience",
     points: [
-      "High-end hotels with pool access",
-      "Comfort-focused stays with modern amenities",
+      "Visits to premium malls and designer outlets",
+      "Exploration of artisan boutiques and local luxury markets",
     ],
   },
   {
-    icon: <MdMonochromePhotos />,
-    title: "Travel Photography",
+    icon: <MdRestaurant />,
+    title: "Special Dining Experience",
     points: [
-      "Capture memories at scenic locations",
-      "Beautiful backdrops across the destination",
+      "Themed restaurants and scenic-view dining",
+      "Premium buffet or curated dining experiences",
     ],
   },
 ];
+
+
+
+const SEASONS_CONFIG = [
+  {
+    key: "summer",
+    title: "Summer Premium Holiday Gateways",
+    period: "(March – June)",
+    desc: "Perfect for cool climates and serene surroundings.",
+  },
+  {
+    key: "monsoon",
+    title: "Monsoon Premium Holiday Gateways",
+    period: "(July – September)",
+    desc: "Best for lush landscapes and tranquil stays.",
+  },
+  {
+    key: "winter",
+    title: "Winter Premium Holiday Gateways",
+    period: "(October – February)",
+    desc: "Ideal for beaches, culture, and leisure travel.",
+  },
+];
+
+
+const DESTINATION_DATA = {
+  domestic: {
+    summer: [
+      {
+        title: "Kashmir",
+        image: "https://images.unsplash.com/photo-1614056965546-42fbe24eb36c?q=80&w=1829&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        points: ["Premium houseboats", "Scenic valleys", "Shikara rides"],
+        featured: true,
+      },
+      {
+        title: "Shimla & Manali",
+        image: "https://images.unsplash.com/photo-1641735735000-c9719ac2740b?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        points: ["Boutique hotels", "Mountain retreats"],
+      },
+      {
+        title: "Mussoorie & Ranikhet",
+        image: "https://images.unsplash.com/photo-1655916187603-0f7010146b79?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        points: ["Colonial charm", "Peaceful escapes"],
+      },
+      {
+        title: "Darjeeling",
+        image: "https://images.unsplash.com/photo-1573398643956-2b9e6ade3456?q=80&w=1374&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        points: ["Premium heritage stays", "Himalayan views"],
+      },
+      {
+        title: "Ooty & Coonoor",
+        image: "https://images.unsplash.com/photo-1588416936097-41850ab3d86d",
+        points: ["Tea garden resorts", "Nature retreats"],
+      },
+    ],
+
+    monsoon: [
+      {
+        title: "Munnar",
+        image: "https://images.unsplash.com/photo-1593693397690-362cb9666fc2",
+        points: ["Premium resorts", "Tea plantations"],
+        featured: true,
+      },
+      {
+        title: "Coorg",
+        image: "https://images.unsplash.com/photo-1710612198146-77512950a4b7?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        points: ["Coffee estate stays", "Nature lodges"],
+      },
+      {
+        title: "Udaipur",
+        image: "https://images.unsplash.com/photo-1561312514-1d71b2b7e495?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        points: ["Lakeside premium hotels", "Royal experiences"],
+      },
+      {
+        title: "Wayanad",
+        image: "https://plus.unsplash.com/premium_photo-1661962772428-f17249503156?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        points: ["Eco-premium resorts", "Forest retreats"],
+      },
+    ],
+
+    winter: [
+      {
+        title: "Goa",
+        image: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e",
+        points: ["Premium beach resorts", "Private villas"],
+        featured: true,
+      },
+      {
+        title: "Kerala (Alleppey & Kovalam)",
+        image: "https://images.unsplash.com/photo-1602216056096-3b40cc0c9944",
+        points: ["Premium houseboats", "Wellness retreats"],
+      },
+      {
+        title: "Rajasthan",
+        image: "https://images.unsplash.com/photo-1587295656906-b06dca8f2340?q=80&w=864&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        points: ["Heritage premium hotels", "Cultural experiences"],
+      },
+      {
+        title: "Andaman & Nicobar Islands",
+        image: "https://images.unsplash.com/photo-1589308078059-be1415eab4c3",
+        points: ["Beachfront premium resorts"],
+      },
+      {
+        title: "Ranthambore & Jim Corbett",
+        image: "https://images.unsplash.com/photo-1641405290606-d406173389dc?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        points: ["Premium wildlife lodges", "Safari experiences"],
+      },
+    ],
+  },
+
+  international: {
+    summer: [
+      {
+        title: "Switzerland",
+        image: "https://images.unsplash.com/photo-1500534314209-a25ddb2bd429",
+        points: ["Scenic train journeys", "Alpine towns", "Premium stays"],
+        featured: true,
+      },
+      {
+        title: "Italy",
+        image: "https://images.unsplash.com/photo-1523906834658-6e24ef2386f9",
+        points: ["Historic cities", "Countryside charm"],
+      },
+      {
+        title: "France",
+        image: "https://images.unsplash.com/photo-1502602898657-3e91760cbb34",
+        points: ["Parisian elegance", "Riviera leisure"],
+      },
+      {
+        title: "Maldives",
+        image: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e",
+        points: ["Premium island resorts", "Beach villas"],
+      },
+      {
+        title: "Mauritius",
+        image: "https://images.unsplash.com/photo-1500375592092-40eb2168fd21",
+        points: ["Beach resorts", "Water sports", "Relaxed luxury"],
+      },
+    ],
+
+    winter: [
+      {
+        title: "Dubai, UAE",
+        image: "https://images.unsplash.com/photo-1512453979798-5ea266f8880c",
+        points: ["Premium hotels", "Shopping", "Desert experiences"],
+        featured: true,
+      },
+      {
+        title: "Thailand",
+        image: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e",
+        points: ["Premium beach resorts", "Spa experiences"],
+      },
+      {
+        title: "Sri Lanka",
+        image: "https://images.unsplash.com/photo-1651264042769-ef84e30f4ac8?q=80&w=1932&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        points: ["Boutique hotels", "Scenic rail journeys"],
+      },
+      {
+        title: "Australia",
+        image: "https://images.unsplash.com/photo-1506976785307-8732e854ad03",
+        points: ["Premium city stays", "Natural wonders"],
+      },
+      {
+        title: "New Zealand",
+        image: "https://images.unsplash.com/photo-1502784444187-359ac186c5bb",
+        points: ["Scenic drives", "Premium lodges"],
+      },
+    ],
+  },
+};
+
 
 
     return (
@@ -96,6 +269,11 @@ const activitiesData = [
                 title="Elevate Your Next Holiday"
               description="Discover destinations that offer comfort, style, and memorable experiences. Contact us today to plan your Premium Holiday Gateway, customized to your preferred season, destination, and travel style."
                 bgImage="https://images.unsplash.com/photo-1499750310107-5fef28a66643?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            />
+                <HoneymoonSeasonSection
+              title="Best Premium Holiday Destinations"
+              destinationData={DESTINATION_DATA}
+              seasonsConfig={SEASONS_CONFIG}
             />
             <PopularPackages />
             <FaqSection />

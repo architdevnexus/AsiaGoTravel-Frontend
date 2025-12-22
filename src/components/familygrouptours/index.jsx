@@ -10,6 +10,7 @@ import { GiCandleLight } from 'react-icons/gi';
 import { TbBeach, TbMassage } from 'react-icons/tb';
 import { BsSunrise } from 'react-icons/bs';
 import { MdMonochromePhotos, MdPool } from 'react-icons/md';
+import HoneymoonSeasonSection from '../global/HoneymoonSeasonSection';
 
 
 
@@ -25,53 +26,223 @@ export const FamilyGroupTourComponent = () => {
   const activitiesData = [
     {
       icon: <GiCandleLight /> ,
-      title: "Candlelight Dinner",
+      title: "Resort-Based Fun Day",
       points: [
-        "Enjoy a private, romantic dinner setup",
-        "Often includes soft music & beautiful views",
+        "Group games, pool activities, kids’ clubs, and relaxation time—easy to manage and enjoyable for all ages.",
+        // "Often includes soft music & beautiful views",
       ],
     },
     {
       icon: <TbBeach /> ,
-      title: "Private Beach Time",
+      title: "Light Adventure Experience",
       points: [
-        "Relax together by the sea",
-        "Sunrise & sunset walks on quiet beaches",
+        "Cable car rides, ropeways, nature trails, or easy cycling tours—safe, exciting, and group-friendly.",
+        // "Sunrise & sunset walks on quiet beaches",
       ],
     },
     {
        icon: <TbMassage /> ,
-      title: "Couple Spa & Massage",
+      title: "Interactive Workshops",
       points: [
-        "Rejuvenating full-body couple massages",
-        "Helps you relax after wedding stress",
+        "Cooking classes, pottery, painting, chocolate-making, or craft workshops that families can enjoy together.",
+        // "Helps you relax after wedding stress",
       ],
     },
     {
       icon: <BsSunrise /> ,
-      title: "Sunset Cruise",
+      title: "Farm Visit / Plantation Tour",
       points: [
-        "Peaceful boat ride during sunset",
-        "Perfect for photos & romantic moments",
+        "Visits to farms, tea/coffee plantations, fruit orchards, or countryside experiences with guided explanations and tastings.",
+        // "Perfect for photos & romantic moments",
       ],
     },
     {
       icon: <MdPool /> ,
-      title: "Private Pool",
+      title: "Light & Sound Show",
       points: [
-        "Stay in villas with private pools",
-        "Great for relaxation & romantic photos",
+        "Evening heritage shows, monument light-and-sound programs, or storytelling performances—great for large family groups.",
+        // "Great for relaxation & romantic photos",
       ],
     },
     {
        icon: <MdMonochromePhotos /> ,
-      title: "Romantic Photoshoots",
+      title: "Local Festival or Community Experience",
       points: [
-        "Professional shoots at scenic spots",
-        "Beach, waterfalls, gardens & resorts",
+        "Participation in local fairs, cultural events, or themed evenings (subject to dates)—very memorable for families.",
+        // "Beach, waterfalls, gardens & resorts",
       ],
     },
   ];
+
+
+const DESTINATION_DATA = {
+  domestic: {
+    summer: [
+      {
+        title: "Shimla – Manali – Dharamshala",
+        image: "https://images.unsplash.com/photo-1641735735000-c9719ac2740b?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        points: ["Hill stations", "Ropeways", "Group sightseeing"],
+        featured: true,
+      },
+      {
+        title: "Kashmir",
+        image: "https://images.unsplash.com/photo-1614056965546-42fbe24eb36c?q=80&w=1829&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        points: ["Gardens", "Gondola rides", "Houseboat stays"],
+      },
+      {
+        title: "Nainital – Mussoorie – Ranikhet",
+        image: "https://images.unsplash.com/photo-1593598403786-49a230711943?q=80&w=1932&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        points: ["Lakes", "Viewpoints", "Family attractions"],
+      },
+      {
+        title: "Sikkim (Gangtok & Pelling)",
+        image: "https://images.unsplash.com/photo-1709730705114-74080546e165?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        points: ["Monasteries", "Nature", "Mountain views"],
+      },
+      {
+        title: "Ooty – Kodaikanal – Coonoor",
+        image: "https://images.unsplash.com/photo-1588416936097-41850ab3d86d",
+        points: ["Relaxed hill tours", "Suitable for all age groups"],
+      },
+    ],
+
+    monsoon: [
+      {
+        title: "Kerala (Munnar – Thekkady – Alleppey)",
+        image: "https://images.unsplash.com/photo-1593693397690-362cb9666fc2",
+        points: ["Nature", "Wildlife", "Backwaters"],
+        featured: true,
+      },
+      {
+        title: "Coorg – Wayanad",
+        image: "https://images.unsplash.com/photo-1710612198146-77512950a4b7?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        points: ["Coffee estates", "Waterfalls"],
+      },
+      {
+        title: "Udaipur – Mount Abu",
+        image: "https://images.unsplash.com/photo-1599661046289-e31897846e41",
+        points: ["Lakes", "Palaces", "Hill charm"],
+      },
+      {
+        title: "Lonavala – Mahabaleshwar",
+        image: "https://images.unsplash.com/photo-1600508774634-4e11d34730e2",
+        points: ["Short scenic getaways", "Group travel friendly"],
+      },
+    ],
+
+    winter: [
+      {
+        title: "Rajasthan (Jaipur – Jodhpur – Jaisalmer – Udaipur)",
+        image: "https://images.unsplash.com/photo-1587295656906-b06dca8f2340?q=80&w=864&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        points: ["Forts", "Palaces", "Desert safaris"],
+        featured: true,
+      },
+      {
+        title: "Goa",
+        image: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e",
+        points: ["Beaches", "Group resorts", "Sightseeing"],
+      },
+      {
+        title: "Gujarat (Statue of Unity – Gir – Somnath)",
+        image: "https://images.unsplash.com/photo-1642841819300-20ed449c02a1?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        points: ["Culture", "Wildlife", "Pilgrimage"],
+      },
+      {
+        title: "Kerala (Kochi – Alleppey – Kovalam)",
+        image: "https://images.unsplash.com/photo-1602216056096-3b40cc0c9944",
+        points: ["Relaxing group tours", "Backwaters", "Beaches"],
+      },
+      {
+        title: "Andaman & Nicobar Islands",
+        image: "https://images.unsplash.com/photo-1589308078059-be1415eab4c3",
+        points: ["Safe beaches", "Group activities"],
+      },
+    ],
+  },
+
+  international: {
+    summer: [
+      {
+        title: "Switzerland",
+        image: "https://images.unsplash.com/photo-1500534314209-a25ddb2bd429",
+        points: ["Scenic trains", "Mountains", "Lakes"],
+        featured: true,
+      },
+      {
+        title: "Singapore",
+        image: "https://images.unsplash.com/photo-1508964942454-1a56651d54ac",
+        points: ["Theme parks", "Zoos", "City attractions"],
+      },
+      {
+        title: "Malaysia",
+        image: "https://images.unsplash.com/photo-1596422846543-75c6fc197f07",
+        points: ["Theme parks", "Shopping", "Cultural sites"],
+      },
+      {
+        title: "Mauritius",
+        image: "https://images.unsplash.com/photo-1500375592092-40eb2168fd21",
+        points: ["Beach resorts", "Water sports", "Relaxed group travel"],
+      },
+      {
+        title: "United Kingdom",
+        image: "https://images.unsplash.com/photo-1488747279002-c8523379faaa",
+        points: ["Iconic landmarks", "Museums", "Family attractions"],
+      },
+    ],
+
+    winter: [
+      {
+        title: "Dubai, UAE",
+        image: "https://images.unsplash.com/photo-1512453979798-5ea266f8880c",
+        points: ["Theme parks", "Desert safaris", "Shopping festivals"],
+        featured: true,
+      },
+      {
+        title: "Thailand",
+        image: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e",
+        points: ["Beaches", "Island tours", "Group-friendly resorts"],
+      },
+      {
+        title: "Sri Lanka",
+        image: "https://images.unsplash.com/photo-1651264042769-ef84e30f4ac8?q=80&w=1932&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        points: ["Cultural sites", "Wildlife parks", "Beaches"],
+      },
+      {
+        title: "Hong Kong",
+        image: "https://images.unsplash.com/photo-1506976785307-8732e854ad03",
+        points: ["Disneyland", "City attractions"],
+      },
+      {
+        title: "Vietnam",
+        image: "https://images.unsplash.com/photo-1528127269322-539801943592",
+        points: ["Halong Bay cruises", "Cultural sightseeing"],
+      },
+    ],
+  },
+};
+
+const SEASONS_CONFIG = [
+  {
+    key: "summer",
+    title: "Summer Family Group Tour Destinations",
+    period: "(March – June)",
+    desc: "Ideal for pleasant weather and scenic landscapes.",
+  },
+  {
+    key: "monsoon",
+    title: "Monsoon Family Group Tour Destinations",
+    period: "(July – September)",
+    desc: "Best for greenery, heritage, and leisure travel.",
+  },
+  {
+    key: "winter",
+    title: "Winter Family Group Tour Destinations",
+    period: "(October – February)",
+    desc: "Perfect for culture, beaches, and wildlife experiences.",
+  },
+];
+
+
     return (
         <div>
             <HeroBannerTours title="Multi-Generation & Large Family Tours"
@@ -92,6 +263,13 @@ export const FamilyGroupTourComponent = () => {
                        description="Travel together, explore together, and create unforgettable memories. Contact us today to design a customized family group tour tailored to your group size, travel season, and budget."
                        bgImage="https://plus.unsplash.com/premium_photo-1664367173144-7e854e199524?q=80&w=2340&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
                      />
+
+
+                         <HoneymoonSeasonSection
+              title="Best Family Group Tour Destinations"
+              destinationData={DESTINATION_DATA}
+              seasonsConfig={SEASONS_CONFIG}
+            />
             <PopularPackages />
             <FaqSection />
         </div>

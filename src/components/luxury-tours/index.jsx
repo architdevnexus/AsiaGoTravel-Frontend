@@ -6,10 +6,11 @@ import { WhatWeOfferComponent } from '../landingpage/WhatweOffer';
 import { BookPackage } from '../bachelor-tours/BookPackage';
 import { PopularPackages } from '../landingpage/PopularTravel';
 import { FaqSection } from '../global/Faq';
-import { GiCandleLight, GiDiamondRing, GiSailboat } from 'react-icons/gi';
+import { GiCandleLight, GiCrown, GiDiamondRing, GiSailboat } from 'react-icons/gi';
 import { TbBeach, TbMassage } from 'react-icons/tb';
 import { BsSunrise } from 'react-icons/bs';
-import { MdBeachAccess, MdMonochromePhotos, MdPhotoCamera, MdPhotoCameraBack, MdPool } from 'react-icons/md';
+import { MdAir, MdBeachAccess, MdMonochromePhotos, MdPhotoCamera, MdPhotoCameraBack, MdPool, MdRestaurant } from 'react-icons/md';
+import HoneymoonSeasonSection from '../global/HoneymoonSeasonSection';
  
 
 
@@ -25,53 +26,224 @@ export const LuxuryComponent = () => {
 const activitiesData = [
   {
     icon: <GiDiamondRing />,
-    title: "Fine Dining Experiences",
+    title: "Private Guided City Tour (Luxury Vehicle)",
     points: [
-      "Gourmet meals at luxury restaurants",
-      "Curated menus with premium service",
-    ],
-  },
-  {
-    icon: <MdBeachAccess />,
-    title: "Exclusive Beach Access",
-    points: [
-      "Private beach lounges & cabanas",
-      "Premium seaside relaxation experience",
-    ],
-  },
-  {
-    icon: <TbMassage />,
-    title: "Luxury Spa & Wellness",
-    points: [
-      "World-class spa & therapy sessions",
-      "Relaxation treatments in premium resorts",
+      "Chauffeur-driven cars with flexible timings",
+      "Expert local guides and VIP access to attractions",
     ],
   },
   {
     icon: <GiSailboat />,
-    title: "Private Yacht Cruise",
+    title: "Luxury Yacht / Private Cruise Experience",
     points: [
-      "Luxury yacht with sunset views",
-      "Personalized service & refreshments",
+      "Sunset cruises with champagne evenings",
+      "Gourmet dining experiences onboard",
     ],
   },
   {
-    icon: <MdPool />,
-    title: "Private Pool Villas",
+    icon: <MdRestaurant />,
+    title: "Fine Dining & Michelin-Star Experiences",
     points: [
-      "Stay in high-end private pool villas",
-      "Elite comfort with stunning views",
+      "Curated dining at award-winning restaurants",
+      "Private chef and exclusive tasting experiences",
     ],
   },
   {
-    icon: <MdPhotoCameraBack />,
-    title: "Premium Photoshoots",
+    icon: <TbMassage />,
+    title: "Spa, Wellness & Signature Treatments",
     points: [
-      "Professional luxury travel photography",
-      "Iconic locations & curated backdrops",
+      "Premium spa sessions and wellness retreats",
+      "Hammams, private yoga, and signature therapies",
+    ],
+  },
+  {
+    icon: <GiCrown />,
+    title: "Exclusive Experiences & VIP Access",
+    points: [
+      "Skip-the-line museum and monument entries",
+      "Private palace tours and behind-the-scenes access",
+    ],
+  },
+  {
+    icon: <MdAir />,
+    title: "Scenic Experiences with Comfort",
+    points: [
+      "Hot air balloon rides and helicopter tours",
+      "Luxury train journeys and private island visits",
     ],
   },
 ];
+
+
+
+ const SEASONS_CONFIG = [
+  {
+    key: "summer",
+    title: "Summer Luxury Destinations",
+    period: "(March – June)",
+    desc: "Ideal for cool climates, scenic beauty, and serene retreats.",
+  },
+  {
+    key: "monsoon",
+    title: "Monsoon Luxury Destinations",
+    period: "(July – September)",
+    desc: "Best for nature retreats and wellness escapes.",
+  },
+  {
+    key: "winter",
+    title: "Winter Luxury Destinations",
+    period: "(October – February)",
+    desc: "Perfect for heritage, beaches, and exclusive wildlife experiences.",
+  },
+];
+
+
+const DESTINATION_DATA = {
+  domestic: {
+    summer: [
+      {
+        title: "Kashmir",
+        image: "https://images.unsplash.com/photo-1614056965546-42fbe24eb36c?q=80&w=1829&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        points: ["Luxury houseboats", "Private shikara rides", "Scenic valleys"],
+        featured: true,
+      },
+      {
+        title: "Shimla & Manali",
+        image: "https://images.unsplash.com/photo-1641735735000-c9719ac2740b?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        points: ["Heritage hotels", "Mountain resorts"],
+      },
+      {
+        title: "Mussoorie & Ranikhet",
+        image: "https://images.unsplash.com/photo-1513494620969-1e35db419529?q=80&w=1752&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        points: ["Colonial luxury", "Peaceful surroundings"],
+      },
+      {
+        title: "Darjeeling",
+        image: "https://images.unsplash.com/photo-1698753864905-a447aa362ec9?q=80&w=930&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        points: ["Boutique heritage stays", "Himalayan views"],
+      },
+      {
+        title: "Ooty & Coonoor",
+        image: "https://plus.unsplash.com/premium_photo-1697730310113-e44fced8e86c?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        points: ["Premium hill resorts", "Tea gardens"],
+      },
+    ],
+
+    monsoon: [
+      {
+        title: "Munnar",
+        image: "https://images.unsplash.com/photo-1593693397690-362cb9666fc2",
+        points: ["Luxury spa resorts", "Tea plantations"],
+        featured: true,
+      },
+      {
+        title: "Coorg",
+        image: "https://images.unsplash.com/photo-1710612198146-77512950a4b7?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        points: ["Private villas", "Rainforest retreats"],
+      },
+      {
+        title: "Udaipur",
+        image: "https://images.unsplash.com/photo-1599661046289-e31897846e41",
+        points: ["Royal palace hotels", "Lakeside luxury"],
+      },
+      {
+        title: "Wayanad",
+        image: "https://plus.unsplash.com/premium_photo-1661962772428-f17249503156?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        points: ["Eco-luxury resorts", "Forest experiences"],
+      },
+    ],
+
+    winter: [
+      {
+        title: "Rajasthan",
+        image: "https://images.unsplash.com/photo-1587295656906-b06dca8f2340?q=80&w=864&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        points: ["Palace hotels", "Royal experiences"],
+        featured: true,
+      },
+      {
+        title: "Goa",
+        image: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e",
+        points: ["Luxury beach resorts", "Private villas"],
+      },
+      {
+        title: "Kerala (Alleppey & Kovalam)",
+        image: "https://images.unsplash.com/photo-1602216056096-3b40cc0c9944",
+        points: ["Premium houseboats", "Wellness resorts"],
+      },
+      {
+        title: "Andaman & Nicobar",
+        image: "https://images.unsplash.com/photo-1589308078059-be1415eab4c3",
+        points: ["Exclusive beachfront resorts"],
+      },
+      {
+        title: "Ranthambore & Jim Corbett",
+        image: "https://images.unsplash.com/photo-1641405290606-d406173389dc?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        points: ["Luxury wildlife lodges", "Safari experiences"],
+      },
+    ],
+  },
+
+  international: {
+    summer: [
+      {
+        title: "Switzerland",
+        image: "https://images.unsplash.com/photo-1500534314209-a25ddb2bd429",
+        points: ["Private scenic trains", "Luxury alpine resorts"],
+        featured: true,
+      },
+      {
+        title: "France",
+        image: "https://images.unsplash.com/photo-1502602898657-3e91760cbb34",
+        points: ["Parisian elegance", "Riviera luxury"],
+      },
+      {
+        title: "Italy",
+        image: "https://images.unsplash.com/photo-1523906834658-6e24ef2386f9",
+        points: ["Historic cities", "Luxury shopping", "Side villas"],
+      },
+      {
+        title: "Maldives",
+        image: "https://images.unsplash.com/photo-1552465011-b4e21bf6e79a?q=80&w=2039&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        points: ["Overwater villas", "Private islands"],
+      },
+      {
+        title: "Mauritius",
+        image: "https://images.unsplash.com/photo-1500375592092-40eb2168fd21",
+        points: ["Beachfront resorts", "Golf experiences"],
+      },
+    ],
+
+    winter: [
+      {
+        title: "Dubai, UAE",
+        image: "https://images.unsplash.com/photo-1512453979798-5ea266f8880c",
+        points: ["Ultra-luxury hotels", "Private yachts", "Desert experiences"],
+        featured: true,
+      },
+      {
+        title: "Thailand",
+        image: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e",
+        points: ["Private beach resorts", "Luxury spas"],
+      },
+      {
+        title: "Sri Lanka",
+        image: "https://images.unsplash.com/photo-1651264042769-ef84e30f4ac8?q=80&w=1932&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        points: ["Boutique luxury hotels", "Scenic rail journeys"],
+      },
+      {
+        title: "Australia",
+        image: "https://images.unsplash.com/photo-1506976785307-8732e854ad03",
+        points: ["Luxury city stays", "Great Barrier Reef"],
+      },
+      {
+        title: "New Zealand",
+        image: "https://images.unsplash.com/photo-1502784444187-359ac186c5bb",
+        points: ["Private lodges", "Scenic drives", "Adventure luxury"],
+      },
+    ],
+  },
+};
+
 
 
   return (
@@ -94,6 +266,12 @@ const activitiesData = [
               title="Experience Luxury Like Never Before"
               description="Let us craft a luxury journey that reflects your style and aspirations. Contact us today to design a tailor-made luxury tour with exclusive experiences, premium comfort, and flawless service."
               bgImage="https://images.unsplash.com/photo-1568115286680-d203e08a8be6?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            />
+
+               <HoneymoonSeasonSection
+              title="Best Luxury Destinations"
+              destinationData={DESTINATION_DATA}
+              seasonsConfig={SEASONS_CONFIG}
             />
          <PopularPackages />
         <FaqSection />

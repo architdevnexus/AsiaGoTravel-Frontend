@@ -6,31 +6,45 @@ export const OurBenefitsSection = () => {
   const benefits = [
     {
       icon: <FaAward size={40} />,
-      title: "Award Winning",
-      desc: "We are proud to be an award-winning travel company.",
+      title: "24*7 Customer Service",
+      // desc: "We are proud to be an award-winning travel company.",
       bg: "#D4EDFF",
       iconBg: "#003E68",
     },
     {
       icon: <FaAward size={40} />,
-      title: "Well Allowance",
-      desc: "Our employees receive competitive allowances that support their daily needs.",
+      title: "Premium Tour Package",
+      // desc: "Our employees receive competitive allowances that support their daily needs.",
       bg: "#FFEFD4",
       iconBg: "#AD6800",
     },
     {
       icon: <FaAward size={40} />,
-      title: "Health Insurance",
-      desc: "We offer complete insurance coverage for all team members.",
+      title: "Travel Insurance",
+      // desc: "We offer complete insurance coverage for all team members.",
       bg: "#E8FFD4",
       iconBg: "#2E7D32",
+    },
+        {
+      icon: <FaAward size={40} />,
+      title: "Flight Booking",
+      // desc: "We offer complete insurance coverage for all team members.",
+      bg: "#D4EDFF",
+      iconBg: "#003E68",
+    },
+       {
+      icon: <FaAward size={40} />,
+      title: "Premium Cab booking",
+      // desc: "We offer complete insurance coverage for all team members.",
+     bg: "#FFEFD4",
+      iconBg: "#AD6800",
     },
   ];
 
   return (
     <div className="w-full px-6 md:px-10 py-20 bg-white">
       {/* Top Content */}
-      <div className="max-w-8xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
+      <div className="max-w-9xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
         <div>
           <span className="inline-block bg-[#E7F2FF] text-[#656565] px-4 py-2 rounded-full text-sm font-semibold">
             Our Benefits
@@ -51,7 +65,7 @@ export const OurBenefitsSection = () => {
       </div>
 
       {/* ⭐ Dynamic Benefits Section */}
-      <div className="flex flex-wrap gap-14 my-15 justify-center items-center">
+      <div className="flex flex-wrap gap-10  my-15 justify-center items-center">
         {benefits.map((item, index) => (
           <div
             key={index}
