@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 export const JoinOurTeamForm = () => {
   const [formData, setFormData] = useState({
@@ -12,6 +12,35 @@ export const JoinOurTeamForm = () => {
   const [cvFile, setCvFile] = useState(null);
   const [loading, setLoading] = useState(false);
 
+  // ⭐ Jobs state
+  const [jobs, setJobs] = useState([]);
+  const [jobsLoading, setJobsLoading] = useState(false);
+
+  // ------------------------
+  // FETCH ALL JOBS
+  // ------------------------
+  useEffect(() => {
+    const fetchJobs = async () => {
+      setJobsLoading(true);
+      try {
+        const res = await fetch(
+          "https://backend.asiagotravels.com/api/jobs/all"
+        );
+        const data = await res.json();
+
+        if (res.ok) {
+          setJobs(data.jobs || []);
+        }
+      } catch (error) {
+        console.error("Error fetching jobs:", error);
+      } finally {
+        setJobsLoading(false);
+      }
+    };
+
+    fetchJobs();
+  }, []);
+
   // Handle Text Inputs
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -22,7 +51,9 @@ export const JoinOurTeamForm = () => {
     setCvFile(e.target.files[0]);
   };
 
+  // ------------------------
   // SUBMIT FORM
+  // ------------------------
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -41,15 +72,16 @@ export const JoinOurTeamForm = () => {
       form.append("Message", formData.Message);
       form.append("cvFile", cvFile);
 
-      const res = await fetch("https://backend.asiagotravels.com/api/jointeam", {
-        method: "POST",
-        body: form,
-        credentials: "include", // sends cookies automatically
-        // headers: { Cookie: "refreshToken=xxx" }  // ONLY if needed
-      });
+      const res = await fetch(
+        "https://backend.asiagotravels.com/api/jointeam",
+        {
+          method: "POST",
+          body: form,
+          credentials: "include",
+        }
+      );
 
       const data = await res.json();
-      console.log(data);
 
       if (!res.ok) {
         alert(data.message || "Failed to submit");
@@ -59,7 +91,6 @@ export const JoinOurTeamForm = () => {
 
       alert("Application submitted successfully!");
 
-      // Reset form
       setFormData({
         Name: "",
         Email: "",
@@ -67,18 +98,16 @@ export const JoinOurTeamForm = () => {
         Message: "",
       });
       setCvFile(null);
-      setLoading(false);
-
     } catch (error) {
       console.error("Error:", error);
       alert("An error occurred while submitting.");
+    } finally {
       setLoading(false);
     }
   };
 
   return (
     <div className="w-[340px] h-fit bg-white shadow-xl rounded-3xl overflow-hidden border border-gray-200 my-20">
-      
       {/* Header */}
       <div className="bg-[#0B3C59] text-white text-center py-4 text-lg font-semibold">
         Join Our Team
@@ -86,7 +115,6 @@ export const JoinOurTeamForm = () => {
 
       {/* Form */}
       <form onSubmit={handleSubmit} className="p-6 space-y-2">
-        
         {/* Name */}
         <div>
           <label className="text-sm text-gray-600">Name</label>
@@ -113,17 +141,25 @@ export const JoinOurTeamForm = () => {
           />
         </div>
 
-        {/* Position */}
+        {/* ⭐ POSITION DROPDOWN */}
         <div>
           <label className="text-sm text-gray-600">Position</label>
-          <input
+          <select
             name="Position"
-            type="text"
             value={formData.Position}
             onChange={handleChange}
-            className="mt-1 w-full px-4 py-2 rounded-xl border border-gray-300 focus:ring-2 focus:ring-blue-300 outline-none"
-            placeholder="Position you are applying for"
-          />
+            className="mt-1 w-full px-4 py-2 rounded-xl border border-gray-300 focus:ring-2 focus:ring-blue-300 outline-none bg-white"
+          >
+            <option value="">
+              {jobsLoading ? "Loading positions..." : "Select position"}
+            </option>
+
+            {jobs.map((job) => (
+              <option key={job._id} value={job.title}>
+                {job.title}
+              </option>
+            ))}
+          </select>
         </div>
 
         {/* Upload CV */}
@@ -147,7 +183,7 @@ export const JoinOurTeamForm = () => {
             onChange={handleChange}
             className="mt-1 w-full px-4 py-2 rounded-xl border border-gray-300 focus:ring-2 focus:ring-blue-300 outline-none"
             placeholder="Write your message..."
-          ></textarea>
+          />
         </div>
 
         {/* Button */}

@@ -268,7 +268,7 @@ const DESTINATION_DATA = {
             <BookPackage
                 title="Elevate Your Next Holiday"
               description="Discover destinations that offer comfort, style, and memorable experiences. Contact us today to plan your Premium Holiday Gateway, customized to your preferred season, destination, and travel style."
-                bgImage="https://images.unsplash.com/photo-1499750310107-5fef28a66643?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                bgImage="https://images.unsplash.com/photo-1477346611705-65d1883cee1e?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8ZGFyayUyMGxhbmRzY2FwZXxlbnwwfHwwfHx8MA%3D%3D"
             />
                 <HoneymoonSeasonSection
               title="Best Premium Holiday Destinations"

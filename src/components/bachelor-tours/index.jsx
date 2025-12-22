@@ -266,7 +266,7 @@ export const BachelorToursComponent = () => {
       <BookPackage
         title="Plan the Ultimate Bachelor Tour"
         description="Gather your gang and get ready for an epic trip. Contact us today to create a customized bachelor tour package tailored to your destination, season, and budget."
-        bgImage="https://images.unsplash.com/photo-1627556704243-5f0771d90783?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+        bgImage="/img/bachelour.jpg"
       />
 
       <HoneymoonSeasonSection
