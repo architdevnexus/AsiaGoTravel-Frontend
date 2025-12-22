@@ -7,7 +7,7 @@ export const WhoWeAre = () => {
   return (
     <section>
       <h2 className="flex justify-center items-center text-center text-2xl font-bold">
-        Who We Are ?
+        Who We Are?
       </h2>
 
       <div className="flex justify-center items-center">
@@ -40,7 +40,7 @@ export const WhoWeAre = () => {
               Professional <br /> & <br /> Trustworthy
             </span>
             <p className="text-[#EAEAEA] text-[12px] leading-6 pt-10">
-       Our team of travel experts works tirelessly to curate handpicked destinations, exclusive deals, and personalized itineraries.
+              Our team of travel experts works tirelessly to curate handpicked destinations, exclusive deals, and personalized itineraries.
             </p>
           </motion.div>
 
@@ -65,7 +65,7 @@ export const WhoWeAre = () => {
               Friendly  <br /> & <br /> Modern
             </span>
             <p className="text-[#EAEAEA] text-[12px] leading-6 pt-10">
-           With transparent pricing, 24/7 support, and curated experiences, we turn your travel dreams into unforgettable stories.
+              With transparent pricing, 24/7 support, and curated experiences, we turn your travel dreams into unforgettable stories.
             </p>
           </motion.div>
 
@@ -90,7 +90,7 @@ export const WhoWeAre = () => {
               Premium <br /> & <br /> Elegant
             </span>
             <p className="text-[#EAEAEA] text-[12px] leading-6 pt-10">
-            With a focus on luxury, comfort, and personalization, we curate premium travel experiences across the world’s most stunning destinations.
+              With a focus on luxury, comfort, and personalization, we curate premium travel experiences across the world’s most stunning destinations.
             </p>
           </motion.div>
 

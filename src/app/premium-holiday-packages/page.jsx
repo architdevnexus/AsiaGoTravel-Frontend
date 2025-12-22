@@ -254,7 +254,7 @@ const DESTINATION_DATA = {
         <div>
             <HeroBannerTours title="Refined Travel Experiences with Comfort, Style & Exclusivity"
                 description="Premium holidays blend elegance with exceptional value. Enjoy curated comfort, handpicked hotels, and tailored experiences—perfect for refined leisure travelers, couples, and families." />
-            <Activites activitiesData={activitiesData} title="Fun Activities to Do with Premium Holiday Packages" />
+            <Activites activitiesData={activitiesData} title="Activities We Offer Premium Holiday Packages" />
               <AboutPackage
                     title="Premium holidays"
                     description="Premium Holiday Gateways are curated for travelers who seek a perfect balance of comfort, elegance, and exclusive experiences—without being overly extravagant. These holidays feature handpicked premium hotels and resorts, personalized services, scenic destinations, and thoughtfully planned itineraries. Ideal for couples, families, and refined leisure travelers, premium holidays offer elevated travel experiences with excellent value and sophistication."

@@ -247,7 +247,7 @@ const SEASONS_CONFIG = [
         <div>
             <HeroBannerTours title="Multi-Generation & Large Family Tours"
                 description="Perfect for large families and multi-generational groups. We handle the logistics, safety, and planning so you can focus on making memories together with guided tours and group-friendly accommodations." />
-            <Activites activitiesData={activitiesData} title="Fun Activities to Do with Family" />
+            <Activites activitiesData={activitiesData} title="Activities We Offer  Family Group Tours" />
                 <AboutPackage
               title="Family Group Holidays"
               description="Family Group Tours are specially designed for large families, multi-generation travelers, and groups looking to explore destinations together in a comfortable and well-organized manner. These tours focus on convenience, safety, group-friendly hotels, guided sightseeing, and seamless logistics. With planned itineraries, shared experiences, and dedicated support, family group tours make traveling together enjoyable, memorable, and stress-free."

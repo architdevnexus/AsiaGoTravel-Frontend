@@ -250,7 +250,7 @@ const DESTINATION_DATA = {
     <div>
         <HeroBannerTours  title="Indulge in Exclusive Experiences & World-Class Comfort"
   description="Curated luxury for the connoisseur. Our tours deliver exclusivity through bespoke journeys, private transfers, and impeccable stays. Discover a world of elegance, detail, and unparalleled comfort." />
-        <Activites activitiesData={activitiesData}  title="Activities We Offer" />
+        <Activites activitiesData={activitiesData}  title="Activities We Offer Luxury Tours" />
          <AboutPackage
          title="Luxury Tours"
          description="Luxury tours are designed for discerning travelers who seek the finest experiences, personalized services, and unparalleled comfort. From opulent hotels and private transfers to bespoke itineraries and curated experiences, luxury travel is about exclusivity, elegance, and attention to detail. Whether it’s a royal heritage stay, a private island escape, or a tailor-made international journey, our luxury tours redefine travel in style."

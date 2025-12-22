@@ -249,7 +249,7 @@ const SEASONS_CONFIG = [
     <div>
         <HeroBannerTours  title="Travel Together, Celebrate Together"
   description="We believe the greatest souvenir is a strengthened bond. Let us handle the details so you can focus on what truly matters." />
-        <Activites activitiesData={activitiesData} title="Activities We Offer"   />
+        <Activites activitiesData={activitiesData} title="Activities We Offer Family Tour"   />
      <AboutPackage
   title="Family Holidays"
   description="Family holidays are the perfect way to bond, relax, and create lifelong memories together. Designed to suit all age groups, our family holiday packages combine comfort, fun, sightseeing, and leisure. From kid-friendly attractions and scenic destinations to relaxing resorts and cultural experiences, we ensure a stress-free and enjoyable vacation for every member of the family"

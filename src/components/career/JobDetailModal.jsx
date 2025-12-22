@@ -70,20 +70,20 @@ export const JobDetailModal = ({ job, onClose }) => {
 
         </div>
 
-        <button
-          onClick={() => {
-            onClose();
+          {/* <button
+            onClick={() => {
+              onClose();
 
-            setTimeout(() => {
-              document
-                .getElementById("apply-form")
-                ?.scrollIntoView({ behavior: "smooth" });
-            }, 100);
-          }}
-          className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg w-full"
-        >
-          Apply Now
-        </button>
+              setTimeout(() => {
+                document
+                  .getElementById("apply-form")
+                  ?.scrollIntoView({ behavior: "smooth" });
+              }, 100);
+            }}
+            className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg w-full"
+          >
+            Apply Now
+          </button> */}
 
 
       </div>

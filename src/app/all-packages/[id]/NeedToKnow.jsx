@@ -47,7 +47,7 @@ const NeedToKnow = () => {
       </div>
 
       {/* Helicopter Terms */}
-      <div>
+      {/* <div>
         <h3 className="font-semibold text-lg mb-2">
           Helicopter Tour Terms & Conditions
         </h3>
@@ -63,10 +63,10 @@ const NeedToKnow = () => {
           <li>Hotels are subject to change without prior notice.</li>
           <li>Darshans provided are priority darshans, not VIP darshans.</li>
         </ul>
-      </div>
+      </div> */}
 
       {/* Baggage & Weight */}
-      <div>
+      {/* <div>
         <h3 className="font-semibold text-lg mb-2">Baggage & Weight Policy</h3>
         <ul className="list-disc pl-5 space-y-2 text-sm text-gray-700">
           <li>Only one bag of maximum 5 kg per passenger is allowed.</li>
@@ -88,10 +88,10 @@ const NeedToKnow = () => {
           </li>
           <li>Helicopter seating capacity: 6 passengers + 1 crew.</li>
         </ul>
-      </div>
+      </div> */}
 
       {/* Weather & Force Majeure */}
-      <div>
+      {/* <div>
         <h3 className="font-semibold text-lg mb-2">
           Weather & Force Majeure
         </h3>
@@ -106,10 +106,10 @@ const NeedToKnow = () => {
             Passengers should be prepared for delays and itinerary adjustments.
           </li>
         </ul>
-      </div>
+      </div> */}
 
       {/* Itinerary Changes */}
-      <div>
+      {/* <div>
         <h3 className="font-semibold text-lg mb-2">Itinerary Adjustments</h3>
         <ul className="list-disc pl-5 space-y-2 text-sm text-gray-700">
           <li>
@@ -128,10 +128,10 @@ const NeedToKnow = () => {
             accommodation, meals, transport, and ₹15,000 flight planning charges.
           </li>
         </ul>
-      </div>
+      </div> */}
 
       {/* Rescheduling */}
-      <div>
+      {/* <div>
         <h3 className="font-semibold text-lg mb-2">Rescheduling Policy</h3>
         <ul className="list-disc pl-5 space-y-2 text-sm text-gray-700">
           <li>Rescheduling is allowed only if applied 15 days before journey.</li>
@@ -143,19 +143,19 @@ const NeedToKnow = () => {
             In some cases, rescheduling requires a minimum of 20 days notice.
           </li>
         </ul>
-      </div>
+      </div> */}
 
       {/* Children Policy */}
-      <div>
+      {/* <div>
         <h3 className="font-semibold text-lg mb-2">Children Policy</h3>
         <ul className="list-disc pl-5 space-y-2 text-sm text-gray-700">
           <li>Children above 2 years are charged full ticket.</li>
           <li>Infants below 2 years are charged ₹20,000 per infant.</li>
         </ul>
-      </div>
+      </div> */}
 
       {/* Important Notes */}
-      <div>
+      {/* <div>
         <h3 className="font-semibold text-lg mb-2">Important Notes</h3>
         <ul className="list-disc pl-5 space-y-2 text-sm text-gray-700">
           <li>Travel voucher is valid only after full payment is received.</li>
@@ -166,10 +166,10 @@ const NeedToKnow = () => {
           <li>This is a fixed departure daily helicopter tour.</li>
           <li>All aviation company terms & conditions apply.</li>
         </ul>
-      </div>
+      </div> */}
 
       {/* Terms & Conditions */}
-<div>
+{/* <div>
   <h3 className="font-semibold text-lg mb-2">Terms & Conditions</h3>
 
   <p className="text-sm text-gray-700 mb-3">
@@ -238,7 +238,7 @@ const NeedToKnow = () => {
     </li>
     <li>Please carry international chargers for safety.</li>
   </ul>
-</div>
+</div> */}
 
     </section>
   );

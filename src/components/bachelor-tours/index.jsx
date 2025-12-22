@@ -249,7 +249,7 @@ export const BachelorToursComponent = () => {
     <div>
       <HeroBannerTours title="Travel Hard, Party Hard, Make Memories Forever"
         description="A Bachelors Tours is more than just a holiday—it’s the first chapter of your life together." />
-      <Activites activitiesData={activitiesData} title="Activities We Offer" />
+      <Activites activitiesData={activitiesData} title="Activities We Offer Bachelour Tours" />
       <AboutPackage
         title="Bachelor Tours"
         description="Bachelor tours are all about fun, freedom, adventure, nightlife, and unforgettable experiences with friends. Whether it’s beach parties, thrilling adventures, road trips, or international nightlife hubs, bachelor tours are designed for groups looking to celebrate friendships and milestones in style. Our bachelor tour packages focus on exciting destinations, vibrant nightlife, adventure activities, and hassle-free travel planning."

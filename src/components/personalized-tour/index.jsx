@@ -253,7 +253,7 @@ const SEASONS_CONFIG = [
     <div>
       <HeroBannerTours title="Travel Designed Your Way"
         description="Your Dream Trip, Your Way. Personalized Tours offer fully customizable travel. From destinations to daily pace, we tailor every detail for your perfect adventure, celebration, or cultural getaway." />
-      <Activites activitiesData={activitiesData} title="Fun Activities to Do with Personalized Tours" />
+      <Activites activitiesData={activitiesData} title="Activities We Offer Personalized Tours" />
       <AboutPackage
         title="Personalized holidays"
         description="Personalized Tours are tailor-made travel experiences crafted to match your interests, pace, budget, and travel style. Unlike fixed itineraries, these tours are fully customizable—allowing you to choose destinations, hotels, activities, and travel dates that suit you best. Whether it’s a relaxed holiday, an adventure trip, a cultural exploration, or a special celebration, personalized tours offer flexibility, comfort, and a truly unique journey."

@@ -4,21 +4,23 @@ import React from "react";
 export const Activites = ({ title, activitiesData }) => {
   return (
     <div className="relative w-full">
-      {/* Background Image */}
-      <Image
-        src="/img/ActivityBg.png"
-        width={1920}
-        height={1080}
-        alt="activities background"
-        className="
-          w-full 
-          h-[855px]     /* Mobile first - smallest height */
-          sm:h-[980px]  /* Small tablets */
-          md:h-[800px]  /* Tablets */
-          lg:h-[650px]  /* Desktop - your original height */
-          object-cover
-        "
-      />
+      {/* Background Image - Made responsive */}
+      <div className="w-full h-auto min-h-[1055px] sm:min-h-[980px] md:min-h-[800px] lg:min-h-[650px]">
+        <Image
+          src="/img/ActivityBg.png"
+          width={1920}
+          height={1080}
+          alt="activities background"
+          className="
+            w-full 
+            h-[955px]     /* Mobile first - smallest height */
+            sm:h-[980px]  /* Small tablets */
+            md:h-[800px]  /* Tablets */
+            lg:h-[650px]  /* Desktop - your original height */
+            object-cover
+          "
+        />
+      </div>
 
       <div className="absolute inset-0 flex justify-center items-center px-4 sm:px-6">
         <div
@@ -34,6 +36,8 @@ export const Activites = ({ title, activitiesData }) => {
             lg:p-10
             xl:p-12         /* Your original desktop padding */
             relative
+            overflow-y-auto
+            max-h-[100vh]    /* Prevents overflow */
           "
         >
           <h2 className="text-center text-xl sm:text-2xl font-semibold text-[#1B4965]">
@@ -55,7 +59,7 @@ export const Activites = ({ title, activitiesData }) => {
             rounded-full
           "></div>
 
-          {/* Responsive Grid */}
+          {/* Responsive Grid - Added min-h-0 and auto-rows-min */}
           <div
             className="
               grid 
@@ -68,12 +72,17 @@ export const Activites = ({ title, activitiesData }) => {
               md:gap-10
               lg:gap-12           /* Your original gap */
               justify-center 
-              items-center 
+              items-start         /* Changed from center to start */
               text-center
+              auto-rows-min       /* Allows rows to grow with content */
+              min-h-0            /* Prevents overflow */
             "
           >
             {activitiesData.map((item, index) => (
-              <div key={index}>
+              <div 
+                key={index}
+                className="flex flex-col h-full"  /* Added flex column and full height */
+              >
                 {/* ICON */}
                 {typeof item.icon === "string" ? (
                   <div className="
@@ -87,6 +96,7 @@ export const Activites = ({ title, activitiesData }) => {
                     items-center 
                     mx-auto 
                     overflow-hidden
+                    flex-shrink-0  /* Prevents icon from shrinking */
                   ">
                     <Image
                       src={item.icon}
@@ -112,6 +122,7 @@ export const Activites = ({ title, activitiesData }) => {
                     justify-center 
                     items-center 
                     mx-auto
+                    flex-shrink-0  /* Prevents icon from shrinking */
                   ">
                     {item.icon}
                   </div>
@@ -130,13 +141,15 @@ export const Activites = ({ title, activitiesData }) => {
                   {item.title}
                 </h3>
 
-                {/* POINTS */}
+                {/* POINTS - Added flex-grow for proper spacing */}
                 <ul className="
                   mt-2 
                   text-gray-600 
                   text-xs        /* Smaller on mobile */
                   sm:text-sm     /* Desktop - your original size */
                   leading-relaxed
+                  flex-grow      /* Takes available space */
+                  space-y-1      /* Consistent spacing between points */
                 ">
                   {item.points.map((point, i) => (
                     <li key={i}>• {point}</li>
@@ -149,4 +162,4 @@ export const Activites = ({ title, activitiesData }) => {
       </div>
     </div>
   );
-};
+};  
