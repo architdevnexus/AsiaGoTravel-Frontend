@@ -13,14 +13,14 @@ export const BlogsComponent = ({ slug }) => {
 
   const fetchBlogs = async () => {
     const res = await getAllBlogs();
-    console.log("All blogs:", res);
-    setBlogs(res?.blogs || []);   // <--- CORRECT DATA
+    setBlogs(res?.blogs || []);
   };
 
   return (
     <section className="bg-[#f7fafc] py-10">
       <div className="max-w-7xl mx-auto px-4 flex flex-col lg:flex-row gap-10">
 
+        {/* LEFT BLOG LIST */}
         <div className="flex-1">
           <BlogsCard
             grid="grid-cols-1 md:grid-cols-2 gap-9"
@@ -29,8 +29,11 @@ export const BlogsComponent = ({ slug }) => {
           />
         </div>
 
+        {/* RIGHT STICKY TRENDING BLOG */}
         <div className="w-full lg:w-[320px]">
-          <TrendingPosts    blogs={blogs} />
+          <div className="lg:sticky lg:top-32">
+            <TrendingPosts blogs={blogs} />
+          </div>
         </div>
 
       </div>
