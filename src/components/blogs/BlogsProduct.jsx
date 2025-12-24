@@ -36,7 +36,7 @@ export const BlogContent = () => {
     <div>
       <div className="relative h-[450px] w-full">
         <Image
-          src={blog.blog.featureImage}
+          src={blog?.blog?.featureImage || ""}
           alt="Blog banner"
           fill
           className="object-cover"

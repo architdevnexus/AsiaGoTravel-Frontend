@@ -41,7 +41,7 @@ const BlogSlugPage = () => {
         </div>
 
         {/* Sticky Trending Sidebar */}
-        <div className="w-full lg:w-[520px] sticky top-0 h-fit">
+        <div className="w-full lg:w-[520px] sticky top-22 h-fit">
           <TrendingPosts blogs={blogs} />
         </div>
       </div>

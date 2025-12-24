@@ -23,14 +23,14 @@ export const BlogsComponent = ({ slug }) => {
         {/* LEFT BLOG LIST */}
         <div className="flex-1">
           <BlogsCard
-            grid="grid-cols-1 md:grid-cols-2 gap-9"
+            grid="grid-cols-1 md:grid-cols-2 gap-12"
             blogs={blogs}
             slug={slug}
           />
         </div>
 
         {/* RIGHT STICKY TRENDING BLOG */}
-        <div className="w-full lg:w-[320px]">
+        <div className="w-full lg:w-[380px]">
           <div className="lg:sticky lg:top-32">
             <TrendingPosts blogs={blogs} />
           </div>
