@@ -276,7 +276,46 @@ const DESTINATION_DATA = {
               seasonsConfig={SEASONS_CONFIG}
             />
             <PopularPackages />
-            <FaqSection />
+       <FaqSection
+  title="Premium Holidays – Frequently Asked Questions"
+  subtitle="Everything you need to know about enjoying comfort-driven, thoughtfully curated holidays"
+  defaultOpen="item-0"
+  faqs={[
+    {
+      id: 1,
+      question: "What are premium holidays?",
+      answer: [
+        "Premium holidays are designed to offer the perfect balance of comfort, quality services, and carefully curated travel experiences.",
+        "Asiago Travels creates premium holiday packages featuring handpicked hotels, seamless travel arrangements, and memorable experiences for discerning travelers."
+      ],
+    },
+    {
+      id: 2,
+      question: "Can Asiago Travels customize premium holiday packages?",
+      answer: [
+        "Yes, Asiago Travels specializes in tailor-made premium holiday packages.",
+        "Each package is customized based on your travel preferences, destination choices, travel pace, and budget to ensure a personalized experience."
+      ],
+    },
+    {
+      id: 3,
+      question: "Which destinations are best for premium holidays?",
+      answer: [
+        "Popular destinations for premium holidays include Europe, the Maldives, Dubai, Bali, Japan, and select luxury resorts worldwide.",
+        "Asiago Travels helps you select the ideal destination based on the season, comfort level, and experiences you wish to enjoy."
+      ],
+    },
+    {
+      id: 4,
+      question: "What services are included in Asiago Travels’ premium holidays?",
+      answer: [
+        "Asiago Travels provides complete end-to-end travel solutions for premium holidays.",
+        "Services include premium hotels, comfortable flight options, private or semi-private transfers, curated sightseeing experiences, visa assistance, and travel insurance for a smooth and stress-free vacation."
+      ],
+    },
+  ]}
+/>
+
         </div>
     )
 }

@@ -276,7 +276,46 @@ const SEASONS_CONFIG = [
               seasonsConfig={SEASONS_CONFIG}
             />
       <PopularPackages />
-      <FaqSection />
+      <FaqSection
+  title="Personalized Holidays – Frequently Asked Questions"
+  subtitle="Everything you need to know about creating a holiday designed just for you"
+  defaultOpen="item-0"
+  faqs={[
+    {
+      id: 1,
+      question: "What are personalized holidays?",
+      answer: [
+        "Personalized holidays are tailor-made travel experiences designed entirely around your interests, travel pace, and personal preferences.",
+        "Asiago Travels crafts customized itineraries to ensure every holiday truly reflects your unique travel style and expectations."
+      ],
+    },
+    {
+      id: 2,
+      question: "How does Asiago Travels customize personalized holiday packages?",
+      answer: [
+        "Asiago Travels carefully plans each personalized holiday by understanding your budget, travel dates, preferred destinations, and accommodation choices.",
+        "We also incorporate special experiences, activities, and themes you wish to include for a truly bespoke journey."
+      ],
+    },
+    {
+      id: 3,
+      question: "Are personalized holidays suitable for families, couples, or solo travelers?",
+      answer: [
+        "Yes, personalized holidays are suitable for all types of travelers.",
+        "Asiago Travels designs customized travel experiences for families, couples, groups of friends, and solo travelers, ensuring comfort and enjoyment for everyone."
+      ],
+    },
+    {
+      id: 4,
+      question: "What services are included in Asiago Travels’ personalized holidays?",
+      answer: [
+        "Asiago Travels provides complete end-to-end travel assistance for personalized holidays.",
+        "Our services include flights, hotels, airport and local transfers, sightseeing arrangements, visa assistance, travel insurance, and on-trip support for a truly hassle-free holiday experience."
+      ],
+    },
+  ]}
+/>
+
     </div>
   )
 }

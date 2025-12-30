@@ -274,7 +274,46 @@ const DESTINATION_DATA = {
               seasonsConfig={SEASONS_CONFIG}
             />
          <PopularPackages />
-        <FaqSection />
+       <FaqSection
+  title="Luxury Tours – Frequently Asked Questions"
+  subtitle="Everything you need to know about planning a world-class luxury travel experience"
+  defaultOpen="item-0"
+  faqs={[
+    {
+      id: 1,
+      question: "What makes a tour a luxury tour?",
+      answer: [
+        "Luxury tours are defined by exclusive experiences, premium accommodations, private transfers, and personalized services.",
+        "Asiago Travels curates luxury tours that focus on comfort, elegance, privacy, and unforgettable experiences tailored to your lifestyle."
+      ],
+    },
+    {
+      id: 2,
+      question: "Can Asiago Travels customize luxury tour packages?",
+      answer: [
+        "Yes, Asiago Travels specializes in tailor-made luxury tour packages.",
+        "Each itinerary is thoughtfully designed based on your preferences, travel style, pace, and budget to deliver a truly personalized journey."
+      ],
+    },
+    {
+      id: 3,
+      question: "What destinations are ideal for luxury tours?",
+      answer: [
+        "Some of the most popular luxury destinations include Europe, the Maldives, Dubai, Switzerland, Japan, and exclusive island getaways.",
+        "Asiago Travels helps you choose the perfect destination based on season, experiences desired, and your travel preferences."
+      ],
+    },
+    {
+      id: 4,
+      question: "What services are included in Asiago Travels’ luxury tours?",
+      answer: [
+        "Asiago Travels provides comprehensive end-to-end luxury travel services.",
+        "This includes business or first-class flights, premium hotels and resorts, private transfers, exclusive sightseeing experiences, visa assistance, and travel insurance for a seamless and stress-free journey."
+      ],
+    },
+  ]}
+/>
+
     </div>
   )
 }

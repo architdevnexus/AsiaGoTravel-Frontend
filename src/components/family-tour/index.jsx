@@ -273,7 +273,46 @@ const SEASONS_CONFIG = [
                         seasonsConfig={SEASONS_CONFIG}
                       />
          <PopularPackages />
-        <FaqSection />
+   <FaqSection
+  title="Family Holiday – Frequently Asked Questions"
+  subtitle="Everything you need to know to plan a memorable family vacation"
+  defaultOpen="item-0"
+  faqs={[
+    {
+      id: 1,
+      question: "What destinations are best for family holidays?",
+      answer: [
+        "The best family holiday destinations depend on your interests such as relaxation, adventure, theme parks, or cultural experiences.",
+        "Asiago Travels recommends destinations that offer safe environments, kid-friendly attractions, and comfortable accommodations suitable for all age groups."
+      ],
+    },
+    {
+      id: 2,
+      question: "Can Asiago Travels customize family holiday packages?",
+      answer: [
+        "Yes, Asiago Travels offers fully customized family holiday packages.",
+        "Packages are designed based on your budget, travel dates, family size, and personal preferences to ensure a smooth and enjoyable trip for everyone."
+      ],
+    },
+    {
+      id: 3,
+      question: "Are family holiday packages suitable for children and senior citizens?",
+      answer: [
+        "Absolutely. Asiago Travels carefully plans family holidays keeping all age groups in mind.",
+        "This includes child-friendly activities, relaxed travel schedules, and senior-friendly accommodations and transportation."
+      ],
+    },
+    {
+      id: 4,
+      question: "Does Asiago Travels provide complete travel assistance for family holidays?",
+      answer: [
+        "Yes, Asiago Travels provides end-to-end travel assistance for family vacations.",
+        "Our services include flights, hotels, airport transfers, sightseeing tours, visa support, and travel insurance for a completely stress-free experience."
+      ],
+    },
+  ]}
+/>
+
     </div>
   )
 }

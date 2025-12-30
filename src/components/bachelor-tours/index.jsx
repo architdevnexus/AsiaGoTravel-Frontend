@@ -275,7 +275,46 @@ export const BachelorToursComponent = () => {
         seasonsConfig={SEASONS_CONFIG}
       />
       <PopularPackages />
-      <FaqSection />
+<FaqSection
+  title="Bachelor Tours – Frequently Asked Questions"
+  subtitle="Everything you need to know to plan the ultimate bachelor getaway"
+  defaultOpen="item-0"
+  faqs={[
+    {
+      id: 1,
+      question: "What are bachelor tours?",
+      answer: [
+        "Bachelor tours are specially designed trips for groups of friends looking to celebrate, explore, and create unforgettable memories together.",
+        "Asiago Travels curates exciting bachelor tour experiences that perfectly blend nightlife, adventure, relaxation, and unique party moments."
+      ],
+    },
+    {
+      id: 2,
+      question: "Can Asiago Travels customize bachelor tour packages?",
+      answer: [
+        "Yes, Asiago Travels offers fully customized bachelor tour packages.",
+        "Packages are tailored based on your destination preferences, group size, budget, and preferred travel style."
+      ],
+    },
+    {
+      id: 3,
+      question: "What destinations are popular for bachelor tours?",
+      answer: [
+        "Popular bachelor tour destinations include Goa, Thailand, Dubai, Bali, and various European cities.",
+        "Asiago Travels helps you select the best destination based on the season, budget, nightlife options, and group interests."
+      ],
+    },
+    {
+      id: 4,
+      question: "What services are included in Asiago Travels’ bachelor tours?",
+      answer: [
+        "Asiago Travels provides complete travel arrangements to ensure a stress-free bachelor trip.",
+        "Services include flights, hotels, airport and local transfers, sightseeing, curated party experiences, visa assistance, and travel insurance."
+      ],
+    },
+  ]}
+/>
+
     </div>
   )
 }

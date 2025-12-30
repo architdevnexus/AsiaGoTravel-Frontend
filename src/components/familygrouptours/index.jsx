@@ -271,7 +271,46 @@ const SEASONS_CONFIG = [
               seasonsConfig={SEASONS_CONFIG}
             />
             <PopularPackages />
-            <FaqSection />
+            <FaqSection
+  title="Family Group Tours – Frequently Asked Questions"
+  subtitle="Everything you need to know about traveling together with comfort and ease"
+  defaultOpen="item-0"
+  faqs={[
+    {
+      id: 1,
+      question: "What is a family group tour?",
+      answer: [
+        "A family group tour is designed for families traveling together, including relatives across multiple generations.",
+        "Asiago Travels carefully plans group tours that maintain the perfect balance between sightseeing, comfort, and leisure for travelers of all age groups."
+      ],
+    },
+    {
+      id: 2,
+      question: "Can Asiago Travels customize family group tours?",
+      answer: [
+        "Yes, Asiago Travels specializes in fully customized family group tours.",
+        "Tours are tailored based on your group size, destination, budget, and travel preferences to ensure a seamless and enjoyable experience for everyone."
+      ],
+    },
+    {
+      id: 3,
+      question: "Are family group tours suitable for children and senior citizens?",
+      answer: [
+        "Absolutely. Asiago Travels designs family group tours keeping the needs of all age groups in mind.",
+        "This includes relaxed itineraries, comfortable transportation, child-friendly attractions, and senior-friendly arrangements."
+      ],
+    },
+    {
+      id: 4,
+      question: "What services are included in Asiago Travels’ family group tours?",
+      answer: [
+        "Asiago Travels offers complete end-to-end travel solutions for family group tours.",
+        "Services include flights, hotels, airport and local transfers, sightseeing tours, tour managers (if required), visa assistance, and travel insurance for a hassle-free journey."
+      ],
+    },
+  ]}
+/>
+
         </div>
     )
 }

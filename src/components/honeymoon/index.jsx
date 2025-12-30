@@ -271,7 +271,47 @@ const DESTINATION_DATA = {
   seasonsConfig={SEASONS_CONFIG}
 />;
       <PopularPackages />
-      <FaqSection />
+ <FaqSection
+  title="Honeymoon Trips - Frequently Asked Questions"
+  subtitle="Everything you need to know to plan a perfect romantic getaway"
+  defaultOpen="item-0"
+  faqs={[
+    {
+      id: 1,
+      question: "What is the best time to plan a honeymoon trip?",
+      answer: [
+        "The ideal time depends on your chosen destination and weather preferences.",
+        "Asiago Travels recommends booking your honeymoon 4–6 months in advance to enjoy the best deals and exclusive romantic inclusions."
+      ],
+    },
+    {
+      id: 2,
+      question: "Can honeymoon packages be customized by Asiago Travels?",
+      answer: [
+        "Yes, Asiago Travels specializes in fully customized honeymoon packages.",
+        "Packages are tailored according to your budget, travel dates, preferred destinations, and special romantic experiences."
+      ],
+    },
+    {
+      id: 3,
+      question: "Do Asiago Travels honeymoon packages include romantic arrangements?",
+      answer: [
+        "Yes, most honeymoon packages include special romantic benefits.",
+        "These may include honeymoon room décor, welcome drinks, candlelight dinners, surprise cakes, or couple spa sessions, subject to hotel policies."
+      ],
+    },
+    {
+      id: 4,
+      question: "Does Asiago Travels assist with visas and travel documentation?",
+      answer: [
+        "Absolutely. Asiago Travels provides complete assistance with visas and travel documentation.",
+        "This includes visa support, travel insurance, flight tickets, hotel vouchers, and other essential paperwork for a hassle-free honeymoon."
+      ],
+    },
+  ]}
+/>
+
+
     </div>
   )
 }
