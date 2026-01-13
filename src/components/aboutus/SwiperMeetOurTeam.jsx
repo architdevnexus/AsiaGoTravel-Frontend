@@ -7,22 +7,22 @@ import { IoIosArrowRoundBack, IoIosArrowRoundForward } from "react-icons/io";
 export const TeamSection = () => {
   const teamMembers = [
     {
-      name: "Mr. Vansh Kaushik",
+      name: "Mr. Dhruv Dwivedi",
       role: "Chief Executing Officer (CEO)",
       img: "/img/man1.png",
     },
     {
-      name: "Ms. Riya Sharma",
+      name: "NA",
       role: "Marketing Head",
       img: "/img/man1.png",
     },
     {
-      name: "Mr. Aditya Singh",
+      name: "NA",
       role: "Lead Developer",
       img: "/img/man3.png",
     },
     {
-      name: "Ms. Ananya Verma",
+      name: "NA",
       role: "Operations Manager",
       img: "/img/man1.png",
     },
