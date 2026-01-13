@@ -75,168 +75,168 @@ export const HoneyMoonComponent = () => {
   ];
 
 
-const SEASONS_CONFIG = [
-  {
-    key: "summer",
-    title: "Summer Honeymoon Destinations",
-    period: "(March – June)",
-    desc: "Perfect for cool climates and scenic mountain views.",
-  },
-  {
-    key: "monsoon",
-    title: "Monsoon Honeymoon Destinations",
-    period: "(July – September)",
-    desc: "Ideal for lush landscapes, misty hills, and peaceful escapes.",
-  },
-  {
-    key: "winter",
-    title: "Winter Honeymoon Destinations",
-    period: "(October – February)",
-    desc: "Best for beaches, cultural tours, and festive experiences.",
-  },
-];
+  const SEASONS_CONFIG = [
+    {
+      key: "summer",
+      title: "Summer Honeymoon Destinations",
+      period: "(March – June)",
+      desc: "Perfect for cool climates and scenic mountain views.",
+    },
+    {
+      key: "monsoon",
+      title: "Monsoon Honeymoon Destinations",
+      period: "(July – September)",
+      desc: "Ideal for lush landscapes, misty hills, and peaceful escapes.",
+    },
+    {
+      key: "winter",
+      title: "Winter Honeymoon Destinations",
+      period: "(October – February)",
+      desc: "Best for beaches, cultural tours, and festive experiences.",
+    },
+  ];
 
 
-const DESTINATION_DATA = {
-  domestic: {
-    summer: [
-      {
-        title: "Kashmir",
-        image: "https://images.unsplash.com/photo-1614056965546-42fbe24eb36c?q=80&w=1829&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-        points: ["Snow-clad mountains", "Houseboats", "Lush valleys"],
-        featured: true,
-      },
-      {
-        title: "Manali",
-        image: "https://images.unsplash.com/photo-1579689189009-874f5cac2db5?q=80&w=1304&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-        points: ["Romantic hill station", "Adventure", "Cozy stays"],
-      },
-      {
-        title: "Shimla",
-        image: "https://images.unsplash.com/photo-1641735735000-c9719ac2740b?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-        points: ["Colonial charm", "Pleasant weather"],
-      },
-      {
-        title: "Darjeeling",
-        image: "https://images.unsplash.com/photo-1698753864905-a447aa362ec9?q=80&w=930&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-        points: ["Tea gardens", "Himalayan views"],
-      },
-      {
-        title: "Ooty & Coonoor",
-        image: "https://images.unsplash.com/photo-1638886540342-240980f60d25?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-        points: ["Tranquil hills", "Greenery", "Waterfalls"],
-      },
-    ],
+  const DESTINATION_DATA = {
+    domestic: {
+      summer: [
+        {
+          title: "Kashmir",
+          image: "https://images.unsplash.com/photo-1614056965546-42fbe24eb36c?q=80&w=1829&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+          points: ["Snow-clad mountains", "Houseboats", "Lush valleys"],
+          featured: true,
+        },
+        {
+          title: "Manali",
+          image: "https://images.unsplash.com/photo-1579689189009-874f5cac2db5?q=80&w=1304&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+          points: ["Romantic hill station", "Adventure", "Cozy stays"],
+        },
+        {
+          title: "Shimla",
+          image: "https://images.unsplash.com/photo-1641735735000-c9719ac2740b?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+          points: ["Colonial charm", "Pleasant weather"],
+        },
+        {
+          title: "Darjeeling",
+          image: "https://images.unsplash.com/photo-1698753864905-a447aa362ec9?q=80&w=930&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+          points: ["Tea gardens", "Himalayan views"],
+        },
+        {
+          title: "Ooty & Coonoor",
+          image: "https://images.unsplash.com/photo-1638886540342-240980f60d25?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+          points: ["Tranquil hills", "Greenery", "Waterfalls"],
+        },
+      ],
 
-    monsoon: [
-      {
-        title: "Munnar",
-        image: "https://images.unsplash.com/photo-1593693397690-362cb9666fc2",
-        points: ["Tea plantations", "Waterfalls", "Romantic resorts"],
-        featured: true,
-      },
-      {
-        title: "Coorg",
-        image: "https://images.unsplash.com/photo-1709730705114-74080546e165?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-        points: ["Coffee estates", "Nature retreats"],
-      },
-      {
-        title: "Udaipur",
-        image: "https://images.unsplash.com/photo-1599661046289-e31897846e41",
-        points: ["Lakes", "Palaces", "Royal ambiance"],
-      },
-      {
-        title: "Goa (Monsoon)",
-        image: "https://images.unsplash.com/photo-1512343879784-a960bf40e7f2",
-        points: ["Quiet beaches", "Great value stays"],
-      },
-    ],
+      monsoon: [
+        {
+          title: "Munnar",
+          image: "https://images.unsplash.com/photo-1593693397690-362cb9666fc2",
+          points: ["Tea plantations", "Waterfalls", "Romantic resorts"],
+          featured: true,
+        },
+        {
+          title: "Coorg",
+          image: "https://images.unsplash.com/photo-1709730705114-74080546e165?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+          points: ["Coffee estates", "Nature retreats"],
+        },
+        {
+          title: "Udaipur",
+          image: "https://images.unsplash.com/photo-1599661046289-e31897846e41",
+          points: ["Lakes", "Palaces", "Royal ambiance"],
+        },
+        {
+          title: "Goa (Monsoon)",
+          image: "https://images.unsplash.com/photo-1512343879784-a960bf40e7f2",
+          points: ["Quiet beaches", "Great value stays"],
+        },
+      ],
 
-    winter: [
-      {
-        title: "Goa",
-        image: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e",
-        points: ["Beaches", "Nightlife", "Luxury resorts"],
-        featured: true,
-      },
-      {
-        title: "Kerala (Alleppey & Varkala)",
-        image: "https://images.unsplash.com/photo-1602216056096-3b40cc0c9944",
-        points: ["Backwaters", "Houseboat stays"],
-      },
-      {
-        title: "Rajasthan",
-        image: "https://images.unsplash.com/photo-1587295656906-b06dca8f2340?q=80&w=864&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-        points: ["Royal palaces", "Desert romance"],
-      },
-      {
-        title: "Andaman & Nicobar Islands",
-        image: "https://images.unsplash.com/photo-1589308078059-be1415eab4c3",
-        points: ["White-sand beaches", "Turquoise waters"],
-      },
-    ],
-  },
+      winter: [
+        {
+          title: "Goa",
+          image: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e",
+          points: ["Beaches", "Nightlife", "Luxury resorts"],
+          featured: true,
+        },
+        {
+          title: "Kerala (Alleppey & Varkala)",
+          image: "https://images.unsplash.com/photo-1602216056096-3b40cc0c9944",
+          points: ["Backwaters", "Houseboat stays"],
+        },
+        {
+          title: "Rajasthan",
+          image: "https://images.unsplash.com/photo-1587295656906-b06dca8f2340?q=80&w=864&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+          points: ["Royal palaces", "Desert romance"],
+        },
+        {
+          title: "Andaman & Nicobar Islands",
+          image: "https://images.unsplash.com/photo-1589308078059-be1415eab4c3",
+          points: ["White-sand beaches", "Turquoise waters"],
+        },
+      ],
+    },
 
-  international: {
-    summer: [
-      {
-        title: "Maldives",
-        image: "https://images.unsplash.com/photo-1552465011-b4e21bf6e79a?q=80&w=2039&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-        points: ["Luxury overwater villas", "Private beaches"],
-        featured: true,
-      },
-      {
-        title: "Bali, Indonesia",
-        image: "https://images.unsplash.com/photo-1500375592092-40eb2168fd21",
-        points: ["Tropical beaches", "Romantic villas", "Cultural charm"],
-      },
-      {
-        title: "Switzerland",
-        image: "https://images.unsplash.com/photo-1500534314209-a25ddb2bd429",
-        points: ["Snowy Alps", "Scenic trains", "Lakeside towns"],
-      },
-      {
-        title: "Turkey",
-        image: "https://images.unsplash.com/photo-1524231757912-21f4fe3a7200",
-        points: ["Hot air balloon rides", "Beaches", "Historic cities"],
-      },
-      {
-        title: "Mauritius",
-        image: "https://images.unsplash.com/photo-1500375592092-40eb2168fd21",
-        points: ["Pristine beaches", "Luxury resorts", "Island romance"],
-      },
-    ],
+    international: {
+      summer: [
+        {
+          title: "Maldives",
+          image: "https://images.unsplash.com/photo-1552465011-b4e21bf6e79a?q=80&w=2039&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+          points: ["Luxury overwater villas", "Private beaches"],
+          featured: true,
+        },
+        {
+          title: "Bali, Indonesia",
+          image: "https://images.unsplash.com/photo-1500375592092-40eb2168fd21",
+          points: ["Tropical beaches", "Romantic villas", "Cultural charm"],
+        },
+        {
+          title: "Switzerland",
+          image: "https://images.unsplash.com/photo-1500534314209-a25ddb2bd429",
+          points: ["Snowy Alps", "Scenic trains", "Lakeside towns"],
+        },
+        {
+          title: "Turkey",
+          image: "https://images.unsplash.com/photo-1524231757912-21f4fe3a7200",
+          points: ["Hot air balloon rides", "Beaches", "Historic cities"],
+        },
+        {
+          title: "Mauritius",
+          image: "https://images.unsplash.com/photo-1500375592092-40eb2168fd21",
+          points: ["Pristine beaches", "Luxury resorts", "Island romance"],
+        },
+      ],
 
-    winter: [
-      {
-        title: "Dubai, UAE",
-        image: "https://images.unsplash.com/photo-1512453979798-5ea266f8880c",
-        points: ["Luxury hotels", "Shopping", "Desert safaris"],
-        featured: true,
-      },
-      {
-        title: "Thailand",
-        image: "https://images.unsplash.com/photo-1528181304800-259b08848526",
-        points: ["Beautiful islands", "Nightlife", "Island hopping"],
-      },
-      {
-        title: "Sri Lanka",
-        image: "https://images.unsplash.com/photo-1651264042769-ef84e30f4ac8?q=80&w=1932&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-        points: ["Beaches", "Tea gardens", "Cultural heritage"],
-      },
-      {
-        title: "Singapore",
-        image: "https://images.unsplash.com/photo-1508964942454-1a56651d54ac",
-        points: ["Modern city charm", "Attractions", "Cruises"],
-      },
-      {
-        title: "Vietnam",
-        image: "https://images.unsplash.com/photo-1528127269322-539801943592",
-        points: ["Halong Bay cruises", "Scenic landscapes"],
-      },
-    ],
-  },
-};
+      winter: [
+        {
+          title: "Dubai, UAE",
+          image: "https://images.unsplash.com/photo-1512453979798-5ea266f8880c",
+          points: ["Luxury hotels", "Shopping", "Desert safaris"],
+          featured: true,
+        },
+        {
+          title: "Thailand",
+          image: "https://images.unsplash.com/photo-1528181304800-259b08848526",
+          points: ["Beautiful islands", "Nightlife", "Island hopping"],
+        },
+        {
+          title: "Sri Lanka",
+          image: "https://images.unsplash.com/photo-1651264042769-ef84e30f4ac8?q=80&w=1932&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+          points: ["Beaches", "Tea gardens", "Cultural heritage"],
+        },
+        {
+          title: "Singapore",
+          image: "https://images.unsplash.com/photo-1508964942454-1a56651d54ac",
+          points: ["Modern city charm", "Attractions", "Cruises"],
+        },
+        {
+          title: "Vietnam",
+          image: "https://images.unsplash.com/photo-1528127269322-539801943592",
+          points: ["Halong Bay cruises", "Scenic landscapes"],
+        },
+      ],
+    },
+  };
 
 
 
@@ -251,11 +251,16 @@ const DESTINATION_DATA = {
         title="Honeymoon Trips"
         description="A honeymoon marks the beginning of a beautiful journey together. Our honeymoon trips are thoughtfully designed to offer romance, comfort, privacy, and unforgettable experiences. From serene beaches and misty hill stations to luxurious international escapes, we help couples create memories that last a lifetime. Whether you seek relaxation, adventure, culture, or indulgence, our honeymoon packages are tailored to match your dream holiday."
         images={[
-          "https://images.unsplash.com/photo-1576158831003-d41033ec31fd?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-          "https://plus.unsplash.com/premium_photo-1719843013722-c2f4d69db940?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-          "https://images.unsplash.com/photo-1736259762030-69d6ccff5cca?q=80&w=752&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-
+          "/img/honeymoon/Himg1.jpeg",
+          "/img/honeymoon/Himg2.jpeg",
+          "/img/honeymoon/Himg3.jpeg",
         ]}
+        // galleryImages={[
+        //   "https://images.unsplash.com/photo-1576158831003-d41033ec31fd?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        //   "https://plus.unsplash.com/premium_photo-1719843013722-c2f4d69db940?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        //   "https://images.unsplash.com/photo-1736259762030-69d6ccff5cca?q=80&w=752&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+
+        // ]}
 
       />
 
@@ -266,50 +271,50 @@ const DESTINATION_DATA = {
         bgImage="/img/BookingImage.png"
       />
       <HoneymoonSeasonSection
-  title="Best Honeymoon Destinations"
-  destinationData={DESTINATION_DATA}
-  seasonsConfig={SEASONS_CONFIG}
-/>;
+        title="Best Honeymoon Destinations"
+        destinationData={DESTINATION_DATA}
+        seasonsConfig={SEASONS_CONFIG}
+      />;
       <PopularPackages />
- <FaqSection
-  title="Honeymoon Trips - Frequently Asked Questions"
-  subtitle="Everything you need to know to plan a perfect romantic getaway"
-  defaultOpen="item-0"
-  faqs={[
-    {
-      id: 1,
-      question: "What is the best time to plan a honeymoon trip?",
-      answer: [
-        "The ideal time depends on your chosen destination and weather preferences.",
-        "Asiago Travels recommends booking your honeymoon 4–6 months in advance to enjoy the best deals and exclusive romantic inclusions."
-      ],
-    },
-    {
-      id: 2,
-      question: "Can honeymoon packages be customized by Asiago Travels?",
-      answer: [
-        "Yes, Asiago Travels specializes in fully customized honeymoon packages.",
-        "Packages are tailored according to your budget, travel dates, preferred destinations, and special romantic experiences."
-      ],
-    },
-    {
-      id: 3,
-      question: "Do Asiago Travels honeymoon packages include romantic arrangements?",
-      answer: [
-        "Yes, most honeymoon packages include special romantic benefits.",
-        "These may include honeymoon room décor, welcome drinks, candlelight dinners, surprise cakes, or couple spa sessions, subject to hotel policies."
-      ],
-    },
-    {
-      id: 4,
-      question: "Does Asiago Travels assist with visas and travel documentation?",
-      answer: [
-        "Absolutely. Asiago Travels provides complete assistance with visas and travel documentation.",
-        "This includes visa support, travel insurance, flight tickets, hotel vouchers, and other essential paperwork for a hassle-free honeymoon."
-      ],
-    },
-  ]}
-/>
+      <FaqSection
+        title="Honeymoon Trips - Frequently Asked Questions"
+        subtitle="Everything you need to know to plan a perfect romantic getaway"
+        defaultOpen="item-0"
+        faqs={[
+          {
+            id: 1,
+            question: "What is the best time to plan a honeymoon trip?",
+            answer: [
+              "The ideal time depends on your chosen destination and weather preferences.",
+              "Asiago Travels recommends booking your honeymoon 4–6 months in advance to enjoy the best deals and exclusive romantic inclusions."
+            ],
+          },
+          {
+            id: 2,
+            question: "Can honeymoon packages be customized by Asiago Travels?",
+            answer: [
+              "Yes, Asiago Travels specializes in fully customized honeymoon packages.",
+              "Packages are tailored according to your budget, travel dates, preferred destinations, and special romantic experiences."
+            ],
+          },
+          {
+            id: 3,
+            question: "Do Asiago Travels honeymoon packages include romantic arrangements?",
+            answer: [
+              "Yes, most honeymoon packages include special romantic benefits.",
+              "These may include honeymoon room décor, welcome drinks, candlelight dinners, surprise cakes, or couple spa sessions, subject to hotel policies."
+            ],
+          },
+          {
+            id: 4,
+            question: "Does Asiago Travels assist with visas and travel documentation?",
+            answer: [
+              "Absolutely. Asiago Travels provides complete assistance with visas and travel documentation.",
+              "This includes visa support, travel insurance, flight tickets, hotel vouchers, and other essential paperwork for a hassle-free honeymoon."
+            ],
+          },
+        ]}
+      />
 
 
     </div>
