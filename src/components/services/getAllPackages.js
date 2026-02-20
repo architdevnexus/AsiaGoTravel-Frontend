@@ -1,7 +1,9 @@
 // services/getAllPackages.js
 export const getAllPackages = async () => {
+  // // console.log(process.env.NEXT_PUBLIC_BASE_URL);
+
   try {
-    const res = await fetch("https://backend.asiagotravels.com/api/allPackage", {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/allPackage`, {
       method: "GET",
     });
 
@@ -13,7 +15,4 @@ export const getAllPackages = async () => {
     console.log("Error fetching packages:", error);
     return [];
   }
-};
-
-
-
+};;

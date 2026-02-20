@@ -42,7 +42,7 @@ export const ContactSection = () => {
   const fetchPackages = async () => {
     try {
       setLoadingPackages(true);
-      const res = await fetch("https://backend.asiagotravels.com/api/allPackage");
+      const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/allPackage`);
       const data = await res.json();
       const rawArr = data?.data || data;
       const flattened = rawArr?.flatMap((item) => item?.Packages || []);
@@ -96,7 +96,7 @@ export const ContactSection = () => {
     const travelDuration = `${formData.travelDays} Days / ${formData.travelNights} Nights`;
 
     try {
-      const res = await fetch("https://backend.asiagotravels.com/api/contact-us", {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/contact-us`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({

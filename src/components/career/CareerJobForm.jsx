@@ -24,7 +24,7 @@ export const JoinOurTeamForm = () => {
       setJobsLoading(true);
       try {
         const res = await fetch(
-          "https://backend.asiagotravels.com/api/jobs/all"
+          `${process.env.NEXT_PUBLIC_BASE_URL}/jobs/all`
         );
         const data = await res.json();
 
@@ -73,7 +73,7 @@ export const JoinOurTeamForm = () => {
       form.append("cvFile", cvFile);
 
       const res = await fetch(
-        "https://backend.asiagotravels.com/api/jointeam",
+        `${process.env.NEXT_PUBLIC_BASE_URL}/jointeam`,
         {
           method: "POST",
           body: form,

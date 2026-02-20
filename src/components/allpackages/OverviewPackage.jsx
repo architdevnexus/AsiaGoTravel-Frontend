@@ -5,7 +5,7 @@ import { SendQueryModal } from "./SendQueryModal";
 import { ItineraryCard } from "./ItenaryCard";
 
 const OverviewSection = ({ overviewData }) => {
-  console.log(overviewData, "overview");
+  // console.log(overviewData, "overview");
 
   const [activeTab, setActiveTab] = useState("Summary");
   const [isOpen, setIsOpen] = useState(false);
@@ -48,11 +48,10 @@ const OverviewSection = ({ overviewData }) => {
               <button
                 key={tab}
                 onClick={() => setActiveTab(tab)}
-                className={`px-4 py-2 border-b-2 transition-all ${
-                  activeTab === tab
-                    ? "border-[#1B4965] text-white bg-[#1B4965] font-semibold rounded-lg mb-2"
-                    : "border-transparent hover:text-[#1B4965]"
-                }`}
+                className={`px-4 py-2 border-b-2 transition-all ${activeTab === tab
+                  ? "border-[#1B4965] text-white bg-[#1B4965] font-semibold rounded-lg mb-2"
+                  : "border-transparent hover:text-[#1B4965]"
+                  }`}
               >
                 {tab}
               </button>
@@ -123,14 +122,14 @@ const OverviewSection = ({ overviewData }) => {
           <div className="mb-5">
             <h3 className="text-gray-800 font-semibold">Starting From</h3>
 
-     <p className="text-3xl font-bold text-gray-900 mt-2">
-  {Number(priceDetails?.[0]?.discountedPrice) > 0
-    ? `₹ ${priceDetails[0].discountedPrice}`
-    : "As per request"}
-  <span className="text-base font-normal text-gray-500 block">
-    Per Person on Triple Sharing Occupancy
-  </span>
-</p>
+            <p className="text-3xl font-bold text-gray-900 mt-2">
+              {Number(priceDetails?.[0]?.discountedPrice) > 0
+                ? `₹ ${priceDetails[0].discountedPrice}`
+                : "As per request"}
+              <span className="text-base font-normal text-gray-500 block">
+                {priceDetails?.[0]?.priceDescription || "Per Person on Triple Sharing Occupancy"}
+              </span>
+            </p>
 
             <button
               onClick={() => setIsOpen(true)}
@@ -147,11 +146,10 @@ const OverviewSection = ({ overviewData }) => {
               {priceDetails?.options?.map((option, i) => (
                 <button
                   key={i}
-                  className={`px-3 py-1 rounded-md border text-sm font-medium ${
-                    option.active
-                      ? "border-[#3FA9F5] bg-[#3FA9F5] text-white"
-                      : "border-gray-300 text-gray-600"
-                  }`}
+                  className={`px-3 py-1 rounded-md border text-sm font-medium ${option.active
+                    ? "border-[#3FA9F5] bg-[#3FA9F5] text-white"
+                    : "border-gray-300 text-gray-600"
+                    }`}
                 >
                   {option.label}
                 </button>

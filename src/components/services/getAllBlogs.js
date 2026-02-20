@@ -1,6 +1,6 @@
 export const getAllBlogs = async () => {
   try {
-    const res = await fetch("https://backend.asiagotravels.com/api/AllBlog", {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/AllBlog`, {
       method: "GET",
     });
 
@@ -8,7 +8,7 @@ export const getAllBlogs = async () => {
 
     const data = await res.json();
 
-    console.log("API Raw Response:", data);
+    // console.log("API Raw Response:", data);
 
     return data; // return full response
   } catch (error) {

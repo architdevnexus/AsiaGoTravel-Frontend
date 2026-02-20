@@ -39,7 +39,7 @@ export const SendQueryModal = ({ title }) => {
 
     try {
       const res = await fetch(
-        "https://backend.asiagotravels.com/api/submitQuery",
+        `${process.env.NEXT_PUBLIC_BASE_URL}/submitQuery`,
         {
           method: "POST",
           headers: {

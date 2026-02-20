@@ -85,28 +85,28 @@ const FiltersSidebar = ({ onFilterResults }) => {
 
 
   const handleResetFilters = () => {
-  setSearch("");
-  setSuggestions([]);
-  setShowSuggestions(false);
+    setSearch("");
+    setSuggestions([]);
+    setShowSuggestions(false);
 
-  setBudgetRange([DEFAULT_MIN, DEFAULT_MAX]);
-  setDuration(0);
+    setBudgetRange([DEFAULT_MIN, DEFAULT_MAX]);
+    setDuration(0);
 
-  setSelectedTypes([]);
-  setRating(null);
-  setSelectedDestinations([]);
+    setSelectedTypes([]);
+    setRating(null);
+    setSelectedDestinations([]);
 
-  setSelectedCities([]);
-  setCitySearch("");
+    setSelectedCities([]);
+    setCitySearch("");
 
-  setSelectedCountries([]);
-  setCountrySearch("");
+    setSelectedCountries([]);
+    setCountrySearch("");
 
-  setFamousDestinations([]);
+    setFamousDestinations([]);
 
-  // Clear results immediately (optional but clean)
-  onFilterResults([]);
-};
+    // Clear results immediately (optional but clean)
+    onFilterResults([]);
+  };
 
 
   const fetchSuggestions = async (keyword) => {
@@ -118,7 +118,7 @@ const FiltersSidebar = ({ onFilterResults }) => {
     try {
       setLoading(true);
       const res = await fetch(
-        `https://backend.asiagotravels.com/api/location/search?q=${keyword}`
+        `${process.env.NEXT_PUBLIC_BASE_URL}/location/search?q=${keyword}`
       );
       const data = await res.json();
       setSuggestions(data);
@@ -141,7 +141,7 @@ const FiltersSidebar = ({ onFilterResults }) => {
   // ⭐ Save Keyword (existing)
   const saveKeyword = async (keyword) => {
     try {
-      await fetch("https://backend.asiagotravels.com/api/saveKeyword", {
+      await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/saveKeyword`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         credentials: "include",
@@ -168,33 +168,34 @@ const FiltersSidebar = ({ onFilterResults }) => {
         params.append("minPrice", String(minBudget));
         params.append("maxPrice", String(maxBudget));
       }
-if (selectedCities.length > 0) {
-  selectedCities.forEach((city) => {
-    params.append("departureCities", city);
-  });
-}
+      if (selectedCities.length > 0) {
+        selectedCities.forEach((city) => {
+          params.append("departureCities", city);
+        });
+      }
 
- // ⭐ Famous Destinations (MULTIPLE)
-if (famousDestinations.length > 0) {
-  famousDestinations.forEach((dest) => {
-    params.append("famousDestinations", dest);
-  });
-}
+      // ⭐ Famous Destinations (MULTIPLE)
+      if (famousDestinations.length > 0) {
+        famousDestinations.forEach((dest) => {
+          params.append("famousDestinations", dest);
+        });
+      }
 
-if (selectedCountries.length > 0) {
-  selectedCountries.forEach((country) => {
-    params.append("countries", country);
-  });
-}
+      if (selectedCountries.length > 0) {
+        selectedCountries.forEach((country) => {
+          params.append("countries", country);
+        });
+      }
 
 
-      // 📆 Duration
+      //  Duration
       if (duration > 0) {
         params.append("minDays", String(duration));
         params.append("maxDays", String(duration + 2));
       }
 
-      const apiURL = `https://backend.asiagotravels.com/api/travel/filter?${params.toString()}`;
+      // const apiURL = `http://localhost:9003/api/travel/filter?${params.toString()}`;
+      const apiURL = `${process.env.NEXT_PUBLIC_BASE_URL}/travel/filter?${params.toString()}`;
 
       const res = await fetch(apiURL, {
         method: "GET",
@@ -231,12 +232,12 @@ if (selectedCountries.length > 0) {
       <div className="border-[#B4B4B4] border-b w-full p-6 pb-2 border-r flex justify-between text-center
       ">
         <h2 className="text-lg font-semibold">FILTERS</h2>
-       <button
-  onClick={handleResetFilters}
-  className="text-sm  hover:text-[#1B4965] transition hover:border underline hover:border-[#1B4965] px-2 py-1 rounded-2xl"
->
-  Reset
-</button>
+        <button
+          onClick={handleResetFilters}
+          className="text-sm  hover:text-[#1B4965] transition hover:border underline hover:border-[#1B4965] px-2 py-1 rounded-2xl"
+        >
+          Reset
+        </button>
       </div>
 
       <div className="max-w-100 sm:w-92 border-r p-6 pb-40 shadow-sm space-y-8">
@@ -292,41 +293,40 @@ if (selectedCountries.length > 0) {
         <div className="border border-[#B4B4B4] w-full"></div>
 
         {/* ⭐ Duration (unchanged) */}
-       {/* ⭐ Duration */}
-<div>
-  <h3 className="font-semibold text-base mb-4">Tour Duration</h3>
+        {/* ⭐ Duration */}
+        <div>
+          <h3 className="font-semibold text-base mb-4">Tour Duration</h3>
 
-  <div className="grid grid-cols-2 gap-3">
-    {[
-      { label: "3 - 6 Days", value: 3 },
-      { label: "6 - 9 Days", value: 6 },
-      { label: "9 - 12 Days", value: 9 },
-      { label: "12 - 14 Days", value: 12 },
-    ].map((item) => {
-      const isSelected = duration === item.value;
+          <div className="grid grid-cols-2 gap-3">
+            {[
+              { label: "3 - 6 Days", value: 3 },
+              { label: "6 - 9 Days", value: 6 },
+              { label: "9 - 12 Days", value: 9 },
+              { label: "12 - 14 Days", value: 12 },
+            ].map((item) => {
+              const isSelected = duration === item.value;
 
-      return (
-        <button
-          key={item.value}
-          type="button"
-          onClick={() =>
-            setDuration((prev) => (prev === item.value ? 0 : item.value))
-          }
-          className={`border rounded-md p-2 text-sm transition-all
+              return (
+                <button
+                  key={item.value}
+                  type="button"
+                  onClick={() =>
+                    setDuration((prev) => (prev === item.value ? 0 : item.value))
+                  }
+                  className={`border rounded-md p-2 text-sm transition-all
             hover:border-[#1B4965] hover:bg-[#1B4965]/5
-            ${
-              isSelected
-                ? "border-[#1B4965] bg-[#1B4965]/10 font-medium"
-                : "border-gray-300"
-            }
+            ${isSelected
+                      ? "border-[#1B4965] bg-[#1B4965]/10 font-medium"
+                      : "border-gray-300"
+                    }
           `}
-        >
-          {item.label}
-        </button>
-      );
-    })}
-  </div>
-</div>
+                >
+                  {item.label}
+                </button>
+              );
+            })}
+          </div>
+        </div>
 
 
         <div className="border border-[#B4B4B4] w-full"></div>

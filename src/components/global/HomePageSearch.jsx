@@ -54,13 +54,13 @@ export default function HomePageSearchPackages() {
         setLoading(true);
 
         // IMPORTANT: fetch through proxy to avoid CORS
-        const res = await fetch(`https://backend.asiagotravels.com/api/location/search?q=${keyword}`);
+        const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/location/search?q=${keyword}`);
         const data = await res.json();
 
         setDestResults(data || []);
         setShowDropdown(true);
       } catch (error) {
-        console.log("Suggestion API Error:", error);
+        // console.log("Suggestion API Error:", error);
       } finally {
         setLoading(false);
       }

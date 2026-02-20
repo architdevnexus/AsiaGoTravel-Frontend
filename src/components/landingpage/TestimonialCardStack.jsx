@@ -36,7 +36,7 @@ export const TestimonialCardStack = () => {
   const fetchTestimonials = async () => {
     try {
       const res = await fetch(
-        "https://backend.asiagotravels.com/api/allTestimonials"
+        `${process.env.NEXT_PUBLIC_BASE_URL}/allTestimonials`
       );
       const data = await res.json();
       setStack(data?.data || []);
@@ -101,7 +101,7 @@ export const TestimonialCardStack = () => {
     >
       {stack.length === 0 && <LoaderSpinner />}
 
-      <div className="relative w-[320px] h-[320px]">
+      <div className="relative w-[320px] h-80">
         {stack.map((item, i) => {
           const zIndex = stack.length - i;
           return (

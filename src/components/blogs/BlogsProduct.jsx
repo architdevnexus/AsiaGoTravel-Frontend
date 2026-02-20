@@ -7,18 +7,18 @@ export const BlogContent = () => {
   const { id } = useParams();
   const [blog, setBlog] = useState(null);
 
-  console.log("fvhdf", blog?.blog?.title);
+  // console.log("fvhdf", blog?.blog?.title);
 
   useEffect(() => {
     const fetchBlogById = async () => {
       try {
         const res = await fetch(
-          `https://backend.asiagotravels.com/api/AllBlog/${id}`,
+          `${process.env.NEXT_PUBLIC_BASE_URL}/AllBlog/${id}`,
           { cache: "no-store" }
         );
         const data = await res.json();
 
-        console.log(data, "blogsdata");
+        // console.log(data, "blogsdata");
 
         // FIX HERE 🔥
         setBlog(data);

@@ -16,7 +16,7 @@ export const KeywordSearch = ({
 
   // 🔥 Log whenever suggestions update
   useEffect(() => {
-    console.log("Updated Suggestions:", suggestions);
+    // console.log("Updated Suggestions:", suggestions);
   }, [suggestions]);
 
   return (
@@ -29,11 +29,11 @@ export const KeywordSearch = ({
           type="text"
           value={search}
           onChange={(e) => {
-            console.log("Typing:", e.target.value);
+            // console.log("Typing:", e.target.value);
             setSearch(e.target.value);
           }}
           onFocus={() => {
-            console.log("Input focused → show suggestions");
+            // console.log("Input focused → show suggestions");
             setShowSuggestions(true);
           }}
           placeholder="Search destinations..."
@@ -65,12 +65,12 @@ export const KeywordSearch = ({
           {/* Suggestion Items */}
           {!loading &&
             suggestions.map((item, idx) => {
-              console.log("Rendering Suggestion:", item); // 🔥 log each item
+              // console.log("Rendering Suggestion:", item); // 🔥 log each item
               return (
                 <div
                   key={idx}
                   onClick={() => {
-                    console.log("Clicked Suggestion:", item); // 🔥 log clicked item
+                    // console.log("Clicked Suggestion:", item); // 🔥 log clicked item
                     setSearch(item.name);
                     saveKeyword(item.name);
                     setShowSuggestions(false);

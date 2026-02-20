@@ -22,7 +22,7 @@ export const PopularPackages = () => {
 
     // ⭐ FLATTEN Nested Packages Array (same as AllPackageComponent)
     const flattenedPackages = data?.flatMap((pkg) => pkg?.Packages || []);
-    console.log(flattenedPackages , 'nfcjd');
+    // console.log(flattenedPackages , 'nfcjd');
     
 
     // Limit to top 3 for Popular Section
