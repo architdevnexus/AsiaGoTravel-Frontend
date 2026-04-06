@@ -41,36 +41,31 @@ export const KeywordSearch = ({
         />
 
         {/* Loader spinner while typing */}
-        {loading && (
+        {/* {loading && (
           <div className="animate-spin h-4 w-4 border-2 border-blue-500 border-t-transparent rounded-full mr-2"></div>
-        )}
+        )} */}
       </div>
 
       {/* ⭐ Suggestions Dropdown */}
-      {showSuggestions && (suggestions.length > 0 || loading) && (
+      {/* {showSuggestions && (suggestions.length > 0 || loading) && (
         <div
-          className={`absolute top-full left-0 w-full bg-white border rounded-2xl shadow-lg mt-2 max-h-72 overflow-y-auto z-50 transition-all duration-200 ${
-            showSuggestions
+          className={`absolute top-full left-0 w-full bg-white border rounded-2xl shadow-lg mt-2 max-h-72 overflow-y-auto z-50 transition-all duration-200 ${showSuggestions
               ? "opacity-100 translate-y-0"
               : "opacity-0 -translate-y-2"
-          }`}
+            }`}
         >
-          {/* Loader Placeholder */}
           {loading && (
             <div className="p-4 text-center text-gray-500 text-sm">
               Searching…
             </div>
           )}
 
-          {/* Suggestion Items */}
           {!loading &&
             suggestions.map((item, idx) => {
-              // console.log("Rendering Suggestion:", item); // 🔥 log each item
               return (
                 <div
                   key={idx}
                   onClick={() => {
-                    // console.log("Clicked Suggestion:", item); // 🔥 log clicked item
                     setSearch(item.name);
                     saveKeyword(item.name);
                     setShowSuggestions(false);
@@ -89,7 +84,7 @@ export const KeywordSearch = ({
               );
             })}
         </div>
-      )}
+      )} */}
     </div>
   );
 };

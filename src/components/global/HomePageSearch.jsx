@@ -28,47 +28,47 @@ export default function HomePageSearchPackages() {
   const dropRef = useRef(null);
 
   // Close dropdown when clicking outside
-  useEffect(() => {
-    const handler = (e) => {
-      if (rgRef.current && !rgRef.current.contains(e.target)) {
-        setOpenRG(false);
-      }
-      if (dropRef.current && !dropRef.current.contains(e.target)) {
-        setShowDropdown(false);
-      }
-    };
+  // useEffect(() => {
+  //   const handler = (e) => {
+  //     if (rgRef.current && !rgRef.current.contains(e.target)) {
+  //       setOpenRG(false);
+  //     }
+  //     if (dropRef.current && !dropRef.current.contains(e.target)) {
+  //       setShowDropdown(false);
+  //     }
+  //   };
 
-    document.addEventListener("mousedown", handler);
-    return () => document.removeEventListener("mousedown", handler);
-  }, []);
+  //   document.addEventListener("mousedown", handler);
+  //   return () => document.removeEventListener("mousedown", handler);
+  // }, []);
 
   // ⭐ Fetch Destination Suggestions (using keyword)
-  useEffect(() => {
-    if (!keyword) {
-      setDestResults([]);
-      return;
-    }
+  // useEffect(() => {
+  //   if (!keyword) {
+  //     setDestResults([]);
+  //     return;
+  //   }
 
-    const fetchData = async () => {
-      try {
-        setLoading(true);
+  //   const fetchData = async () => {
+  //     try {
+  //       setLoading(true);
 
-        // IMPORTANT: fetch through proxy to avoid CORS
-        const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/location/search?q=${keyword}`);
-        const data = await res.json();
+  //       // IMPORTANT: fetch through proxy to avoid CORS
+  //       const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/location/search?q=${keyword}`);
+  //       const data = await res.json();
 
-        setDestResults(data || []);
-        setShowDropdown(true);
-      } catch (error) {
-        // console.log("Suggestion API Error:", error);
-      } finally {
-        setLoading(false);
-      }
-    };
+  //       setDestResults(data || []);
+  //       setShowDropdown(true);
+  //     } catch (error) {
+  //       // console.log("Suggestion API Error:", error);
+  //     } finally {
+  //       setLoading(false);
+  //     }
+  //   };
 
-    const debounce = setTimeout(fetchData, 300);
-    return () => clearTimeout(debounce);
-  }, [keyword]);
+  //   const debounce = setTimeout(fetchData, 300);
+  //   return () => clearTimeout(debounce);
+  // }, [keyword]);
 
   // ⭐ Navigate to all-packages
   const handleSearch = () => {
@@ -121,19 +121,19 @@ export default function HomePageSearchPackages() {
                 type="text"
                 value={keyword}
                 onChange={(e) => setKeyword(e.target.value)} // ⭐ update keyword
-                onFocus={() => setShowDropdown(true)}
+                // onFocus={() => setShowDropdown(true)}
                 placeholder="Search ..."
                 className="text-sm font-semibold focus:outline-none bg-transparent w-full"
               />
 
               {/* Loader */}
               {loading && (
-                <div className="animate-spin h-4 w-4 border-2 border-blue-500 border-t-transparent rounded-full mr-2"></div>
+                <div className="w-4 animate-spin aspect-square border-2 border-t-transparent border-blue-500 rounded-full "></div>
               )}
             </div>
 
             {/* ⭐ Suggestions Dropdown */}
-            {showDropdown && (destResults.length > 0 || loading) && (
+            {/* {showDropdown && (destResults.length > 0 || loading) && (
               <div
                 className={`absolute top-full left-0 w-full bg-white border rounded-2xl shadow-lg mt-2 max-h-72 overflow-y-auto z-50 transition-all duration-200`}
               >
@@ -164,7 +164,7 @@ export default function HomePageSearchPackages() {
                     </div>
                   ))}
               </div>
-            )}
+            )} */}
 
             <span className="text-xs text-gray-400">State, Country</span>
           </div>
