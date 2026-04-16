@@ -49,30 +49,29 @@ export const Navbar = () => {
   return (
 <nav className="w-full bg-white text-white font-sans sticky top-0 z-50">
 
-
-
-
-
-
-
-
       {/* Top Navbar */}
       <div className="flex items-center justify-between bg-[#0E3A55] h-18 pr-4 font-medium">
         <div
-          className="w-[560px] h-18 bg-white"
+          className="w-[560px] pl-3 h-18 bg-white"
           style={{
             clipPath: "polygon(0 0, 100% 0, 90% 99%, 0 100%)",
           }}
         >
+          {/* <div className="flex items-center h-full p-3"> */}
+
           <Link href="/">
+          
             <Image
-              src="/img/asiagologo.svg"
+              src="/img/asiagologo1.svg"
+              // src="/img/asiagologo.svg"
               alt="Logo"
-              width={200}
-              height={13}
-              className="cursor-pointer"
+              width={190}
+              height={12}
+              className="cursor-pointer "
             />
           </Link>
+          {/* </div> */}
+
         </div>
 
         {/* DESKTOP MAIN LINKS */}
